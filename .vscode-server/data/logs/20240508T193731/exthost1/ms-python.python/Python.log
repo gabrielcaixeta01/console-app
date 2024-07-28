@@ -1,0 +1,19 @@
+2024-05-08 19:38:15.992 [info] Experiment 'pythonRecommendTensorboardExt' is active
+2024-05-08 19:38:15.992 [info] Experiment 'pythonREPLSmartSend' is active
+2024-05-08 19:38:15.992 [info] Experiment 'pythonTerminalEnvVarActivation' is active
+2024-05-08 19:38:15.992 [info] Experiment 'pythonTestAdapter' is active
+2024-05-08 19:38:15.992 [info] Default formatter is set to null for workspace /home/gustavo/Aulinha-Git
+2024-05-08 19:38:15.993 [info] Test server listening.
+2024-05-08 19:38:15.993 [info] > hatch env show --json
+2024-05-08 19:38:15.993 [info] cwd: .
+2024-05-08 19:38:15.993 [info] > pyenv which python
+2024-05-08 19:38:15.993 [info] cwd: .
+2024-05-08 19:38:16.045 [info] Python interpreter path: /bin/python3
+2024-05-08 19:38:17.761 [info] Starting Pylance language server.
+2024-05-08 19:39:40.331 [info] CreateEnv Trigger - Skipping for /home/gustavo/Aulinha-Git/teste.py
+2024-05-08 19:39:40.403 [info] Send text to terminal: /bin/python3 /home/gustavo/Aulinha-Git/teste.py
+2024-05-08 19:39:40.530 [info] Discover tests for workspace name: Aulinha-Git - uri: /home/gustavo/Aulinha-Git/teste.py
+2024-05-08 19:40:10.919 [info] Send text to terminal: /bin/python3 /home/gustavo/Aulinha-Git/teste.py
+2024-05-08 19:40:11.156 [info] Discover tests for workspace name: Aulinha-Git - uri: /home/gustavo/Aulinha-Git/teste.py
+2024-05-08 19:40:29.681 [info] Send text to terminal: /bin/python3 /home/gustavo/Aulinha-Git/teste.py
+2024-05-08 19:40:29.918 [info] Discover tests for workspace name: Aulinha-Git - uri: /home/gustavo/Aulinha-Git/teste.py

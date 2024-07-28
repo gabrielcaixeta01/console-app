@@ -1,0 +1,115 @@
+2024-05-08 20:48:18.013 [info] Log level: Info
+2024-05-08 20:48:18.013 [info] Validating found git in: "git"
+2024-05-08 20:48:18.013 [info] Using git "2.25.1" from "git"
+2024-05-08 20:48:18.013 [info] > git rev-parse --show-toplevel [5ms]
+2024-05-08 20:48:30.089 [info] > git rev-parse --show-toplevel [2ms]
+2024-05-08 20:49:48.244 [info] > git rev-parse --show-toplevel [3ms]
+2024-05-08 20:49:48.252 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2024-05-08 20:49:48.262 [info] Open repository: /home/gustavo
+2024-05-08 20:49:48.272 [info] > git config --get commit.template [3ms]
+2024-05-08 20:49:48.279 [info] No remotes found in the git config file.
+2024-05-08 20:49:48.280 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [3ms]
+2024-05-08 20:49:48.280 [warning] No such branch: master.
+2024-05-08 20:49:48.593 [info] > git show --textconv :Aula-VSCODE/index.html [7ms]
+2024-05-08 20:49:48.594 [info] > git ls-files --stage -- /home/gustavo/Aula-VSCODE/index.html [2ms]
+2024-05-08 20:49:48.875 [info] > git check-ignore -v -z --stdin [2ms]
+2024-05-08 20:49:49.551 [info] > git status -z -uall [1263ms] (cancelled)
+2024-05-08 20:49:56.580 [info] > git config --get commit.template [9ms]
+2024-05-08 20:49:56.580 [info] No remotes found in the git config file.
+2024-05-08 20:49:57.400 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [812ms]
+2024-05-08 20:49:57.400 [warning] No such branch: master.
+2024-05-08 20:49:58.590 [info] > git status -z -uall [1184ms] (cancelled)
+2024-05-08 20:49:59.097 [info] > git check-ignore -v -z --stdin [1ms]
+2024-05-08 20:50:08.279 [info] > git add -A -- . [3ms]
+2024-05-08 20:50:08.279 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:08.340 [info] > git add -A -- . [2ms]
+2024-05-08 20:50:08.340 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:08.549 [info] > git add -A -- . [1ms]
+2024-05-08 20:50:08.549 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:09.009 [info] > git add -A -- . [1ms]
+2024-05-08 20:50:09.009 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:09.818 [info] > git add -A -- . [2ms]
+2024-05-08 20:50:09.818 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:11.078 [info] > git add -A -- . [1ms]
+2024-05-08 20:50:11.078 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:12.888 [info] > git add -A -- . [1ms]
+2024-05-08 20:50:12.888 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:15.345 [info] > git add -A -- . [1ms]
+2024-05-08 20:50:15.345 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:18.553 [info] > git add -A -- . [2ms]
+2024-05-08 20:50:18.553 [info] fatal: Unable to create '/home/gustavo/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2024-05-08 20:50:21.526 [info] > git add -A -- . [19486ms]
+2024-05-08 20:50:21.526 [info] warning: adding embedded git repository: AULINA-VSCODE
+hint: You've added another git repository inside your current repository.
+hint: Clones of the outer repository will not contain the contents of
+hint: the embedded repository and will not know how to obtain it.
+hint: If you meant to add a submodule, use:
+hint: 
+hint: 	git submodule add <url> AULINA-VSCODE
+hint: 
+hint: If you added this path by mistake, you can remove it from the
+hint: index with:
+hint: 
+hint: 	git rm --cached AULINA-VSCODE
+hint: 
+hint: See "git help submodule" for more information.
+warning: adding embedded git repository: Aulinha-Git
+2024-05-08 20:50:21.547 [info] > git config --get commit.template [2ms]
+2024-05-08 20:50:21.557 [info] No remotes found in the git config file.
+2024-05-08 20:50:21.558 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [2ms]
+2024-05-08 20:50:21.558 [warning] No such branch: master.
+2024-05-08 20:50:23.073 [info] > git status -z -uall [1510ms] (cancelled)

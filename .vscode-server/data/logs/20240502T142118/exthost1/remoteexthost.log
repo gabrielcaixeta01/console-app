@@ -1,0 +1,16 @@
+2024-05-02 14:21:20.376 [info] Extension host with pid 1672 started
+2024-05-02 14:21:20.397 [info] Lock '/home/gustavo/.vscode-server/data/User/workspaceStorage/c8b70124d64d28d39fb60f8bff17e24a/vscode.lock': Lock acquired.
+2024-05-02 14:21:20.447 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*'
+2024-05-02 14:21:20.499 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2024-05-02 14:21:20.641 [info] Eager extensions activated
+2024-05-02 14:21:20.642 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2024-05-02 14:21:20.646 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2024-05-02 14:21:32.115 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: vscode.github
+2024-05-02 14:23:00.163 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2024-05-02 14:23:24.516 [info] ExtensionService#_doActivateExtension ms-python.python, startup: false, activationEvent: 'onLanguage:python', root cause: ms-python.debugpy
+2024-05-02 14:23:25.306 [info] ExtensionService#_doActivateExtension ms-python.debugpy, startup: false, activationEvent: 'onLanguage:python'
+2024-05-02 14:23:25.306 [info] ExtensionService#_doActivateExtension ms-python.vscode-pylance, startup: false, activationEvent: 'onLanguage:python'
+2024-05-02 14:23:25.950 [info] ExtensionService#_doActivateExtension vscode.tunnel-forwarding, startup: false, activationEvent: 'onTunnel'
+2024-05-02 14:25:21.085 [info] Extension host terminating: received terminate message from renderer
+2024-05-02 14:25:21.087 [info] Lock '/home/gustavo/.vscode-server/data/User/workspaceStorage/c8b70124d64d28d39fb60f8bff17e24a/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+2024-05-02 14:25:21.209 [info] Extension host with pid 1672 exiting with code 0

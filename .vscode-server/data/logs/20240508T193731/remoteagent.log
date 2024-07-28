@@ -1,0 +1,84 @@
+2024-05-08 19:37:32.011 [info] 
+
+
+
+
+2024-05-08 19:37:32.038 [info] Extension host agent started.
+2024-05-08 19:37:32.438 [info] [127.0.0.1][b2f5b16e][ManagementConnection] New connection established.
+2024-05-08 19:37:32.753 [info] [127.0.0.1][da4e91a6][ExtensionHostConnection] New connection established.
+2024-05-08 19:37:34.001 [info] [127.0.0.1][da4e91a6][ExtensionHostConnection] <1699> Launched Extension Host Process.
+2024-05-08 19:37:38.776 [info] Getting Manifest... ms-python.debugpy
+2024-05-08 19:37:38.778 [info] Getting Manifest... ms-python.vscode-pylance
+2024-05-08 19:37:38.949 [info] Installing extension: ms-python.vscode-pylance
+2024-05-08 19:37:38.953 [info] Installing extension: ms-python.debugpy
+2024-05-08 19:37:40.456 [info] Getting Manifest... ms-python.python
+2024-05-08 19:37:40.731 [info] Getting Manifest... ms-python.python
+2024-05-08 19:37:43.027 [info] Extension signature is verified: ms-python.debugpy
+2024-05-08 19:37:43.503 [info] Extension signature is verified: ms-python.vscode-pylance
+2024-05-08 19:37:43.675 [info] Extracted extension to file:///home/gustavo/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64: ms-python.debugpy
+2024-05-08 19:37:43.685 [info] Renamed to /home/gustavo/.vscode-server/extensions/ms-python.debugpy-2024.6.0-linux-x64
+2024-05-08 19:37:43.688 [info] Extracting extension completed. ms-python.debugpy
+2024-05-08 19:37:43.697 [info] Extension installed successfully: ms-python.debugpy
+2024-05-08 19:37:43.703 [info] Marked extension as uninstalled ms-python.debugpy-2024.4.0-linux-x64
+2024-05-08 19:37:49.305 [info] Extracted extension to file:///home/gustavo/.vscode-server/extensions/ms-python.vscode-pylance-2024.5.1: ms-python.vscode-pylance
+2024-05-08 19:37:49.317 [info] Renamed to /home/gustavo/.vscode-server/extensions/ms-python.vscode-pylance-2024.5.1
+2024-05-08 19:37:49.321 [info] Extracting extension completed. ms-python.vscode-pylance
+2024-05-08 19:37:49.332 [info] Extension installed successfully: ms-python.vscode-pylance
+2024-05-08 19:37:49.341 [info] Marked extension as uninstalled ms-python.vscode-pylance-2024.4.1
+2024-05-08 19:38:07.630 [info] Getting Manifest... ms-python.python
+2024-05-08 19:38:07.757 [info] Installing extension: ms-python.python
+2024-05-08 19:38:17.670 [info] Extension signature is verified: ms-python.python
+2024-05-08 19:38:21.888 [info] Extracted extension to file:///home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0: ms-python.python
+2024-05-08 19:38:21.899 [info] Renamed to /home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0
+2024-05-08 19:38:21.903 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 19:38:21.905 [info] Extracting extension completed. ms-python.python
+2024-05-08 19:38:21.917 [info] Extension installed successfully: ms-python.python
+2024-05-08 19:42:32.986 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 19:47:33.144 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 19:52:33.229 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 19:57:33.298 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:02:33.368 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:07:33.456 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:12:33.520 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:17:33.609 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:22:33.674 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:27:33.878 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:32:33.968 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:00.380 [info] [127.0.0.1][9ed3a32f][ManagementConnection] New connection established.
+2024-05-08 20:33:00.907 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:00.916 [info] [127.0.0.1][fd278deb][ExtensionHostConnection] New connection established.
+2024-05-08 20:33:00.944 [info] [127.0.0.1][fd278deb][ExtensionHostConnection] <11877> Launched Extension Host Process.
+2024-05-08 20:33:00.967 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:01.183 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:01.487 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:01.578 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:01.859 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:01.863 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:02.372 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:02.599 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:02.813 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:03.039 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:33:03.248 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:37:34.053 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:38:02.336 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:42:34.118 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:43:02.395 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:47:34.196 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:02.504 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:14.780 [info] [127.0.0.1][fe59d517][ManagementConnection] New connection established.
+2024-05-08 20:48:15.291 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:15.297 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:15.678 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:15.683 [info] [127.0.0.1][efdf62ba][ExtensionHostConnection] New connection established.
+2024-05-08 20:48:15.693 [info] [127.0.0.1][efdf62ba][ExtensionHostConnection] <17472> Launched Extension Host Process.
+2024-05-08 20:48:15.710 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:16.422 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:16.474 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:16.581 [info] [127.0.0.1][9ed3a32f][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+2024-05-08 20:48:16.883 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:17.171 [info] [127.0.0.1][fd278deb][ExtensionHostConnection] <11877> Extension Host Process exited with code: 0, signal: null.
+2024-05-08 20:48:17.179 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:17.361 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:17.566 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:17.831 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.
+2024-05-08 20:48:17.995 [error] [/home/gustavo/.vscode-server/extensions/ms-python.python-2024.6.0]: Extension is not compatible with Code 1.88.1. Extension requires: ^1.89.0-20240415.

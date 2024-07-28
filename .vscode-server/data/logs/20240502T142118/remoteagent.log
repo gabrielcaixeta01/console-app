@@ -1,0 +1,34 @@
+2024-05-02 14:21:18.471 [info] 
+
+
+
+
+2024-05-02 14:21:18.471 [info] Extension host agent started.
+2024-05-02 14:21:18.471 [info] Started initializing default profile extensions in extensions installation folder. file:///home/gustavo/.vscode-server/extensions
+2024-05-02 14:21:18.490 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/gustavo/.vscode-server/extensions
+2024-05-02 14:21:18.618 [info] [127.0.0.1][86f9c9b6][ManagementConnection] New connection established.
+2024-05-02 14:21:19.060 [info] [127.0.0.1][d2c4aaa1][ExtensionHostConnection] New connection established.
+2024-05-02 14:21:19.112 [info] [127.0.0.1][d2c4aaa1][ExtensionHostConnection] <1672> Launched Extension Host Process.
+2024-05-02 14:23:12.037 [info] Getting Manifest... ms-python.python
+2024-05-02 14:23:12.181 [info] Installing extension: ms-python.python
+2024-05-02 14:23:13.830 [info] Getting Manifest... ms-python.vscode-pylance
+2024-05-02 14:23:14.009 [info] Getting Manifest... ms-python.debugpy
+2024-05-02 14:23:14.160 [info] Installing extension: ms-python.vscode-pylance
+2024-05-02 14:23:14.160 [info] Installing extension: ms-python.debugpy
+2024-05-02 14:23:17.795 [info] Extension signature is verified: ms-python.debugpy
+2024-05-02 14:23:17.813 [info] Extension signature is verified: ms-python.python
+2024-05-02 14:23:17.859 [info] Extension signature is verified: ms-python.vscode-pylance
+2024-05-02 14:23:18.963 [info] Extracted extension to file:///home/gustavo/.vscode-server/extensions/ms-python.debugpy-2024.4.0-linux-x64: ms-python.debugpy
+2024-05-02 14:23:18.977 [info] Renamed to /home/gustavo/.vscode-server/extensions/ms-python.debugpy-2024.4.0-linux-x64
+2024-05-02 14:23:18.981 [info] Extracting extension completed. ms-python.debugpy
+2024-05-02 14:23:21.692 [info] Extracted extension to file:///home/gustavo/.vscode-server/extensions/ms-python.python-2024.4.1: ms-python.python
+2024-05-02 14:23:21.713 [info] Renamed to /home/gustavo/.vscode-server/extensions/ms-python.python-2024.4.1
+2024-05-02 14:23:21.724 [info] Extracting extension completed. ms-python.python
+2024-05-02 14:23:24.082 [info] Extracted extension to file:///home/gustavo/.vscode-server/extensions/ms-python.vscode-pylance-2024.4.1: ms-python.vscode-pylance
+2024-05-02 14:23:24.100 [info] Renamed to /home/gustavo/.vscode-server/extensions/ms-python.vscode-pylance-2024.4.1
+2024-05-02 14:23:24.104 [info] Extracting extension completed. ms-python.vscode-pylance
+2024-05-02 14:23:24.111 [info] Extension installed successfully: ms-python.debugpy
+2024-05-02 14:23:24.111 [info] Extension installed successfully: ms-python.python
+2024-05-02 14:23:24.111 [info] Extension installed successfully: ms-python.vscode-pylance
+2024-05-02 14:25:21.092 [info] [127.0.0.1][86f9c9b6][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+2024-05-02 14:25:21.250 [info] [127.0.0.1][d2c4aaa1][ExtensionHostConnection] <1672> Extension Host Process exited with code: 0, signal: null.

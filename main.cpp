@@ -1,43 +1,42 @@
 #include <iostream>
 #include "dominios.hpp"
-#include "entidades.hpp"
 
 using namespace std;
 
 int main() {
 
-    Entidade entidade;
-    Dominio dominio;
-
-    dominio.setValor("232036896");
-    entidade.setNomeAtributo(dominio);
-    cout << entidade.getNomeAtributo().getValor() << endl;
+    Avaliacao avaliacao;
+    Codigo codigo;
 
     // Teste com valor válido
-    if (dominio.setValor("232036896")) {               
-        cout << "Valor = " << dominio.getValor() << endl;
+    cout << "Teste com valor válido: 5" << endl;
+    if (avaliacao.setValor(5)) {               
+        cout << "Valor = " << avaliacao.getValor() << endl;
     } else {
-        cout << "Valor invalido" << endl;
+        cout << "Valor inválido" << endl;
     }
 
     // Teste com valor inválido
-    if (dominio.setValor("abcdefghi")) {             
-        cout << "Valor = " << dominio.getValor() << endl;
+    cout << "\nTeste com valor inválido: 1000" << endl;
+    if (avaliacao.setValor(1000)) {             
+        cout << "Valor = " << avaliacao.getValor() << endl;
     } else {
-        cout << "Valor invalido" << endl;
+        cout << "Valor inválido" << endl;
     }
 
-    // Alocação dinâmica com ptr
-    Dominio *ptr = new Dominio();
-
-    if(ptr->setValor("232036896")) {  
-        cout << "Valor = " << ptr->getValor() << endl;
+    //teste da classe codigo
+    cout << "teste codigo" << endl;
+    if (codigo.setValor("12345#")) {
+         cout << "Valor = " << codigo.getValor() << endl;
     } else {
-        cout << "Valor invalido" << endl;
+        cout << "Valor inválido" << endl;
     }
-
-    // Liberação de memória
-    delete ptr;
+     cout << "teste codigo" << endl;
+    if (codigo.setValor("123456")) {
+         cout << "Valor = " << codigo.getValor() << endl;
+    } else {
+        cout << "Valor inválido" << endl;
+    }
 
     return 0;
 }

@@ -99,7 +99,7 @@ bool Codigo::setValor(string valor) {
 
 //Validar e setValor: Dinheiro
 bool Dinheiro::validar(float valor) {
-    if (valor < 0.0 || valor > 200.0) {
+    if (valor < 0.0 || valor > 200000.0) {
         return false;
     }
 

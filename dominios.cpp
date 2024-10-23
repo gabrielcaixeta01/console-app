@@ -1,6 +1,7 @@
 #include "dominios.hpp"
 #include <cctype> // para a função isalnum
 #include <string> // para a funcao length
+#include <set> // para a funcao set
 
 /*
 // Método para validar se a matrícula é composta apenas por 9 dígitos
@@ -32,6 +33,80 @@ bool Dominio::setValor(string valor) {
     return true;
 } 
 */
+//Funcoes auxiliares
+bool is_number(string valor) {                      //verifica se toda a string é um numero
+    for (int i = 0; i < valor.length(); i++) {
+        if (!isdigit(valor[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool is_bissexto(int ano) {                         //verifica se o ano é bissexto
+    if (ano % 4 == 0) {
+        if (ano % 100 == 0) {
+            return (ano % 400 == 0);
+        }
+        return true;
+    }
+    return false;
+}
+
+bool mes_dia(int dia, int mes, int ano) {
+    // Verifica fevereiro separadamente
+    if (mes == 2) {
+        if (is_bissexto(ano)) {
+            return dia <= 29;  
+        } else {
+            return dia <= 28;  
+        }
+    }
+
+    // Verifica meses com 31 dias
+    if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+        return dia <= 31;
+    }
+
+    // Verifica meses com 30 dias
+    if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+        return dia <= 30;
+    }
+
+    return false;  
+}
+
+bool hasDuplicata(string valor) {
+    set<char> numerosVistos; 
+
+    for (int i = 0; i < 5; i++) {
+        if (numerosVistos.find(valor[i]) != numerosVistos.end()) {
+            return true;
+        }
+        numerosVistos.insert(valor[i]);
+    }
+    return false;
+}
+
+bool ordemCrescente(string valor) {
+    for (int i = 1; i < 5; i++) {
+        if (valor[i] <= valor[i-1]) {
+            return false;
+        }
+    }
+    return true;
+ }
+
+bool ordemDecrescente(string valor) {
+    for (int i; i < 5; i++) {
+        if (valor[i] >= valor[i-1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 
 
 //Validar e setValor: Avaliacao
@@ -53,6 +128,7 @@ bool Avaliacao::setValor(int valor) {
     this->valor = valor;
     return true;
 }
+
 
 
 //Validar e setValor: Codigo
@@ -82,50 +158,6 @@ bool Codigo::setValor(string valor) {
     return true;
 }
 
-
-//Funcoes para ajudar em data
-bool is_number(string valor) {                      //verifica se toda a string é um numero
-    for (int i = 0; i < valor.length(); i++) {
-        if (!isdigit(valor[i])) {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool is_bissexto(int ano) {                         //verifica se o ano é bissexto
-    if (ano % 4 == 0) {
-        if (ano % 100 == 0) {
-            return (ano % 400 == 0);
-        }
-        return true;
-    }
-    return false;
-}
-
-
-bool mes_dia(int dia, int mes, int ano) {
-    // Verifica fevereiro separadamente
-    if (mes == 2) {
-        if (is_bissexto(ano)) {
-            return dia <= 29;  
-        } else {
-            return dia <= 28;  
-        }
-    }
-
-    // Verifica meses com 31 dias
-    if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
-        return dia <= 31;
-    }
-
-    // Verifica meses com 30 dias
-    if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
-        return dia <= 30;
-    }
-
-    return false;  
-}
 
 
 //Validar e setValor: Data
@@ -178,6 +210,7 @@ bool Data::setValor(string valor) {
 }
 
 
+
 //Validar e setValor: Dinheiro
 bool Dinheiro::validar(float valor) {
     if (valor < 0.0 || valor > 200000.0) {
@@ -213,6 +246,7 @@ bool Duracao::setValor(int valor) {
     this-> valor = valor;
     return true;
 }
+
 
 
 //Validar e setValor: Horario
@@ -256,6 +290,7 @@ bool Horario::setValor(string valor) {
 }
 
 
+
 //Validar e setValor: Nome
 bool Nome::validar(string valor) {
     // Verifica se o nome excede o tamanho máximo de 30 caracteres
@@ -283,4 +318,37 @@ bool Nome::setValor(string valor) {
 }
 
 
+
 //Validar e setValor: Senha
+bool Senha::validar(string valor) {
+    if (valor.length() != 5){
+        return false;
+    }
+
+    if (!is_number(valor)) {
+        return false;
+    }
+
+    if (hasDuplicata(valor)) {
+        return false;
+    }
+
+    if (ordemCrescente(valor)) {
+        return false;
+    }
+
+    if (ordemDecrescente(valor)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool Senha::setValor(string valor) {
+    if (!validar(valor)) {
+        return false;
+    }
+
+    this-> valor = valor;
+    return true;
+}

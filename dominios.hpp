@@ -138,15 +138,15 @@ inline string Nome::getValor() const {
 //Classe senha (cinco digitos nao duplicados)
 class Senha {
     private:
-        int valor;
-        bool validar(int);
+        string valor;
+        bool validar(string);
 
     public:
-        bool setValor(int);
-        int getValor() const;
+        bool setValor(string);
+        string getValor() const;
 };
 
-inline int Senha::getValor() const {
+inline string Senha::getValor() const {
     return valor;
 };
 

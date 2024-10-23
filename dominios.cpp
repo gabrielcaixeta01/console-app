@@ -89,21 +89,29 @@ bool hasDuplicata(string valor) {
 }
 
 bool ordemCrescente(string valor) {
+    int count = 0;
     for (int i = 1; i < 5; i++) {
-        if (valor[i] <= valor[i-1]) {
-            return false;
+        if (valor[i] > valor[i-1]) {
+            count += 1;
         }
     }
-    return true;
+    if (count == 5) {
+        return true;
+    }
+    return false;
  }
 
 bool ordemDecrescente(string valor) {
+    int count = 0;
     for (int i; i < 5; i++) {
-        if (valor[i] >= valor[i-1]) {
-            return false;
+        if (valor[i] < valor[i-1]) {
+            count += 1;
         }
     }
-    return true;
+    if (count == 5) {
+        return true;
+    }
+    return false;
 }
 
 

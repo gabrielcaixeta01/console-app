@@ -108,5 +108,18 @@ int main() {
         cout << "Valor inválido" << endl;
     }
 
+    // Teste senha
+    Senha senha;
+
+    string password;
+    cout << "Digite sua senha de 5 digitos: " << endl;
+    cin >> password;
+
+    if (senha.setValor(password)) {
+        cout << "Valor aprovado = " << senha.getValor() << endl;
+    } else {
+        cout <<  "Valor inválido" << endl;
+    }
+
     return 0;
 }

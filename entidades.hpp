@@ -94,4 +94,125 @@ inline void Viagem::setAvaliacao(const Avaliacao &avaliacao) {
 inline Avaliacao Viagem::getAvaliacao() const {
     return avaliacao;
 }
+
+
+class Destino {
+    private:
+        Codigo codigo;
+        Nome nome;
+        Data dataInicio;
+        Data dataTermino;
+        Avaliacao avaliacao;
+
+    public:
+        void setCodigo(const Codigo&);
+        Codigo getCodigo() const;
+
+        void setNome(const Nome &nome);
+        Nome getNome() const;
+
+        void setDataInicio(const Data&);
+        Data getDataInicio() const;
+
+        void setDataTermino(const Data&);
+        Data getDatatermino() const;
+
+        void setAvaliacao(const Avaliacao&);  
+        Avaliacao getAvaliacao() const;
+};
+
+inline void Destino::setCodigo(const Codigo &codigo) {
+    this->codigo = codigo;
+}
+
+inline Codigo Destino::getCodigo() const {
+    return codigo;
+}
+
+inline void Destino::setNome(const Nome &nome) {
+    this-> nome = nome;
+}
+
+inline Nome Destino::getNome() const {
+    return nome;
+}
+
+inline void Destino::setDataInicio(const Data &dataInicio){
+    this->dataInicio = dataInicio;
+};
+
+inline Data Destino::getDataInicio() const {
+    return dataInicio;
+}
+
+inline void Destino::setDataTermino(const Data &dataTermino){
+    this->dataTermino = dataTermino;
+};
+
+inline Data Destino::getDataInicio() const {
+    return dataTermino;
+}
+
+inline void Destino::setAvaliacao(const Avaliacao &avaliacao) {
+    this->avaliacao = avaliacao;
+}
+
+inline Avaliacao Destino::getAvaliacao() const {
+    return avaliacao;
+}
+
+
+class Hospedagem {
+    private:
+        Codigo codigo;
+        Nome nome;
+        Dinheiro diaria;
+        Avaliacao avaliacao;
+    
+    public:
+        void setNome(const Nome&);
+        Nome getNome() const;
+
+        void setAvaliacao(const Avaliacao&);  
+        Avaliacao getAvaliacao() const;
+
+        void setCodigo(const Codigo&);
+        Codigo getCodigo() const;
+
+        void setDiaria(const Dinheiro&);
+        Dinheiro getDiaria() const;
+};
+
+inline void Hospedagem::setCodigo(const Codigo &codigo) {
+    this->codigo = codigo;
+}
+
+inline Codigo Hospedagem::getCodigo() const {
+    return codigo;
+}
+
+inline void Hospedagem::setNome(const Nome &nome) {
+    this-> nome = nome;
+}
+
+inline Nome Hospedagem::getNome() const {
+    return nome;
+}
+
+inline void Hospedagem::setAvaliacao(const Avaliacao &avaliacao) {
+    this->avaliacao = avaliacao;
+}
+
+inline Avaliacao Hospedagem::getAvaliacao() const {
+    return avaliacao;
+}
+
+inline void Hospedagem::setDiaria(const Dinheiro &diaria) {
+    this-> diaria = diaria;
+}
+
+inline Dinheiro Hospedagem::getDiaria() const {
+    return diaria;
+}
+
 #endif

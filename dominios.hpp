@@ -1,6 +1,10 @@
 #ifndef DOMINIOS_HPP_INCLUDED
 #define DOMINIOS_HPP_INCLUDED
-#include <string>
+#include <cctype> // para a função isalnum
+#include <string> // para a funcao length
+#include <set> // para a funcao set
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 /*

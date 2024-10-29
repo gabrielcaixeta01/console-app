@@ -1,5 +1,3 @@
-#include <iostream>
-#include <iomanip>
 #include "dominios.hpp"
 
 using namespace std;

@@ -1,7 +1,5 @@
 #include "dominios.hpp"
-#include <cctype> // para a função isalnum
-#include <string> // para a funcao length
-#include <set> // para a funcao set
+
 
 /*
 // Método para validar se a matrícula é composta apenas por 9 dígitos

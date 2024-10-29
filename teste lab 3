@@ -1,0 +1,10 @@
+class Codigo : public DominioBase {
+private:
+    std::string valor;
+    bool validar(const std::string&);
+
+public:
+    bool setValor(const std::string&) override;
+    std::string getValor() const override;
+};
+

@@ -36,7 +36,22 @@ class Conta {
         void setSenha(const Senha&);
         Senha getSenha() const;
 
-
 };
+
+inline void Conta::setSenha(const Senha &senha) {
+    this->senha = senha;
+}
+
+inline Senha Conta::getSenha() const {
+    return senha;
+}
+
+inline void Conta::setCodigo(const Codigo &codigo) {
+    this->codigo = codigo;
+}
+
+inline Codigo Conta::getCodigo() const {
+    return codigo;
+}
 
 #endif

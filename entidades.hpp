@@ -161,6 +161,82 @@ inline Avaliacao Destino::getAvaliacao() const {
     return avaliacao;
 }
 
+class Atividade {
+    private:
+        Nome nome;
+        Data data;
+        Horario horario;
+        Duracao duracao;
+        Dinheiro preco;
+        Avaliacao avaliacao;
+        
+    public:
+        void setNome(const Nome&);
+        Nome getNome() const;
+
+        void setData(const Data&);
+        Data getData() const;
+
+        void setHorario(const Horario&);
+        Horario getHorario() const;
+
+        void setDuracao(const Duracao&);
+        Duracao getDuracao() const;
+
+        void setPreco(const Dinheiro&);
+        Dinheiro getPreco() const;
+
+        void setAvaliacao(const Avaliacao&);
+        Avaliacao getAvaliacao() const;        
+};
+
+inline void Atividade::setNome(const Nome &nome) {
+    this->nome = nome;
+}
+
+inline Nome Atividade::getNome() const {
+    return nome;
+}
+
+inline void Atividade::setData(const Data &data) {
+    this->data = data;
+}
+
+inline Data Atividade::getData() const {
+    return data;
+}
+
+inline void Atividade::setHorario(const Horario &horario) {
+    this->horario = horario;
+}
+
+inline Horario Atividade::getHorario() const {
+    return horario;
+}
+
+inline void Atividade::setDuracao(const Duracao &duracao) {
+    this->duracao = duracao;
+}
+
+inline Duracao Atividade::getDuracao() const {
+    return duracao;
+}
+
+inline void Atividade::setPreco(const Dinheiro &preco) {
+    this->preco = preco;
+}
+
+inline Dinheiro Atividade::getPreco() const {
+    return preco;
+}
+
+inline void Atividade::setAvaliacao(const Avaliacao &avaliacao) {
+    this->avaliacao = avaliacao;
+}
+
+inline Avaliacao Atividade::getAvaliacao() const {
+    return avaliacao;
+}
 
 class Hospedagem {
     private:

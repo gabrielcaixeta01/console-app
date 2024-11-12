@@ -1,0 +1,166 @@
+#ifndef DOMINIOS_HPP_INCLUDED
+#define DOMINIOS_HPP_INCLUDED
+
+class DominioBase {
+public:
+    virtual bool setValor(const string&) = 0;
+    virtual string getValor() const = 0;
+    virtual ~DominioBase() = default;
+};
+
+class Avaliacao : public DominioBase {
+private:
+    int valor;
+    bool validar(int);
+
+public:
+    bool setValor(const string& novoValor) override {
+        int intValue = stoi(novoValor);
+        if (validar(intValue)) {
+            valor = intValue;
+            return true;
+        }
+        return false;
+    }
+
+    string getValor() const override {
+        return to_string(valor);
+    }
+};
+
+class Codigo : public DominioBase {
+private:
+    string valor;
+    bool validar(const string&);
+
+public:
+    bool setValor(const string& novoValor) override {
+        if (validar(novoValor)) {
+            valor = novoValor;
+            return true;
+        }
+        return false;
+    }
+
+    string getValor() const override {
+        return valor;
+    }
+};
+
+class Data : public DominioBase {
+private:
+    string valor;
+    bool validar(const string&);
+
+public:
+    bool setValor(const string& novoValor) override {
+        if (validar(novoValor)) {
+            valor = novoValor;
+            return true;
+        }
+        return false;
+    }
+
+    string getValor() const override {
+        return valor;
+    }
+};
+
+class Dinheiro : public DominioBase {
+private:
+    float valor;
+    bool validar(float);
+
+public:
+    bool setValor(const string& novoValor) override {
+        float floatValue = stof(novoValor);
+        if (validar(floatValue)) {
+            valor = floatValue;
+            return true;
+        }
+        return false;
+    }
+
+    string getValor() const override {
+        return to_string(valor);
+    }
+};
+
+class Duracao : public DominioBase {
+private:
+    int valor;
+    bool validar(int);
+
+public:
+    bool setValor(const string& novoValor) override {
+        int intValue = stoi(novoValor);
+        if (validar(intValue)) {
+            valor = intValue;
+            return true;
+        }
+        return false;
+    }
+
+    string getValor() const override {
+        return to_string(valor);
+    }
+};
+
+class Horario : public DominioBase {
+private:
+    string valor;
+    bool validar(const string&);
+
+public:
+    bool setValor(const string& novoValor) override {
+        if (validar(novoValor)) {
+            valor = novoValor;
+            return true;
+        }
+        return false;
+    }
+
+    string getValor() const override {
+        return valor;
+    }
+};
+
+class Nome : public DominioBase {
+private:
+    string valor;
+    bool validar(const string&);
+
+public:
+    bool setValor(const string& novoValor) override {
+        if (validar(novoValor)) {
+            valor = novoValor;
+            return true;
+        }
+        return false;
+    }
+
+    string getValor() const override {
+        return valor;
+    }
+
+class Senha : public DominioBase {
+private:
+    string valor;
+    bool validar(const string&);
+
+public:
+    bool setValor(const string& novoValor) override {
+        if (validar(novoValor)) {
+            valor = novoValor;
+            return true;
+        }
+        return false;
+    }
+
+    string getValor() const override {
+        return valor;
+    }
+};
+
+#endif // DOMINIOS_HPP_INCLUDED
+

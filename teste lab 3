@@ -50,7 +50,7 @@ public:
 class Data : public DominioBase {
 private:
     string valor;
-    bool validar(const string&);
+    virtual bool validar(const string&);
 
 public:
     bool setValor(const string& novoValor) override {
@@ -69,7 +69,7 @@ public:
 class Dinheiro : public DominioBase {
 private:
     float valor;
-    bool validar(float);
+    virtual bool validar(float);
 
 public:
     bool setValor(const string& novoValor) override {
@@ -89,7 +89,7 @@ public:
 class Duracao : public DominioBase {
 private:
     int valor;
-    bool validar(int);
+     virtual bool validar(int);
 
 public:
     bool setValor(const string& novoValor) override {
@@ -109,7 +109,7 @@ public:
 class Horario : public DominioBase {
 private:
     string valor;
-    bool validar(const string&);
+    virtual bool validar(const string&);
 
 public:
     bool setValor(const string& novoValor) override {
@@ -128,7 +128,7 @@ public:
 class Nome : public DominioBase {
 private:
     string valor;
-    bool validar(const string&);
+    virtual bool validar(const string&);
 
 public:
     bool setValor(const string& novoValor) override {
@@ -146,7 +146,7 @@ public:
 class Senha : public DominioBase {
 private:
     string valor;
-    bool validar(const string&);
+    virtual bool validar(const string&);
 
 public:
     bool setValor(const string& novoValor) override {

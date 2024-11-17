@@ -1,159 +1,75 @@
 #ifndef DOMINIOS_HPP_INCLUDED
 #define DOMINIOS_HPP_INCLUDED
-#include <cctype> // para a função isalnum
-#include <string> // para a funcao length
-#include <set> // para a funcao set
+
+#include <cctype>   // para a função isalnum
+#include <string>   // para a funcao length
+#include <set>      // para a funcao set
+#include <algorithm>
 #include <iostream>
 #include <iomanip>
 using namespace std;
 
-/*
 class Dominio {
     private:
-        string valor;                 // Armazena o valor do domínio
-        bool validar(string);         // Método abstrato
+        string valor;                        // Armazena o valor do domínio
+        virtual bool validar(string) = 0;    // Método abstrato para validação
 
     public:
-        bool setValor(string);        // Atribuir valor
-        string getValor() const;      // Recuperar valor
+        bool setValor(string);               // Atribuir valor
+        string getValor() const;             // Recuperar valor
 };
 
 // Implementação do método getValor (inline)
 inline string Dominio::getValor() const {
-    return valor;  
+    return valor;
 }
-*/
 
-
-//Classe Avaliação (0 a 5)
-class Avaliacao {
+// Classe Avaliacao (0 a 5)
+class Avaliacao : public Dominio {
     private:
-        int valor;                            
-        bool validar(int);                   
-        
-    public:
-        bool setValor(int);                 
-        int getValor() const;               
-};
-
-inline int Avaliacao::getValor() const {
-    return valor;  
-};
-
-
-//Classe Código (seis caracteres alfanumericos)
-class Codigo {
-    private:
-        string valor;
         bool validar(string);
-
-    public:
-        bool setValor(string);
-        string getValor() const;
 };
 
-inline string Codigo::getValor() const {
-    return valor;
-};
-
-
-//Classe data (formato: DD-MM-AA)
-class Data {
+// Classe Codigo (seis caracteres alfanuméricos)
+class Codigo : public Dominio {
     private:
-        string valor;
         bool validar(string);
-
-    public:
-        bool setValor(string);
-        string getValor() const;   
 };
 
-inline string Data::getValor() const {
-    return valor;
-};
-
-
-//Classe dinheiro (0,00 a 200.000,00)
-class Dinheiro {
+// Classe Data (formato: DD-MM-AA)
+class Data : public Dominio {
     private:
-        float valor;
-        bool validar(float);
-    
-    public:
-        bool setValor(float);
-        float getValor() const;
-
-};
-
-inline float Dinheiro::getValor() const {
-    return valor;
-};
-
-
-//Classe duracao (0 a 360)
-class Duracao {
-    private:
-        int valor;
-        bool validar(int);
-
-    public:
-        bool setValor(int);
-        int getValor() const;
-
-};
-
-inline int Duracao::getValor() const {
-    return valor;
-};
-
-
-//Classe horario (formato -> HH:MM)
-class Horario {
-    private:
-        string valor;
         bool validar(string);
-
-    public:
-        bool setValor(string);
-        string getValor() const;
 };
 
-inline string Horario::getValor() const {
-    return valor;
-};
-
-
-//Classe nome (maximo 30 caracteeres)
-class Nome {
+// Classe Dinheiro (0,00 a 200.000,00)
+class Dinheiro : public Dominio {
     private:
-        string valor;
         bool validar(string);
-
-    public:
-        bool setValor(string);
-        string getValor() const;
 };
 
-inline string Nome::getValor() const {
-    return valor;
-};
-
-
-//Classe senha (cinco digitos nao duplicados)
-class Senha {
+// Classe Duracao (0 a 360 minutos)
+class Duracao : public Dominio {
     private:
-        string valor;
         bool validar(string);
-
-    public:
-        bool setValor(string);
-        string getValor() const;
 };
 
-inline string Senha::getValor() const {
-    return valor;
+// Classe Horario (formato HH:MM)
+class Horario : public Dominio {
+    private:
+        bool validar(string);
 };
 
+// Classe Nome
+class Nome : public Dominio {
+    private:
+        bool validar(string);
+};
 
+// Classe Senha
+class Senha : public Dominio {
+    private:
+        bool validar(string);
+};
 
 #endif // DOMINIOS_HPP_INCLUDED

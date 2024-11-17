@@ -7,7 +7,7 @@ int main() {
     // Teste avaliacao
     Avaliacao avaliacao;
 
-    int nota;
+    string nota;
     cout << "Dê uma avaliação de 0 a 5: " << endl;
     cin >> nota;
 
@@ -16,7 +16,6 @@ int main() {
     } else {
         cout << "Valor inválido" << endl;
     }
-
 
     // Teste codigo
     Codigo codigo;
@@ -31,7 +30,6 @@ int main() {
         cout << "Valor inválido" << endl;
     }
 
-
     // Teste data
     Data data;
 
@@ -45,16 +43,12 @@ int main() {
         cout << "Valor inválido" << endl;
     }
 
-
-
     // Teste dinheiro
     Dinheiro dinheiro;
 
-    float money;
+    string money;
     cout << "Digite uma quantia de 0.00 a 200000.00: " << endl;
     cin >> money;
-
-    cout << fixed << setprecision(2);
 
     if (dinheiro.setValor(money)) {
          cout << "Valor aprovado = " << dinheiro.getValor() << endl;
@@ -66,7 +60,7 @@ int main() {
     // Teste duracao
     Duracao duracao;
 
-    int dura;
+    string dura;
     cout << "Digite uma duração de 0 a 360: " << endl;
     cin >> dura;
 
@@ -75,7 +69,6 @@ int main() {
     } else {
         cout << "Valor inválido" << endl;
     }
-
 
     // Teste horario
     Horario horario;
@@ -110,7 +103,7 @@ int main() {
     Senha senha;
 
     string password;
-    cout << "Digite sua senha de 5 digitos: " << endl;
+    cout << "Digite sua senha de 5 dígitos: " << endl;
     cin >> password;
 
     if (senha.setValor(password)) {

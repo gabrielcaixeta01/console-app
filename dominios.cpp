@@ -1,39 +1,11 @@
 #include "dominios.hpp"
+#include <algorithm> // Necessário para a função all_of
+#include <set>
+#include <string>
 
-
-/*
-// Método para validar se a matrícula é composta apenas por 9 dígitos
-bool Dominio::validar(string valor) {
-    // Verificar se o valor tem exatamente 9 caracteres
-    if (valor.length() != 9) {
-        return false;  // Matrícula inválida por tamanho
-    }
-    
-    // Verificar se todos os caracteres são dígitos
-    for (char c : valor) {
-        if (!isdigit(c)) {
-            return false;  // Matrícula inválida por conter letras ou outros caracteres
-        }
-    }
-
-    return true;  // Matrícula válida
-}
-
-// Método para definir o valor, validando-o previamente
-bool Dominio::setValor(string valor) {
-    // Verifica se o valor é válido
-    if (!validar(valor)) {
-        return false;  // Valor inválido, não atribuir
-    }
-    
-    // Se for válido, atribui o valor ao atributo da classe
-    this->valor = valor;
-    return true;
-} 
-*/
-//Funcoes auxiliares
-bool is_number(string valor) {                      //verifica se toda a string é um numero
-    for (int i = 0; i < valor.length(); i++) {
+// Funções auxiliares
+bool is_number(const string& valor) {
+    for (size_t i = 0; i < valor.length(); i++) {
         if (!isdigit(valor[i])) {
             return false;
         }
@@ -41,7 +13,36 @@ bool is_number(string valor) {                      //verifica se toda a string 
     return true;
 }
 
-bool is_bissexto(int ano) {                         //verifica se o ano é bissexto
+bool hasDuplicata(const string& valor) {
+    set<char> numerosVistos; 
+    for (size_t i = 0; i < valor.length(); i++) {
+        if (numerosVistos.find(valor[i]) != numerosVistos.end()) {
+            return true;
+        }
+        numerosVistos.insert(valor[i]);
+    }
+    return false;
+}
+
+bool ordemCrescente(const string& valor) {
+    for (size_t i = 1; i < valor.length(); i++) {
+        if (valor[i] <= valor[i - 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool ordemDecrescente(const string& valor) {
+    for (size_t i = 1; i < valor.length(); i++) {
+        if (valor[i] >= valor[i - 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool is_bissexto(int ano) { // Verifica se o ano é bissexto
     if (ano % 4 == 0) {
         if (ano % 100 == 0) {
             return (ano % 400 == 0);
@@ -54,307 +55,91 @@ bool is_bissexto(int ano) {                         //verifica se o ano é bisse
 bool mes_dia(int dia, int mes, int ano) {
     // Verifica fevereiro separadamente
     if (mes == 2) {
-        if (is_bissexto(ano)) {
-            return dia <= 29;  
-        } else {
-            return dia <= 28;  
-        }
+        return (is_bissexto(ano)) ? dia <= 29 : dia <= 28;
     }
-
     // Verifica meses com 31 dias
     if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
         return dia <= 31;
     }
-
     // Verifica meses com 30 dias
     if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
         return dia <= 30;
     }
-
-    return false;  
-}
-
-bool hasDuplicata(string valor) {
-    set<char> numerosVistos; 
-
-    for (int i = 0; i < 5; i++) {
-        if (numerosVistos.find(valor[i]) != numerosVistos.end()) {
-            return true;
-        }
-        numerosVistos.insert(valor[i]);
-    }
     return false;
 }
 
-bool ordemCrescente(string valor) {
-    int count = 0;
-    for (int i = 1; i < 5; i++) {
-        if (valor[i] > valor[i-1]) {
-            count += 1;
-        }
-    }
-    if (count == 5) {
-        return true;
-    }
-    return false;
- }
-
-bool ordemDecrescente(string valor) {
-    int count = 0;
-    for (int i; i < 5; i++) {
-        if (valor[i] < valor[i-1]) {
-            count += 1;
-        }
-    }
-    if (count == 5) {
-        return true;
-    }
-    return false;
-}
-
-
-
-
-//Validar e setValor: Avaliacao
-bool Avaliacao::validar(int valor) {
-    // verifcar se o numero esta entre 0 e 5
-    if (valor < 0 || valor > 5) {
-        return false; 
-    }
-    return true; 
-}
-
-bool Avaliacao::setValor(int valor) {
-    // Verifica se o valor é válido
+// Implementação do método setValor na classe base Dominio
+bool Dominio::setValor(string valor) {
     if (!validar(valor)) {
-        return false;  // Valor inválido, não atribuir
+        return false;
     }
-    
-    // Se for válido, atribui o valor ao atributo da classe
     this->valor = valor;
     return true;
 }
 
+// Implementação de cada classe derivada
 
+// Classe Avaliacao (0 a 5)
+bool Avaliacao::validar(string valor) {
+    try {
+        int avaliacao = stoi(valor);
+        return avaliacao >= 0 && avaliacao <= 5;
+    } catch (...) {
+        return false;
+    }
+}
 
-//Validar e setValor: Codigo
+// Classe Codigo (deve ter 6 caracteres alfanuméricos)
 bool Codigo::validar(string valor) {
-    //verificar se tem 6 caracteres
-    if (valor.length() == 6) {
-        
-        //verificar se é letra ou digito
-        for (int i = 0; i < 6; i++) {
-            if (!isalnum(valor[i])) {
-                return false;
-            }
-        }
-        return true;
-
-    } else {
-        return false; //nao tem 6 caracteres
-    }
+    return valor.length() == 6 && all_of(valor.begin(), valor.end(), [](char c) { return isalnum(static_cast<unsigned char>(c)); });
 }
 
-bool Codigo::setValor(string valor) {
-    if (!validar(valor)) {
-        return false;
-    }
-
-    this-> valor = valor;
-    return true;
-}
-
-
-
-//Validar e setValor: Data
+// Classe Data (formato: DD-MM-AA)
 bool Data::validar(string valor) {
-    //verifica tamanho
-    if (valor.length() != 8) {
-        return false;
-    }
-
-    //verifica formato (DD-MM-AA)
-    if (valor[2] != '-' || valor[5] != '-') {
-        return false;
-    }
-
-    string diaStr = valor.substr(0, 2);
-    string mesStr = valor.substr(3, 2);
-    string anoStr = valor.substr(6, 2);
-
-    if (!is_number(diaStr) || !is_number(mesStr) || !is_number(anoStr)) {
-        return false;
-    } 
-
-    int dia = stoi(diaStr);
-    int mes = stoi(mesStr);
-    int ano = stoi(anoStr);
-    
-    //verifica os intervalos
-    if (dia < 1 || dia > 31) {
-        return false;
-    }
-
-    if (mes < 1 || mes > 12) {
-        return false;
-    }
-
-    if (ano < 0 || ano > 99) {
-        return false;
-    }
-
+    if (valor.length() != 8 || valor[2] != '-' || valor[5] != '-') return false;
+    string diaStr = valor.substr(0, 2), mesStr = valor.substr(3, 2), anoStr = valor.substr(6, 2);
+    if (!is_number(diaStr) || !is_number(mesStr) || !is_number(anoStr)) return false;
+    int dia = stoi(diaStr), mes = stoi(mesStr), ano = stoi(anoStr);
     return mes_dia(dia, mes, ano);
 }
 
-bool Data::setValor(string valor) {
-    if (!validar(valor)) {
+// Classe Dinheiro (deve estar entre 0 e 200000)
+bool Dinheiro::validar(string valor) {
+    try {
+        float dinheiro = stof(valor);
+        return dinheiro >= 0.0 && dinheiro <= 200000.0;
+    } catch (...) {
         return false;
     }
-
-    this-> valor = valor;
-    return true;
 }
 
-
-
-//Validar e setValor: Dinheiro
-bool Dinheiro::validar(float valor) {
-    if (valor < 0.0 || valor > 200000.0) {
+// Classe Duracao (deve estar entre 0 e 360 minutos)
+bool Duracao::validar(string valor) {
+    try {
+        int duracao = stoi(valor);
+        return duracao >= 0 && duracao <= 360;
+    } catch (...) {
         return false;
     }
-
-    return true;
 }
 
-bool Dinheiro::setValor(float valor) {
-    if (!validar(valor)) {
-        return false;
-    }
-
-    this-> valor = valor;
-    return true;
-}
-
-
-//Validar e setValor: Duracao
-bool Duracao::validar(int valor) {
-    if (valor < 0 || valor > 360) {
-        return false;
-    }
-    return true;
-}
-
-bool Duracao::setValor(int valor) {
-    if (!validar(valor)) {
-        return false;
-    }
-
-    this-> valor = valor;
-    return true;
-}
-
-
-
-//Validar e setValor: Horario
+// Classe Horario (formato HH:MM)
 bool Horario::validar(string valor) {
-    //verifca tamanho
-    if (valor.length() != 5) {
-        return false;
-    }
-
-    //verifica o formato
-    if (valor[2] != ':') {
-        return false;
-    }
-
-    string horaStr = valor.substr(0, 2);
-    string minStr = valor.substr(3, 2);
-
-    //verifica se só tem numeros
-    if (!is_number(horaStr) || !is_number(minStr)) {
-        return false;
-    }
-
-    int hora = stoi(horaStr);
-    int min = stoi(minStr);
-
-    //verifica os intevalos
-    if (hora < 0 || hora > 23 || min < 0 || min > 59) {
-        return false;
-    }
-
-    return true;
+    if (valor.length() != 5 || valor[2] != ':') return false;
+    string horaStr = valor.substr(0, 2), minStr = valor.substr(3, 2);
+    if (!is_number(horaStr) || !is_number(minStr)) return false;
+    int hora = stoi(horaStr), min = stoi(minStr);
+    return hora >= 0 && hora <= 23 && min >= 0 && min <= 59;
 }
 
-bool Horario::setValor(string valor) {
-    if (!validar(valor)) {
-        return false;
-    }
-
-    this-> valor = valor;
-    return true;
-}
-
-
-
-//Validar e setValor: Nome
+// Classe Nome (máximo de 30 caracteres, apenas letras e espaços)
 bool Nome::validar(string valor) {
-    // Verifica se o nome excede o tamanho máximo de 30 caracteres
-    if (valor.length() > 30) {
-        return false;
-    }
-
-    // Verifica se todos os caracteres são válidos (letras ou espaços)
-    for (int i = 0; i < valor.length(); i++) {
-        if (!isalpha(valor[i]) && !isspace(valor[i])) {
-            return false;  
-        }
-    }
-
-    return true;
+    if (valor.length() > 30) return false;
+    return all_of(valor.begin(), valor.end(), [](char c) { return isalpha(static_cast<unsigned char>(c)) || isspace(static_cast<unsigned char>(c)); });
 }
 
-bool Nome::setValor(string valor) {
-    if (!validar(valor)) {
-        return false;
-    }
-
-    this-> valor = valor;
-        return true;
-}
-
-
-
-//Validar e setValor: Senha
+// Classe Senha (5 caracteres numéricos, sem duplicatas e sem sequência ascendente/descendente)
 bool Senha::validar(string valor) {
-    if (valor.length() != 5){
-        return false;
-    }
-
-    if (!is_number(valor)) {
-        return false;
-    }
-
-    if (hasDuplicata(valor)) {
-        return false;
-    }
-
-    if (ordemCrescente(valor)) {
-        return false;
-    }
-
-    if (ordemDecrescente(valor)) {
-        return false;
-    }
-
-    return true;
-}
-
-bool Senha::setValor(string valor) {
-    if (!validar(valor)) {
-        return false;
-    }
-
-    this-> valor = valor;
-    return true;
+    return valor.length() == 5 && is_number(valor) && !hasDuplicata(valor) && 
+           !ordemCrescente(valor) && !ordemDecrescente(valor);
 }

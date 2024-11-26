@@ -1,115 +1,128 @@
+#include <iostream>
+#include <stdexcept>
 #include "dominios.hpp"
 
 using namespace std;
 
 int main() {
-
-    // Teste avaliacao
+    // Teste para a classe Avaliacao
     Avaliacao avaliacao;
-
-    string nota;
-    cout << "Dê uma avaliação de 0 a 5: " << endl;
-    cin >> nota;
-
-    if (avaliacao.setValor(nota)) {               
-        cout << "Valor aprovado = " << avaliacao.getValor() << endl;
-    } else {
-        cout << "Valor inválido" << endl;
+    try {
+        avaliacao.setValor("4"); // Substitua com um valor válido para Avaliacao
+        cout << "Avaliação aprovada: " << avaliacao.getValor() << endl;
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Avaliacao: " << exp.what() << endl;
     }
 
-    // Teste codigo
+    try {
+        avaliacao.setValor("6"); // Substitua com um valor inválido para Avaliacao
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Avaliacao: " << exp.what() << endl;
+    }
+
+    // Teste para a classe Codigo
     Codigo codigo;
-
-    string code;
-    cout << "Digite um código com 6 caracteres de dígitos ou letras: " << endl;
-    cin >> code;
-
-    if (codigo.setValor(code)) {             
-        cout << "Valor aprovado = " << codigo.getValor() << endl;
-    } else {
-        cout << "Valor inválido" << endl;
+    try {
+        codigo.setValor("ABC123"); // Substitua com um código válido de 6 caracteres
+        cout << "Código aprovado: " << codigo.getValor() << endl;
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Codigo: " << exp.what() << endl;
     }
 
-    // Teste data
+    try {
+        codigo.setValor("AB123"); // Substitua com um código inválido (menos de 6 caracteres)
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Codigo: " << exp.what() << endl;
+    }
+
+    // Teste para a classe Data
     Data data;
-
-    string datinha;
-    cout << "Digite uma data (DD-MM-AA): " << endl;
-    cin >> datinha;
-
-    if (data.setValor(datinha)) {
-        cout << "Valor aprovado = " << data.getValor() << endl;
-    } else {
-        cout << "Valor inválido" << endl;
+    try {
+        data.setValor("25-12-23"); // Substitua com uma data válida no formato DD-MM-AA
+        cout << "Data aprovada: " << data.getValor() << endl;
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Data: " << exp.what() << endl;
     }
 
-    // Teste dinheiro
+    try {
+        data.setValor("32-13-23"); // Substitua com uma data inválida
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Data: " << exp.what() << endl;
+    }
+
+    // Teste para a classe Dinheiro
     Dinheiro dinheiro;
-
-    string money;
-    cout << "Digite uma quantia de 0.00 a 200000.00: " << endl;
-    cin >> money;
-
-    if (dinheiro.setValor(money)) {
-         cout << "Valor aprovado = " << dinheiro.getValor() << endl;
-    } else {
-        cout << "Valor inválido" << endl;
+    try {
+        dinheiro.setValor("150.00"); // Substitua com um valor válido de dinheiro
+        cout << "Valor aprovado: " << dinheiro.getValor() << endl;
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Dinheiro: " << exp.what() << endl;
     }
-    
 
-    // Teste duracao
+    try {
+        dinheiro.setValor("250000.00"); // Substitua com um valor inválido para Dinheiro
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Dinheiro: " << exp.what() << endl;
+    }
+
+    // Teste para a classe Duracao
     Duracao duracao;
-
-    string dura;
-    cout << "Digite uma duração de 0 a 360: " << endl;
-    cin >> dura;
-
-    if (duracao.setValor(dura)) {
-        cout << "Valor aprovado = " << duracao.getValor() << endl;
-    } else {
-        cout << "Valor inválido" << endl;
+    try {
+        duracao.setValor("120"); // Substitua com um valor válido de duração
+        cout << "Duração aprovada: " << duracao.getValor() << endl;
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Duracao: " << exp.what() << endl;
     }
 
-    // Teste horario
+    try {
+        duracao.setValor("400"); // Substitua com um valor inválido para duração
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Duracao: " << exp.what() << endl;
+    }
+
+    // Teste para a classe Horario
     Horario horario;
-
-    string horas;
-    cout << "Digite um horário (HH:MM): " << endl;
-    cin >> horas;
-
-    if (horario.setValor(horas)) {
-        cout << "Valor aprovado = " << horario.getValor() << endl;
-    } else {
-        cout << "Valor inválido" << endl;
+    try {
+        horario.setValor("14:30"); // Substitua com um horário válido
+        cout << "Horário aprovado: " << horario.getValor() << endl;
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Horario: " << exp.what() << endl;
     }
 
-    // Limpa o buffer de entrada antes de usar getline
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    try {
+        horario.setValor("25:00"); // Substitua com um horário inválido
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Horario: " << exp.what() << endl;
+    }
 
-    // Teste nome
+    // Teste para a classe Nome
     Nome nome;
-
-    string name;
-    cout << "Digite seu nome: " << endl;
-    getline(cin, name);  
-
-    if (nome.setValor(name)) {
-        cout << "Valor aprovado = " << nome.getValor() << endl;
-    } else {
-        cout << "Valor inválido" << endl;
+    try {
+        nome.setValor("João"); // Substitua com um nome válido
+        cout << "Nome aprovado: " << nome.getValor() << endl;
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Nome: " << exp.what() << endl;
     }
 
-    // Teste senha
+    try {
+        nome.setValor(""); // Substitua com um nome inválido (vazio)
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Nome: " << exp.what() << endl;
+    }
+
+    // Teste para a classe Senha
     Senha senha;
+    try {
+        senha.setValor("12345"); // Substitua com uma senha válida de 5 dígitos
+        cout << "Senha aprovada: " << senha.getValor() << endl;
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Senha: " << exp.what() << endl;
+    }
 
-    string password;
-    cout << "Digite sua senha de 5 dígitos: " << endl;
-    cin >> password;
-
-    if (senha.setValor(password)) {
-        cout << "Valor aprovado = " << senha.getValor() << endl;
-    } else {
-        cout <<  "Valor inválido" << endl;
+    try {
+        senha.setValor("1234"); // Substitua com uma senha inválida (menos de 5 dígitos)
+    } catch (invalid_argument &exp) {
+        cout << "Exceção Senha: " << exp.what() << endl;
     }
 
     return 0;

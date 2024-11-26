@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "dominios.hpp"
+#include "testes.hpp"
 
 using namespace std;
 

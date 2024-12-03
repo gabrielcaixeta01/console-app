@@ -93,6 +93,55 @@ int main() {
             cout << "Teste Senha: FALHA" << endl;
             break;
     }
+    
+	TUConta testeConta;
+	
+	switch(testeConta.run()){
+		case TUConta::SUCESSO:cout<<"SUCESSO"<<endl;
+		break
+		case TUConta::FALHA :cout<<"FALHA"<<endl;
+		break;
+	}
+		
+	
+	TUViagem testeViagem;
+	
+	switch(testeViagem.run()){
+		case TUViagem::SUCESSO:cout<<"SUCESSO"<<endl;
+		break
+		case TUViagem::FALHA :cout<<"FALHA"<<endl;
+		break;
+	}
 
+
+	TUDestino testeDestino;
+	
+	switch(testeDestino.run()){
+		case TUDestino::SUCESSO:cout<<"SUCESSO"<<endl;
+		break
+		case TUDestino::FALHA :cout<<"FALHA"<<endl;
+		break;
+	}
+
+	
+	TUAtividade testeAtividade;
+	
+	switch(testeAtividade.run()){
+		case TUAtividade::SUCESSO:cout<<"SUCESSO"<<endl;
+		break
+		case TUAtividade::FALHA :cout<<"FALHA"<<endl;
+		break;
+	}
+
+
+	TUHospedagem testeHospedagem;
+	
+	switch(testeHospedagem.run()){
+		case TUHospedagem::SUCESSO:cout<<"SUCESSO"<<endl;
+		break
+		case TUHospedagem::FALHA :cout<<"FALHA"<<endl;
+		break;
+	}
+	
     return 0;
 };

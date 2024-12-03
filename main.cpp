@@ -93,7 +93,8 @@ int main() {
             cout << "Teste Senha: FALHA" << endl;
             break;
     }
-    
+
+	//entidades
 	TUConta testeConta;
 	
 	switch(testeConta.run()){

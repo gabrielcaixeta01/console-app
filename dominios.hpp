@@ -12,12 +12,12 @@ using namespace std;
 
 class Dominio {
     private:
-        string valor;                        // Armazena o valor do domínio
-        virtual void validar(string) = 0;    // Método abstrato para validação
+        string valor;                        
+        virtual void validar(string) = 0;    
 
     public:
-        void setValor(string);               // Atribuir valor
-        string getValor() const;             // Recuperar valor
+        void setValor(string);               
+        string getValor() const;             
 };
 
 // Implementação do método getValor (inline)

@@ -1,91 +1,7 @@
-#include "testes.hpp"
-
-//Domínio avaliação
-
-void TUAvaliacao::setUp() {
-    avaliacao = new Avaliacao(); // Inicializa o objeto Avaliacao.
-    estado = SUCESSO;           // Define o estado inicial como SUCESSO.
-}
-
-void TUAvaliacao::tearDown() {
-    delete avaliacao; // Libera a memória alocada.
-}
-
-void TUAvaliacao::testarCenarioValorValido() {
-    try {
-        avaliacao->setValor(VALOR_VALIDO); // Tenta atribuir um valor válido.
-        if (avaliacao->getValor() != VALOR_VALIDO) {
-            estado = FALHA;
-        }
-    } catch (invalid_argument &excecao) {
-        estado = FALHA;
-    }
-}
-
-void TUAvaliacao::testarCenarioValorInvalido() {
-    try {
-        avaliacao->setValor(VALOR_INVALIDO); // Tenta atribuir um valor inválido.
-        estado = FALHA;                     // Não deve chegar aqui.
-    } catch (invalid_argument &excecao) {
-        // Se uma exceção for lançada, o valor não deve ser atribuído.
-        if (avaliacao->getValor() == VALOR_INVALIDO) {
-            estado = FALHA; // O valor inválido foi atribuído.
-        }
-    }
-}
-
-int TUAvaliacao::run() {
-    setUp();
-    testarCenarioValorValido();
-    testarCenarioValorInvalido();
-    tearDown();
-    return estado; // Retorna o estado final do teste.
-}
-
-//Domínio código
-
-void TUCodigo::setUp() {
-    codigo = new Codigo();
-    estado = SUCESSO;
-}
-
-void TUCodigo::tearDown() {
-    delete codigo;
-}
-
-void TUCodigo::testarCenarioValorValido() {
-    try {
-        codigo->setValor(VALOR_VALIDO);
-        if (codigo->getValor() != VALOR_VALIDO) {
-            estado = FALHA;
-        }
-    } catch (invalid_argument &excecao) {
-        estado = FALHA;
-    }
-}
-
-void TUCodigo::testarCenarioValorInvalido() {
-    try {
-        codigo->setValor(VALOR_INVALIDO);
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        if (codigo->getValor() == VALOR_INVALIDO) {
-            estado = FALHA;
-        }
-    }
-}
-
-int TUCodigo::run() {
-    setUp();
-    testarCenarioValorValido();
-    testarCenarioValorInvalido();
-    tearDown();
-    return estado;
-}
+#include "testesDominio.hpp"
 
 
 // Testes para Avaliacao
-
 void TUAvaliacao::setUp() {
     avaliacao = new Avaliacao();
     estado = SUCESSO;
@@ -124,7 +40,6 @@ int TUAvaliacao::run() {
 }
 
 //Testes para Codigo
-
 void TUCodigo::setUp() {
     codigo = new Codigo();
     estado = SUCESSO;

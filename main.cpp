@@ -1,7 +1,6 @@
-#include <iostream>
-#include <stdexcept>
 #include "dominios.hpp"
-#include "testes.hpp"
+#include "testesDominio.hpp"
+#include "testesEntidade.hpp"
 
 using namespace std;
 
@@ -36,7 +35,7 @@ int main() {
             break;
         case TUData::FALHA:
             cout << "Teste Data: FALHA" << endl;
-            break;
+                    break;
     }
 
     // Teste de Dinheiro
@@ -94,55 +93,62 @@ int main() {
             break;
     }
 
-	//entidades
-	TUConta testeConta;
-	
-	switch(testeConta.run()){
-		case TUConta::SUCESSO:cout<<"SUCESSO"<<endl;
-		break
-		case TUConta::FALHA :cout<<"FALHA"<<endl;
-		break;
-	}
-		
-	
-	TUViagem testeViagem;
-	
-	switch(testeViagem.run()){
-		case TUViagem::SUCESSO:cout<<"SUCESSO"<<endl;
-		break
-		case TUViagem::FALHA :cout<<"FALHA"<<endl;
-		break;
-	}
+    // Testes de Entidades
 
+    // Teste de Conta
+    TUConta testeConta;
+    switch (testeConta.run()) {
+        case TUConta::SUCESSO:
+            cout << "Teste Conta: SUCESSO" << endl;
+            break;
+        case TUConta::FALHA:
+            cout << "Teste Conta: FALHA" << endl;
+            break;
+    }
 
-	TUDestino testeDestino;
-	
-	switch(testeDestino.run()){
-		case TUDestino::SUCESSO:cout<<"SUCESSO"<<endl;
-		break
-		case TUDestino::FALHA :cout<<"FALHA"<<endl;
-		break;
-	}
+    // Teste de Viagem
+    TUViagem testeViagem;
+    switch (testeViagem.run()) {
+        case TUViagem::SUCESSO:
+            cout << "Teste Viagem: SUCESSO" << endl;
+            break;
+        case TUViagem::FALHA:
+            cout << "Teste Viagem: FALHA" << endl;
+            break;
+    }
 
-	
-	TUAtividade testeAtividade;
-	
-	switch(testeAtividade.run()){
-		case TUAtividade::SUCESSO:cout<<"SUCESSO"<<endl;
-		break
-		case TUAtividade::FALHA :cout<<"FALHA"<<endl;
-		break;
-	}
+    // Teste de Destino
+    TUDestino testeDestino;
+    switch (testeDestino.run()) {
+        case TUDestino::SUCESSO:
+            cout << "Teste Destino: SUCESSO" << endl;
+            break;
+        case TUDestino::FALHA:
+            cout << "Teste Destino: FALHA" << endl;
+            break;
+    }
 
+    // Teste de Atividade
+    TUAtividade testeAtividade;
+    switch (testeAtividade.run()) {
+        case TUAtividade::SUCESSO:
+            cout << "Teste Atividade: SUCESSO" << endl;
+            break;
+        case TUAtividade::FALHA:
+            cout << "Teste Atividade: FALHA" << endl;
+            break;
+    }
 
-	TUHospedagem testeHospedagem;
-	
-	switch(testeHospedagem.run()){
-		case TUHospedagem::SUCESSO:cout<<"SUCESSO"<<endl;
-		break
-		case TUHospedagem::FALHA :cout<<"FALHA"<<endl;
-		break;
-	}
-	
+    // Teste de Hospedagem
+    TUHospedagem testeHospedagem;
+    switch (testeHospedagem.run()) {
+        case TUHospedagem::SUCESSO:
+            cout << "Teste Hospedagem: SUCESSO" << endl;
+            break;
+        case TUHospedagem::FALHA:
+            cout << "Teste Hospedagem: FALHA" << endl;
+            break;
+    }
+
     return 0;
-};
+}

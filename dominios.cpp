@@ -1,4 +1,5 @@
 #include "dominios.hpp"
+#include <regex>
 
 
 // Funções auxiliares
@@ -123,20 +124,22 @@ bool Data::mes_dia(int dia, int mes, int ano) {
 }
 
 
-// Classe Dinheiro (deve estar entre 0 e 200000)
 void Dinheiro::validar(string valor) {
-    bool hasDecimal = false; 
+    if (valor.length() < 4 || valor[valor.length() - 3] != ',') {
+        throw invalid_argument("O valor deve conter a vírgula para separar os centavos.");
+    }
 
-    for (size_t i = 0; i < valor.length(); i++) {
-        if (valor[i] == '.') {
-            if (hasDecimal) {
-                throw invalid_argument("Mais de um ponto decimal encontrado.");
-            }
-            hasDecimal = true;
-        } else if (!isdigit(valor[i])) {
-            throw invalid_argument("O valor contém caracteres não numéricos.");
+    if (valor.length() > 6) {
+        size_t posPonto = valor.find('.');
+        if (posPonto == string::npos || (valor.length() - posPonto > 6)) {
+            throw invalid_argument("O valor deve conter o ponto para separar os milhares.");
         }
     }
+
+    size_t posVirgula = valor.find(',');
+    valor[posVirgula] = '.';
+
+    valor.erase(remove(valor.begin(), valor.end(), '.'), valor.end());
 
     try {
         float dinheiro = stof(valor);
@@ -189,14 +192,13 @@ void Horario::validar(string valor) {
 
 // Classe Nome (máximo de 30 caracteres, apenas letras e espaços)
 void Nome::validar(string valor) {
-    if (valor.length() > 30) {
-        throw invalid_argument("Nome deve ter no máximo 30 caracteres.");
+    if (valor.length() > 30 || valor.empty()) {
+        throw invalid_argument("Nome deve ter entre 1 e 30 caracteres.");
     }
 
-    for (size_t i = 0; i < valor.length(); i++) {
-        if (!isalpha(valor[i]) && !isspace(valor[i])) {
-            throw invalid_argument("Nome deve ter apenas letras ou espaços.");
-        }
+    regex regexNome("^[A-Za-zÀ-ÿ\\s]+$");
+    if (!regex_match(valor, regexNome)) {
+        throw invalid_argument("Nome deve conter apenas letras ou espaços.");
     }
 }
 

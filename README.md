@@ -34,6 +34,9 @@ Além disso, o sistema assegura as seguintes funcionalidades:
 - `main.cpp`: Arquivo principal para a execução dos testes automatizados.
 
 ## Tecnologias Utilizadas
+- `C++`: Linguagem principal para a implementação.
+- `Doxygen`: Ferramenta utilizada para a geração da documentação do código.
+- `Git`: Controle de versão.
 
 ## Desenvolvedores
 - Gabriel Caixeta

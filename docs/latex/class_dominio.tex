@@ -1,0 +1,72 @@
+\doxysection{Referência à classe Dominio}
+\hypertarget{class_dominio}{}\label{class_dominio}\index{Dominio@{Dominio}}
+
+
+Classe base para representar domínios genéricos.  
+
+
+
+
+{\ttfamily \#include $<$dominios.\+hpp$>$}
+
+Diagrama de heranças da classe Dominio\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=9.000000cm]{class_dominio}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_dominio_ad6cdf0af925aca18d7b0ec660922567b}{set\+Valor}} (string)
+\begin{DoxyCompactList}\small\item\em Define o valor do domínio. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_dominio_adc86858ec8f9d7d91a0d8498f3614864}{get\+Valor}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o valor do domínio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe base para representar domínios genéricos. 
+
+A classe abstrata {\ttfamily \doxylink{class_dominio}{Dominio}} define um comportamento padrão para domínios específicos, que devem implementar o método de validação. 
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_dominio_adc86858ec8f9d7d91a0d8498f3614864}\index{Dominio@{Dominio}!getValor@{getValor}}
+\index{getValor@{getValor}!Dominio@{Dominio}}
+\doxysubsubsection{\texorpdfstring{getValor()}{getValor()}}
+{\footnotesize\ttfamily \label{class_dominio_adc86858ec8f9d7d91a0d8498f3614864} 
+string Dominio\+::get\+Valor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retorna o valor do domínio. 
+
+Retorna o valor armazenado no domínio.
+
+\begin{DoxyReturn}{Retorna}
+O valor armazenado no domínio.
+
+O valor do domínio. 
+\end{DoxyReturn}
+\Hypertarget{class_dominio_ad6cdf0af925aca18d7b0ec660922567b}\index{Dominio@{Dominio}!setValor@{setValor}}
+\index{setValor@{setValor}!Dominio@{Dominio}}
+\doxysubsubsection{\texorpdfstring{setValor()}{setValor()}}
+{\footnotesize\ttfamily \label{class_dominio_ad6cdf0af925aca18d7b0ec660922567b} 
+void Dominio\+::set\+Valor (\begin{DoxyParamCaption}\item[{string}]{valor}{}\end{DoxyParamCaption})}
+
+
+
+Define o valor do domínio. 
+
+Valida e armazena o valor fornecido.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em valor} & Valor a ser atribuído ao domínio. \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{dominios_8hpp}{dominios.\+hpp}}\item 
+dominios.\+cpp\end{DoxyCompactItemize}

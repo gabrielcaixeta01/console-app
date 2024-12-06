@@ -1,0 +1,76 @@
+\doxysection{dominios.\+hpp}
+\hypertarget{dominios_8hpp_source}{}\label{dominios_8hpp_source}\mbox{\hyperlink{dominios_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DOMINIOS\_HPP\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DOMINIOS\_HPP\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cctype>}\ \ \ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}\ \ \ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <set>}\ \ \ \ \ \ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ valor;\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string})\ =\ 0;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_dominio_ad6cdf0af925aca18d7b0ec660922567b}{setValor}}(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_dominio_adc86858ec8f9d7d91a0d8498f3614864}{getValor}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ Implementação\ do\ método\ getValor\ (inline)}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_dominio_adc86858ec8f9d7d91a0d8498f3614864}{Dominio::getValor}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ valor;}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_avaliacao}{Avaliacao}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_codigo}{Codigo}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_data}{Data}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ mes\_dia(\textcolor{keywordtype}{int}\ dia,\ \textcolor{keywordtype}{int}\ mes,\ \textcolor{keywordtype}{int}\ ano);}
+\DoxyCodeLine{00135\ \};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_dinheiro}{Dinheiro}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00154\ \};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_duracao}{Duracao}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00172\ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_horario}{Horario}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00191\ \};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_nome}{Nome}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00209\ \};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00216\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_senha}{Senha}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dominio}{Dominio}}\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ validar(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00227\ \};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DOMINIOS\_HPP\_INCLUDED}}
+
+\end{DoxyCode}

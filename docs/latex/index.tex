@@ -4,20 +4,44 @@
 \Hypertarget{index_md__r_e_a_d_m_e}%
 
 
-Este projeto foi desenvolvido como parte da disciplina de Técnicas de Programação.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Objetivos}{Objetivos}}\label{index_autotoc_md1}
+Este projeto foi desenvolvido como parte da disciplina de Técnicas de Programação.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Objetivos do Projeto}{Objetivos do Projeto}}\label{index_autotoc_md1}
 
 \begin{DoxyItemize}
-\item Implementar entidades e domínios.
+\item Implementar entidades e domínios que atendam aos requisitos funcionais e regras de negócio.
 \item Validar as funcionalidades por meio de testes automatizados.
 \item Gerar documentação do código utilizando a ferramenta Doxygen.
-\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Estrutura}{Estrutura}}\label{index_autotoc_md2}
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Funcionalidades do Sistema}{Funcionalidades do Sistema}}\label{index_autotoc_md2}
+O sistema implementado possibilita as seguintes operações (CRUD)\+:
+\begin{DoxyItemize}
+\item Criar, ler, atualizar e excluir contas.
+\item Criar, ler, atualizar e excluir viagens.
+\item Criar, ler, atualizar e excluir destinos.
+\item Criar, ler, atualizar e excluir atividades.
+\item Criar, ler, atualizar e excluir hospedagens.
+\end{DoxyItemize}
+
+Além disso, o sistema assegura as seguintes funcionalidades\+:
+\begin{DoxyItemize}
+\item Consulta ao custo total de uma viagem.
+\item Listagem de viagens associadas a um viajante.
+\item Listagem de atividades associadas a um destino.
+\item Listagem de hospedagens associadas a um destino.
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Regras do Negócio}{Regras do Negócio}}\label{index_autotoc_md3}
 
 \begin{DoxyItemize}
-\item {\ttfamily \doxylink{entidades_8hpp}{entidades.\+hpp}}\+: Declaração das entidades principais.
-\item {\ttfamily \doxylink{dominios_8hpp}{dominios.\+hpp}}\+: Definição dos domínios do sistema.
-\item {\ttfamily \doxylink{testes_entidade_8hpp}{testes\+Entidade.\+hpp}} e {\ttfamily \doxylink{testes_dominio_8hpp}{testes\+Dominio.\+hpp}}\+: Testes para validação.
-\item {\ttfamily main.\+cpp}\+: Arquivo principal para execução dos testes.
-\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Desenvolvedor}{Desenvolvedor}}\label{index_autotoc_md3}
+\item {\ttfamily Imutabilidade da chave primária}\+: Não é permitido atualizar campos que identificam registros (ex.\+: código).
+\item {\ttfamily Exclusão condicional}\+: Um registro só pode ser excluído caso não esteja associado a outro registro (ex.\+: excluir um destino somente se não houver atividades associadas).
+\item {\ttfamily Validação de datas}\+: A data de uma atividade deve estar contida entre as datas de início e término do destino associado.
+\item {\ttfamily Apresentação clara}\+: Todos os registros devem exibir seu código e nome em listagens.
+\end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Estrutura do Projeto}{Estrutura do Projeto}}\label{index_autotoc_md4}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{entidades_8hpp}{entidades.\+hpp}}\+: Declaração das classes de entidades do sistema, como \doxylink{class_conta}{Conta}, \doxylink{class_viagem}{Viagem}, \doxylink{class_destino}{Destino}, \doxylink{class_atividade}{Atividade} e \doxylink{class_hospedagem}{Hospedagem}.
+\item {\ttfamily \doxylink{dominios_8hpp}{dominios.\+hpp}}\+: Definição dos domínios do sistema, como \doxylink{class_codigo}{Codigo}, \doxylink{class_data}{Data}, \doxylink{class_nome}{Nome}, \doxylink{class_senha}{Senha}, entre outros.
+\item {\ttfamily \doxylink{testes_entidade_8hpp}{testes\+Entidade.\+hpp}} e {\ttfamily \doxylink{testes_dominio_8hpp}{testes\+Dominio.\+hpp}}\+: Declaração dos casos de teste para validar as regras de negócio e integridade dos domínios e entidades.
+\item {\ttfamily main.\+cpp}\+: Arquivo principal para a execução dos testes automatizados.
+\end{DoxyItemize}\hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{Tecnologias Utilizadas}{Tecnologias Utilizadas}}\label{index_autotoc_md5}
+\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Desenvolvedores}{Desenvolvedores}}\label{index_autotoc_md6}
 
 \begin{DoxyItemize}
 \item Gabriel Caixeta

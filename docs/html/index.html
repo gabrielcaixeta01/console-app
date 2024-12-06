@@ -102,22 +102,47 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
 <p>Este projeto foi desenvolvido como parte da disciplina de Técnicas de Programação.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Objetivos</h1>
+Objetivos do Projeto</h1>
 <ul>
-<li>Implementar entidades e domínios.</li>
+<li>Implementar entidades e domínios que atendam aos requisitos funcionais e regras de negócio.</li>
 <li>Validar as funcionalidades por meio de testes automatizados.</li>
 <li>Gerar documentação do código utilizando a ferramenta Doxygen.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
-Estrutura</h1>
-<ul>
-<li><code><a class="el" href="entidades_8hpp.html" title="Declaração das classes que representam os componentes do sistema de viagens.">entidades.hpp</a></code>: Declaração das entidades principais.</li>
-<li><code><a class="el" href="dominios_8hpp.html" title="Declaração das classes que representam os domínios do sistema.">dominios.hpp</a></code>: Definição dos domínios do sistema.</li>
-<li><code><a class="el" href="testes_entidade_8hpp.html" title="Declaração das classes de teste para validar as entidades do sistema.">testesEntidade.hpp</a></code> e <code><a class="el" href="testes_dominio_8hpp.html" title="Declaração das classes de teste para validar os domínios do sistema.">testesDominio.hpp</a></code>: Testes para validação.</li>
-<li><code>main.cpp</code>: Arquivo principal para execução dos testes.</li>
+Funcionalidades do Sistema</h1>
+<p>O sistema implementado possibilita as seguintes operações (CRUD):</p><ul>
+<li>Criar, ler, atualizar e excluir contas.</li>
+<li>Criar, ler, atualizar e excluir viagens.</li>
+<li>Criar, ler, atualizar e excluir destinos.</li>
+<li>Criar, ler, atualizar e excluir atividades.</li>
+<li>Criar, ler, atualizar e excluir hospedagens.</li>
+</ul>
+<p>Além disso, o sistema assegura as seguintes funcionalidades:</p><ul>
+<li>Consulta ao custo total de uma viagem.</li>
+<li>Listagem de viagens associadas a um viajante.</li>
+<li>Listagem de atividades associadas a um destino.</li>
+<li>Listagem de hospedagens associadas a um destino.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md3"></a>
-Desenvolvedor</h1>
+Regras do Negócio</h1>
+<ul>
+<li><code>Imutabilidade da chave primária</code>: Não é permitido atualizar campos que identificam registros (ex.: código).</li>
+<li><code>Exclusão condicional</code>: Um registro só pode ser excluído caso não esteja associado a outro registro (ex.: excluir um destino somente se não houver atividades associadas).</li>
+<li><code>Validação de datas</code>: A data de uma atividade deve estar contida entre as datas de início e término do destino associado.</li>
+<li><code>Apresentação clara</code>: Todos os registros devem exibir seu código e nome em listagens.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Estrutura do Projeto</h1>
+<ul>
+<li><code><a class="el" href="entidades_8hpp.html" title="Declaração das classes que representam os componentes do sistema de viagens.">entidades.hpp</a></code>: Declaração das classes de entidades do sistema, como <a class="el" href="class_conta.html" title="Representa uma conta de usuário no sistema.">Conta</a>, <a class="el" href="class_viagem.html" title="Representa uma viagem no sistema.">Viagem</a>, <a class="el" href="class_destino.html" title="Representa um destino de viagem.">Destino</a>, <a class="el" href="class_atividade.html" title="Representa uma atividade relacionada à viagem.">Atividade</a> e <a class="el" href="class_hospedagem.html" title="Representa uma hospedagem associada à viagem.">Hospedagem</a>.</li>
+<li><code><a class="el" href="dominios_8hpp.html" title="Declaração das classes que representam os domínios do sistema.">dominios.hpp</a></code>: Definição dos domínios do sistema, como <a class="el" href="class_codigo.html" title="Representa um código de identificação (6 caracteres alfanuméricos).">Codigo</a>, <a class="el" href="class_data.html" title="Representa uma data no formato DD-MM-AA.">Data</a>, <a class="el" href="class_nome.html" title="Representa um nome.">Nome</a>, <a class="el" href="class_senha.html" title="Representa uma senha.">Senha</a>, entre outros.</li>
+<li><code><a class="el" href="testes_entidade_8hpp.html" title="Declaração das classes de teste para validar as entidades do sistema.">testesEntidade.hpp</a></code> e <code><a class="el" href="testes_dominio_8hpp.html" title="Declaração das classes de teste para validar os domínios do sistema.">testesDominio.hpp</a></code>: Declaração dos casos de teste para validar as regras de negócio e integridade dos domínios e entidades.</li>
+<li><code>main.cpp</code>: Arquivo principal para a execução dos testes automatizados.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Tecnologias Utilizadas</h1>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Desenvolvedores</h1>
 <ul>
 <li>Gabriel Caixeta</li>
 <li>Gustavo Cavalcanti</li>

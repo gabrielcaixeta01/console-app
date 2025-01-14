@@ -1,26 +1,64 @@
-bool CntIUAutenticacao::autenticar(Matricula *matricula) {
-    Senha senha;
-    int entrada;
+#include <iostream>
+#include "controladoras.hpp"
 
-    // Solicitar matrícula e senha.
-    while(true) {
-        cout << endl << "Autenticacao de usuario." << endl << endl;
-        try {
-            cout << "Digite a matricula: ";
-            cin >> entrada;
-            matricula->setValor(entrada);
-            cout << "Digite a senha: ";
-            cin >> entrada;
-            senha.setValor(entrada);
-            break;
-        } catch (const invalid_argument &exp) {
-            cout << endl << "Dado em formato incorreto." << endl;
-        }
-    }
+using namespace std;
 
-    // Solicitar autenticação.
-    bool resultado = cntrLNAutenticacao->autenticar(*matricula, senha);
+// Implementação de CntrIUAutenticacao
+void CntrIUAutenticacao::setCntrLNAutenticacao(IAS* cntrLNAutenticacao) {
+    this->cntrLNAutenticacao = cntrLNAutenticacao;
+}
 
-    // Retornar resultado da autenticação.
-    return resultado;
-};
+bool CntrIUAutenticacao::autenticar(const Conta& conta) {
+    cout << "Autenticando conta..." << endl;
+    return cntrLNAutenticacao->autenticar(conta);
+}
+
+// Implementação de CntrIUConta
+void CntrIUConta::setCntrLNConta(ICS* cntrLNConta) {
+    this->cntrLNConta = cntrLNConta;
+}
+
+bool CntrIUConta::criarConta(const Conta& conta) {
+    cout << "Criando conta..." << endl;
+    return cntrLNConta->criar(conta);
+}
+
+bool CntrIUConta::excluirConta(const string& codigo) {
+    cout << "Excluindo conta..." << endl;
+    return cntrLNConta->excluir(codigo);
+}
+
+Conta CntrIUConta::lerConta(const string& codigo) {
+    cout << "Lendo conta..." << endl;
+    return cntrLNConta->ler(codigo);
+}
+
+bool CntrIUConta::atualizarConta(const Conta& conta) {
+    cout << "Atualizando conta..." << endl;
+    return cntrLNConta->atualizar(conta);
+}
+
+// Implementação de CntrIUViagem
+void CntrIUViagem::setCntrLNViagem(IVS* cntrLNViagem) {
+    this->cntrLNViagem = cntrLNViagem;
+}
+
+bool CntrIUViagem::cadastrarViagem(const Viagem& viagem) {
+    cout << "Cadastrando viagem..." << endl;
+    return cntrLNViagem->cadastrarViagem(viagem);
+}
+
+bool CntrIUViagem::cadastrarHospedagem(const Hospedagem& hospedagem) {
+    cout << "Cadastrando hospedagem..." << endl;
+    return cntrLNViagem->cadastrarHospedagem(hospedagem);
+}
+
+bool CntrIUViagem::cadastrarDestino(const Destino& destino) {
+    cout << "Cadastrando destino..." << endl;
+    return cntrLNViagem->cadastrarDestino(destino);
+}
+
+bool CntrIUViagem::cadastrarAtividade(const Atividade& atividade) {
+    cout << "Cadastrando atividade..." << endl;
+    return cntrLNViagem->cadastrarAtividade(atividade);
+}

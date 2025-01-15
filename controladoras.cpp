@@ -1,64 +1,82 @@
-#include <iostream>
 #include "controladoras.hpp"
 
-using namespace std;
+// Implementação ControladoraConta
+ControladoraConta::ControladoraConta(IServicoConta* servicoConta, IServicoAutenticacao* servicoAutenticacao)
+    : servicoConta(servicoConta), servicoAutenticacao(servicoAutenticacao) {}
 
-// Implementação de CntrIUAutenticacao
-void CntrIUAutenticacao::setCntrLNAutenticacao(IAS* cntrLNAutenticacao) {
-    this->cntrLNAutenticacao = cntrLNAutenticacao;
+void ControladoraConta::criarConta() {
+    string codigo, senha;
+    cout << "Digite o código da conta: ";
+    cin >> codigo;
+    cout << "Digite a senha da conta: ";
+    cin >> senha;
+
+    Conta conta;
+    conta.setCodigo(Codigo(codigo));
+    conta.setSenha(Senha(senha.c_str()));
+
+    if (servicoConta->criarConta(conta)) {
+        cout << "Conta criada com sucesso!\n";
+    } else {
+        cout << "Falha ao criar conta.\n";
+    }
 }
 
-bool CntrIUAutenticacao::autenticar(const Conta& conta) {
-    cout << "Autenticando conta..." << endl;
-    return cntrLNAutenticacao->autenticar(conta);
+void ControladoraConta::autenticarConta() {
+    string codigo, senha;
+    cout << "Digite o código da conta: ";
+    cin >> codigo;
+    cout << "Digite a senha da conta: ";
+    cin >> senha;
+
+    if (servicoAutenticacao->autenticar(Codigo(codigo), Senha(senha))) {
+        cout << "Autenticação realizada com sucesso!\n";
+    } else {
+        cout << "Falha na autenticação.\n";
+    }
 }
 
-// Implementação de CntrIUConta
-void CntrIUConta::setCntrLNConta(ICS* cntrLNConta) {
-    this->cntrLNConta = cntrLNConta;
+void ControladoraConta::excluirConta() {
+    string codigo;
+    cout << "Digite o código da conta a ser excluída: ";
+    cin >> codigo;
+
+    if (servicoConta->excluirConta(Codigo(codigo))) {
+        cout << "Conta excluída com sucesso!\n";
+    } else {
+        cout << "Falha ao excluir conta.\n";
+    }
 }
 
-bool CntrIUConta::criarConta(const Conta& conta) {
-    cout << "Criando conta..." << endl;
-    return cntrLNConta->criar(conta);
+// Implementação ControladoraViagem
+ControladoraViagem::ControladoraViagem(IServicoViagem* servicoViagem) : servicoViagem(servicoViagem) {}
+
+void ControladoraViagem::criarViagem() {
+    string codigo, nome;
+    cout << "Digite o código da viagem: ";
+    cin >> codigo;
+    cout << "Digite o nome da viagem: ";
+    cin >> nome;
+
+    Viagem viagem;
+    viagem.setCodigo(Codigo(codigo));
+    viagem.setNome(Nome(nome));
+
+    if (servicoViagem->criarViagem(viagem)) {
+        cout << "Viagem criada com sucesso!\n";
+    } else {
+        cout << "Falha ao criar viagem.\n";
+    }
 }
 
-bool CntrIUConta::excluirConta(const string& codigo) {
-    cout << "Excluindo conta..." << endl;
-    return cntrLNConta->excluir(codigo);
-}
+void ControladoraViagem::excluirViagem() {
+    string codigo;
+    cout << "Digite o código da viagem a ser excluída: ";
+    cin >> codigo;
 
-Conta CntrIUConta::lerConta(const string& codigo) {
-    cout << "Lendo conta..." << endl;
-    return cntrLNConta->ler(codigo);
-}
-
-bool CntrIUConta::atualizarConta(const Conta& conta) {
-    cout << "Atualizando conta..." << endl;
-    return cntrLNConta->atualizar(conta);
-}
-
-// Implementação de CntrIUViagem
-void CntrIUViagem::setCntrLNViagem(IVS* cntrLNViagem) {
-    this->cntrLNViagem = cntrLNViagem;
-}
-
-bool CntrIUViagem::cadastrarViagem(const Viagem& viagem) {
-    cout << "Cadastrando viagem..." << endl;
-    return cntrLNViagem->cadastrarViagem(viagem);
-}
-
-bool CntrIUViagem::cadastrarHospedagem(const Hospedagem& hospedagem) {
-    cout << "Cadastrando hospedagem..." << endl;
-    return cntrLNViagem->cadastrarHospedagem(hospedagem);
-}
-
-bool CntrIUViagem::cadastrarDestino(const Destino& destino) {
-    cout << "Cadastrando destino..." << endl;
-    return cntrLNViagem->cadastrarDestino(destino);
-}
-
-bool CntrIUViagem::cadastrarAtividade(const Atividade& atividade) {
-    cout << "Cadastrando atividade..." << endl;
-    return cntrLNViagem->cadastrarAtividade(atividade);
+    if (servicoViagem->excluirViagem(Codigo(codigo))) {
+        cout << "Viagem excluída com sucesso!\n";
+    } else {
+        cout << "Falha ao excluir viagem.\n";
+    }
 }

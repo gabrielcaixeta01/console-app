@@ -2,98 +2,124 @@
 #define INTERFACES_HPP
 
 #include "entidades.hpp"
-#include <string>
-
 using namespace std;
 
-// Interface para autenticação
-class IAS {
+class IServicoConta {
 public:
-    /**
-     * @brief Método para autenticar uma conta.
-     * @param conta Objeto do tipo Conta para autenticação.
-     * @return true se a autenticação for bem-sucedida, false caso contrário.
-     */
-    virtual bool autenticar(const Conta& conta) = 0;
+    virtual ~IServicoConta() = default;
 
-    virtual ~IAS() = default;
+    virtual bool criarConta(const Conta&) = 0;
+    virtual bool excluirConta(const Codigo&) = 0;
+    virtual Conta consultarConta(const Codigo&) = 0;
+    virtual bool atualizarConta(const Conta&) = 0;
 };
 
-// Interface para gerenciamento de contas
-class ICS {
+class IServicoAutenticacao {
 public:
-    /**
-     * @brief Cria uma nova conta no sistema.
-     * @param conta Objeto do tipo Conta a ser criado.
-     * @return true se a criação for bem-sucedida, false caso contrário.
-     */
-    virtual bool criar(const Conta& conta) = 0;
+    virtual ~IServicoAutenticacao() = default;
 
-    /**
-     * @brief Exclui uma conta do sistema.
-     * @param codigo Código único da conta a ser excluída.
-     * @return true se a exclusão for bem-sucedida, false caso contrário.
-     */
-    virtual bool excluir(const string& codigo) = 0;
-
-    /**
-     * @brief Lê os dados de uma conta do sistema.
-     * @param codigo Código único da conta a ser lida.
-     * @return Objeto Conta contendo os dados da conta lida.
-     */
-    virtual Conta ler(const string& codigo) = 0;
-
-    /**
-     * @brief Atualiza os dados de uma conta no sistema.
-     * @param conta Objeto do tipo Conta contendo os novos dados.
-     * @return true se a atualização for bem-sucedida, false caso contrário.
-     */
-    virtual bool atualizar(const Conta& conta) = 0;
-
-    virtual ~ICS() = default;
+    virtual bool autenticar(const Codigo&, const Senha&) = 0;
 };
 
-// Interface para gerenciamento de viagens
-class IVS {
+class IServicoViagem {
 public:
-    /**
-     * @brief Cadastra uma nova viagem no sistema.
-     * @param viagem Objeto do tipo Viagem a ser cadastrado.
-     * @return true se o cadastro for bem-sucedido, false caso contrário.
-     */
-    virtual bool cadastrarViagem(const Viagem& viagem) = 0;
+    virtual ~IServicoViagem() = default;
 
-    /**
-     * @brief Cadastra uma nova hospedagem no sistema.
-     * @param hospedagem Objeto do tipo Hospedagem a ser cadastrado.
-     * @return true se o cadastro for bem-sucedido, false caso contrário.
-     */
-    virtual bool cadastrarHospedagem(const Hospedagem& hospedagem) = 0;
-
-    /**
-     * @brief Cadastra um novo destino no sistema.
-     * @param destino Objeto do tipo Destino a ser cadastrado.
-     * @return true se o cadastro for bem-sucedido, false caso contrário.
-     */
-    virtual bool cadastrarDestino(const Destino& destino) = 0;
-
-    /**
-     * @brief Cadastra uma nova atividade no sistema.
-     * @param atividade Objeto do tipo Atividade a ser cadastrado.
-     * @return true se o cadastro for bem-sucedido, false caso contrário.
-     */
-    virtual bool cadastrarAtividade(const Atividade& atividade) = 0;
-
-    virtual ~IVS() = default;
+    virtual bool criarViagem(const Viagem&) = 0;
+    virtual bool excluirViagem(const Codigo&) = 0;
+    virtual Viagem consultarViagem(const Codigo&) = 0;
+    virtual bool atualizarViagem(const Viagem&) = 0;
 };
 
-class ILNConta {
+class IServicoDestino {
 public:
-    virtual void criar(const Conta&) = 0;
-    virtual void excluir(const Codigo&) = 0;
-    virtual Conta ler(const Codigo&) = 0;
-    virtual void atualizar(const Conta&) = 0;
-    virtual ~ILNConta() = default;
+    virtual ~IServicoDestino() = default;
+
+    virtual bool adicionarDestino(const Destino&) = 0;
+    virtual bool removerDestino(const Codigo&) = 0;
+    virtual Destino consultarDestino(const Codigo&) = 0;
+};
+
+class IServicoAtividade {
+public:
+    virtual ~IServicoAtividade() = default;
+
+    virtual bool adicionarAtividade(const Atividade&) = 0;
+    virtual bool removerAtividade(const Nome&) = 0;
+    virtual Atividade consultarAtividade(const Nome&) = 0;
+};
+
+class IServicoHospedagem {
+public:
+    virtual ~IServicoHospedagem() = default;
+
+    virtual bool adicionarHospedagem(const Hospedagem&) = 0;
+    virtual bool removerHospedagem(const Codigo&) = 0;
+    virtual Hospedagem consultarHospedagem(const Codigo&) = 0;
+};
+
+class IInterfaceUsuario {
+public:
+    virtual ~IInterfaceUsuario() = default;
+
+    virtual void exibirMensagem(const string& mensagem) = 0;
+    virtual string capturarEntrada(const string& mensagem) = 0;
+    virtual void exibirMenuPrincipal() = 0;
+};
+
+class IValidador {
+public:
+    virtual ~IValidador() = default;
+
+    virtual bool validarCodigo(const Codigo&) = 0;
+    virtual bool validarSenha(const Senha&) = 0;
+    virtual bool validarNome(const Nome&) = 0;
+    virtual bool validarData(const Data&) = 0;
+};
+
+class IRepositorioConta {
+public:
+    virtual ~IRepositorioConta() = default;
+
+    virtual bool salvarConta(const Conta&) = 0;
+    virtual bool removerConta(const Codigo&) = 0;
+    virtual Conta buscarConta(const Codigo&) = 0;
+};
+
+class IRepositorioViagem {
+public:
+    virtual ~IRepositorioViagem() = default;
+
+    virtual bool salvarViagem(const Viagem&) = 0;
+    virtual bool removerViagem(const Codigo&) = 0;
+    virtual Viagem buscarViagem(const Codigo&) = 0;
+};
+
+class IRepositorioDestino {
+public:
+    virtual ~IRepositorioDestino() = default;
+
+    virtual bool salvarDestino(const Destino&) = 0;   // Salva ou atualiza um destino
+    virtual bool removerDestino(const Codigo&) = 0;   // Remove um destino pelo código
+    virtual Destino buscarDestino(const Codigo&) = 0; // Busca um destino pelo código
+};
+
+class IRepositorioAtividade {
+public:
+    virtual ~IRepositorioAtividade() = default;
+
+    virtual bool salvarAtividade(const Atividade&) = 0;   // Salva ou atualiza uma atividade
+    virtual bool removerAtividade(const Nome&) = 0;       // Remove uma atividade pelo nome
+    virtual Atividade buscarAtividade(const Nome&) = 0;   // Busca uma atividade pelo nome
+};
+
+class IRepositorioHospedagem {
+public:
+    virtual ~IRepositorioHospedagem() = default;
+
+    virtual bool salvarHospedagem(const Hospedagem&) = 0;   // Salva ou atualiza uma hospedagem
+    virtual bool removerHospedagem(const Codigo&) = 0;     // Remove uma hospedagem pelo código
+    virtual Hospedagem buscarHospedagem(const Codigo&) = 0; // Busca uma hospedagem pelo código
 };
 
 #endif // INTERFACES_HPP

@@ -1,5 +1,6 @@
 #include "dominios.hpp"
 #include <regex>
+#include <set>
 
 // Funções auxiliares
 bool is_number(const string& valor) {

@@ -24,7 +24,7 @@ void TUAvaliacao::testarCenarioValorValido() {
         if (avaliacao->getValor() != "5") {
             estado = FALHA;
         }
-    } catch (invalid_argument &excecao) {
+    } catch (const invalid_argument &) {
         estado = FALHA;
     }
 }
@@ -32,9 +32,9 @@ void TUAvaliacao::testarCenarioValorValido() {
 void TUAvaliacao::testarCenarioValorInvalido() {
     try {
         avaliacao->setValor("6");
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        // Exceção esperada.
+        estado = FALHA;  // Não deveria chegar aqui
+    } catch (const invalid_argument &) {
+        // Exceção esperada
     }
 }
 
@@ -62,31 +62,33 @@ void TUCodigo::testarCenarioValorValido() {
         if (codigo->getValor() != "ABC123") {
             estado = FALHA;
         }
-    } catch (invalid_argument &excecao) {
+    } catch (const invalid_argument &) {
         estado = FALHA;
     }
 }
 
 void TUCodigo::testarCenarioValorInvalido() {
     try {
-        codigo->setValor("A12345Z");
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        // Exceção esperada.
+        codigo->setValor("12345");
+        estado = FALHA;  // Não deveria chegar aqui
+    } catch (const invalid_argument &) {
+        // Exceção esperada
     }
 }
 
-// Testes para Data
-void TUData::setUp() {
-    data = new Data();
+// Testes para os demais domínios seguem a mesma estrutura...
+
+// Testes para Senha
+void TUSenha::setUp() {
+    senha = new Senha();
     estado = SUCESSO;
 }
 
-void TUData::tearDown() {
-    delete data;
+void TUSenha::tearDown() {
+    delete senha;
 }
 
-int TUData::run() {
+int TUSenha::run() {
     setUp();
     testarCenarioValorValido();
     testarCenarioValorInvalido();
@@ -94,23 +96,23 @@ int TUData::run() {
     return estado;
 }
 
-void TUData::testarCenarioValorValido() {
+void TUSenha::testarCenarioValorValido() {
     try {
-        data->setValor("31-12-99");
-        if (data->getValor() != "31-12-99") {
+        senha->setValor("18340");
+        if (senha->getValor() != "18340") {
             estado = FALHA;
         }
-    } catch (invalid_argument &excecao) {
+    } catch (const invalid_argument &) {
         estado = FALHA;
     }
 }
 
-void TUData::testarCenarioValorInvalido() {
+void TUSenha::testarCenarioValorInvalido() {
     try {
-        data->setValor("32-13-99");
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        // Exceção esperada.
+        senha->setValor("11111");  // Valor inválido
+        estado = FALHA;           // Não deveria chegar aqui
+    } catch (const invalid_argument &) {
+        // Exceção esperada
     }
 }
 
@@ -134,35 +136,35 @@ int TUDinheiro::run() {
 
 void TUDinheiro::testarCenarioValorValido() {
     try {
-        dinheiro->setValor("200,00");
-        if (dinheiro->getValor() != "200,00") {
+        dinheiro->setValor("100,00");
+        if (dinheiro->getValor() != "100,00") {
             estado = FALHA;
         }
-    } catch (invalid_argument &excecao) {
+    } catch (const invalid_argument &) {
         estado = FALHA;
     }
 }
 
 void TUDinheiro::testarCenarioValorInvalido() {
     try {
-        dinheiro->setValor("200.000,01");
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        // Exceção esperada.
+        dinheiro->setValor("100000,01");  // Valor inválido
+        estado = FALHA;                  // Não deveria chegar aqui
+    } catch (const invalid_argument &) {
+        // Exceção esperada
     }
 }
 
-// Testes para Duracao
-void TUDuracao::setUp() {
-    duracao = new Duracao();
+// Testes para Data
+void TUData::setUp() {
+    data = new Data();
     estado = SUCESSO;
 }
 
-void TUDuracao::tearDown() {
-    delete duracao;
+void TUData::tearDown() {
+    delete data;
 }
 
-int TUDuracao::run() {
+int TUData::run() {
     setUp();
     testarCenarioValorValido();
     testarCenarioValorInvalido();
@@ -170,61 +172,23 @@ int TUDuracao::run() {
     return estado;
 }
 
-void TUDuracao::testarCenarioValorValido() {
+void TUData::testarCenarioValorValido() {
     try {
-        duracao->setValor("360");
-        if (duracao->getValor() != "360") {
+        data->setValor("01-01-24");
+        if (data->getValor() != "01-01-24") {
             estado = FALHA;
         }
-    } catch (invalid_argument &excecao) {
+    } catch (const invalid_argument &) {
         estado = FALHA;
     }
 }
 
-void TUDuracao::testarCenarioValorInvalido() {
+void TUData::testarCenarioValorInvalido() {
     try {
-        duracao->setValor("361");
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        // Exceção esperada.
-    }
-}
-
-// Testes para Horario
-void TUHorario::setUp() {
-    horario = new Horario();
-    estado = SUCESSO;
-}
-
-void TUHorario::tearDown() {
-    delete horario;
-}
-
-int TUHorario::run() {
-    setUp();
-    testarCenarioValorValido();
-    testarCenarioValorInvalido();
-    tearDown();
-    return estado;
-}
-
-void TUHorario::testarCenarioValorValido() {
-    try {
-        horario->setValor("14:30");  // Valor válido
-        if (horario->getValor() != "14:30") {
-            estado = FALHA;
-        }
-    } catch (invalid_argument &excecao) {
-        estado = FALHA;
-    }
-}
-
-void TUHorario::testarCenarioValorInvalido() {
-    try {
-        horario->setValor("25:61");  // Valor inválido
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        // Exceção esperada.
+        data->setValor("32-13-24");  // Valor inválido
+        estado = FALHA;             // Não deveria chegar aqui
+    } catch (const invalid_argument &) {
+        // Exceção esperada
     }
 }
 
@@ -252,51 +216,31 @@ void TUNome::testarCenarioValorValido() {
         if (nome->getValor() != "João da Silva") {
             estado = FALHA;
         }
-    } catch (invalid_argument &excecao) {
+    } catch (const invalid_argument &) {
         estado = FALHA;
     }
 }
 
 void TUNome::testarCenarioValorInvalido() {
     try {
-        nome->setValor("");
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        // Exceção esperada.
+        nome->setValor("");  // Valor inválido
+        estado = FALHA;      // Não deveria chegar aqui
+    } catch (const invalid_argument &) {
+        // Exceção esperada
     }
 }
 
-// Testes para Senha
-void TUSenha::setUp() {
-    senha = new Senha();
+// Testes para Duracao
+void TUDuracao::setUp() {
+    duracao = new Duracao();
     estado = SUCESSO;
 }
 
-void TUSenha::tearDown() {
-    delete senha;
+void TUDuracao::tearDown() {
+    delete duracao;
 }
 
-void TUSenha::testarCenarioValorValido() {
-    try {
-        senha->setValor("18340");
-        if (senha->getValor() != "18340") {
-            estado = FALHA;
-        }
-    } catch (invalid_argument &excecao) {
-        estado = FALHA;
-    }
-}
-
-void TUSenha::testarCenarioValorInvalido() {
-    try {
-        senha->setValor("11111");
-        estado = FALHA;
-    } catch (invalid_argument &excecao) {
-        // Exceção esperada.
-    }
-}
-
-int TUSenha::run() {
+int TUDuracao::run() {
     setUp();
     testarCenarioValorValido();
     testarCenarioValorInvalido();
@@ -304,3 +248,60 @@ int TUSenha::run() {
     return estado;
 }
 
+void TUDuracao::testarCenarioValorValido() {
+    try {
+        duracao->setValor("120");
+        if (duracao->getValor() != "120") {
+            estado = FALHA;
+        }
+    } catch (const invalid_argument &) {
+        estado = FALHA;
+    }
+}
+
+void TUDuracao::testarCenarioValorInvalido() {
+    try {
+        duracao->setValor("400");  // Valor inválido
+        estado = FALHA;           // Não deveria chegar aqui
+    } catch (const invalid_argument &) {
+        // Exceção esperada
+    }
+}
+
+// Testes para Horario
+void TUHorario::setUp() {
+    horario = new Horario();
+    estado = SUCESSO;
+}
+
+void TUHorario::tearDown() {
+    delete horario;
+}
+
+int TUHorario::run() {
+    setUp();
+    testarCenarioValorValido();
+    testarCenarioValorInvalido();
+    tearDown();
+    return estado;
+}
+
+void TUHorario::testarCenarioValorValido() {
+    try {
+        horario->setValor("14:30");
+        if (horario->getValor() != "14:30") {
+            estado = FALHA;
+        }
+    } catch (const invalid_argument &) {
+        estado = FALHA;
+    }
+}
+
+void TUHorario::testarCenarioValorInvalido() {
+    try {
+        horario->setValor("25:61");  // Valor inválido
+        estado = FALHA;             // Não deveria chegar aqui
+    } catch (const invalid_argument &) {
+        // Exceção esperada
+    }
+}

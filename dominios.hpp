@@ -11,6 +11,7 @@ private:
     virtual void validar(string) = 0;
 
 public:
+    virtual ~Dominio() = default; // Adicionado destrutor virtual
     void setValor(string);
     string getValor() const;
 };
@@ -24,7 +25,8 @@ private:
     void validar(string) override;
 
 public:
-    Avaliacao() = default; // Construtor padrão
+    Avaliacao() = default;
+    ~Avaliacao() override = default; // Adicionado destrutor virtual explícito
     Avaliacao(const string& valor) {
         setValor(valor);
     }
@@ -35,7 +37,8 @@ private:
     void validar(string) override;
 
 public:
-    Codigo() = default; // Construtor padrão
+    Codigo() = default;
+    ~Codigo() override = default; // Adicionado destrutor virtual explícito
     Codigo(const string& valor) {
         setValor(valor);
     }
@@ -44,9 +47,11 @@ public:
 class Data : public Dominio {
 private:
     void validar(string) override;
+    bool mes_dia(int dia, int mes, int ano); // Declaração adicionada
 
 public:
-    Data() = default; // Construtor padrão
+    Data() = default;
+    ~Data() override = default; // Adicionado destrutor virtual explícito
     Data(const string& valor) {
         setValor(valor);
     }
@@ -57,7 +62,8 @@ private:
     void validar(string) override;
 
 public:
-    Dinheiro() = default; // Construtor padrão
+    Dinheiro() = default;
+    ~Dinheiro() override = default; // Adicionado destrutor virtual explícito
     Dinheiro(const string& valor) {
         setValor(valor);
     }
@@ -68,7 +74,8 @@ private:
     void validar(string) override;
 
 public:
-    Duracao() = default; // Construtor padrão
+    Duracao() = default;
+    ~Duracao() override = default; // Adicionado destrutor virtual explícito
     Duracao(const string& valor) {
         setValor(valor);
     }
@@ -79,7 +86,8 @@ private:
     void validar(string) override;
 
 public:
-    Horario() = default; // Construtor padrão
+    Horario() = default;
+    ~Horario() override = default; // Adicionado destrutor virtual explícito
     Horario(const string& valor) {
         setValor(valor);
     }
@@ -90,7 +98,8 @@ private:
     void validar(string) override;
 
 public:
-    Nome() = default; // Construtor padrão
+    Nome() = default;
+    ~Nome() override = default; // Adicionado destrutor virtual explícito
     Nome(const string& valor) {
         setValor(valor);
     }
@@ -101,7 +110,8 @@ private:
     void validar(string) override;
 
 public:
-    Senha() = default; // Construtor padrão
+    Senha() = default;
+    ~Senha() override = default; // Adicionado destrutor virtual explícito
     Senha(const string& valor) {
         setValor(valor);
     }

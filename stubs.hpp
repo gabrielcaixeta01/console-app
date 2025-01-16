@@ -4,107 +4,48 @@
 #include "interfaces.hpp"
 #include <stdexcept>
 #include <iostream>
-
 using namespace std;
 
 class StubServicoConta : public IServicoConta {
-    public:
-        bool criarConta(const Conta& conta) override {
-            return true;
-        }
-
-        bool excluirConta(const Codigo& codigo) override {
-            return true;
-        }
-
-        Conta consultarConta(const Codigo& codigo) override {
-            Conta conta;
-            conta.setCodigo(codigo);
-            return conta;
-        }
-
-        bool atualizarConta(const Conta& conta) override {
-            return true;
-        }
+public:
+    bool criarConta(const Conta& conta) override;
+    bool excluirConta(const Codigo& codigo) override;
+    Conta consultarConta(const Codigo& codigo) override;
+    bool atualizarConta(const Conta& conta) override;
 };
 
 class StubServicoAutenticacao : public IServicoAutenticacao {
-    public:
-        bool autenticar(const Codigo& codigo, const Senha& senha) override {
-            return true;
-        }
+public:
+    bool autenticar(const Codigo& codigo, const Senha& senha) override;
 };
 
 class StubServicoViagem : public IServicoViagem {
-    public:
-        bool criarViagem(const Viagem& viagem) override {
-            return true;
-        }
-
-        bool excluirViagem(const Codigo& codigo) override {
-            return true;
-        }
-
-        Viagem consultarViagem(const Codigo& codigo) override {
-            Viagem viagem;
-            viagem.setCodigo(codigo);
-            return viagem;
-        }
-
-        bool atualizarViagem(const Viagem& viagem) override {
-            return true;
-        }
+public:
+    bool criarViagem(const Viagem& viagem) override;
+    bool excluirViagem(const Codigo& codigo) override;
+    Viagem consultarViagem(const Codigo& codigo) override;
+    bool atualizarViagem(const Viagem& viagem) override;
 };
 
 class StubServicoDestino : public IServicoDestino {
-    public:
-        bool adicionarDestino(const Destino& destino) override {
-            return true;
-        }
-
-        bool removerDestino(const Codigo& codigo) override {
-            return true;
-        }
-
-        Destino consultarDestino(const Codigo& codigo) override {
-            Destino destino;
-            destino.setCodigo(codigo);
-            return destino;
-        }
+public:
+    bool adicionarDestino(const Destino& destino) override;
+    bool removerDestino(const Codigo& codigo) override;
+    Destino consultarDestino(const Codigo& codigo) override;
 };
 
 class StubServicoAtividade : public IServicoAtividade {
-    public:
-        bool adicionarAtividade(const Atividade& atividade) override {
-            return true;
-        }
-
-        bool removerAtividade(const Nome& nome) override {
-            return true;
-        }
-
-        Atividade consultarAtividade(const Nome& nome) override {
-            Atividade atividade;
-            atividade.setNome(nome);
-            return atividade;
-        }
+public:
+    bool adicionarAtividade(const Atividade& atividade) override;
+    bool removerAtividade(const Nome& nome) override;
+    Atividade consultarAtividade(const Nome& nome) override;
 };
 
 class StubServicoHospedagem : public IServicoHospedagem {
-    public:
-        bool adicionarHospedagem(const Hospedagem& hospedagem) override {
-            return true;
-        }
-
-        bool removerHospedagem(const Codigo& codigo) override {
-            return true;
-        }
-
-        Hospedagem consultarHospedagem(const Codigo& codigo) override {
-            Hospedagem hospedagem;
-            hospedagem.setCodigo(codigo);
-            return hospedagem;
-        }
+public:
+    bool adicionarHospedagem(const Hospedagem& hospedagem) override;
+    bool removerHospedagem(const Codigo& codigo) override;
+    Hospedagem consultarHospedagem(const Codigo& codigo) override;
 };
 
 #endif // STUBS_HPP

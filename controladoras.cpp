@@ -1,6 +1,7 @@
 #include "controladoras.hpp"
+#include <iostream>
+using namespace std;
 
-// Implementação ControladoraConta
 ControladoraConta::ControladoraConta(IServicoConta* servicoConta, IServicoAutenticacao* servicoAutenticacao)
     : servicoConta(servicoConta), servicoAutenticacao(servicoAutenticacao) {}
 
@@ -11,14 +12,18 @@ void ControladoraConta::criarConta() {
     cout << "Digite a senha da conta: ";
     cin >> senha;
 
-    Conta conta;
-    conta.setCodigo(Codigo(codigo));
-    conta.setSenha(Senha(senha.c_str()));
+    try {
+        Conta conta;
+        conta.setCodigo(Codigo(codigo));
+        conta.setSenha(Senha(senha));
 
-    if (servicoConta->criarConta(conta)) {
-        cout << "Conta criada com sucesso!\n";
-    } else {
-        cout << "Falha ao criar conta.\n";
+        if (servicoConta->criarConta(conta)) {
+            cout << "Conta criada com sucesso!\n";
+        } else {
+            cout << "Falha ao criar conta.\n";
+        }
+    } catch (const exception& e) {
+        cout << "Erro: " << e.what() << endl;
     }
 }
 
@@ -29,10 +34,14 @@ void ControladoraConta::autenticarConta() {
     cout << "Digite a senha da conta: ";
     cin >> senha;
 
-    if (servicoAutenticacao->autenticar(Codigo(codigo), Senha(senha))) {
-        cout << "Autenticação realizada com sucesso!\n";
-    } else {
-        cout << "Falha na autenticação.\n";
+    try {
+        if (servicoAutenticacao->autenticar(Codigo(codigo), Senha(senha))) {
+            cout << "Autenticação realizada com sucesso!\n";
+        } else {
+            cout << "Falha na autenticação.\n";
+        }
+    } catch (const exception& e) {
+        cout << "Erro: " << e.what() << endl;
     }
 }
 
@@ -41,14 +50,17 @@ void ControladoraConta::excluirConta() {
     cout << "Digite o código da conta a ser excluída: ";
     cin >> codigo;
 
-    if (servicoConta->excluirConta(Codigo(codigo))) {
-        cout << "Conta excluída com sucesso!\n";
-    } else {
-        cout << "Falha ao excluir conta.\n";
+    try {
+        if (servicoConta->excluirConta(Codigo(codigo))) {
+            cout << "Conta excluída com sucesso!\n";
+        } else {
+            cout << "Falha ao excluir conta.\n";
+        }
+    } catch (const exception& e) {
+        cout << "Erro: " << e.what() << endl;
     }
 }
 
-// Implementação ControladoraViagem
 ControladoraViagem::ControladoraViagem(IServicoViagem* servicoViagem) : servicoViagem(servicoViagem) {}
 
 void ControladoraViagem::criarViagem() {
@@ -58,14 +70,18 @@ void ControladoraViagem::criarViagem() {
     cout << "Digite o nome da viagem: ";
     cin >> nome;
 
-    Viagem viagem;
-    viagem.setCodigo(Codigo(codigo));
-    viagem.setNome(Nome(nome));
+    try {
+        Viagem viagem;
+        viagem.setCodigo(Codigo(codigo));
+        viagem.setNome(Nome(nome));
 
-    if (servicoViagem->criarViagem(viagem)) {
-        cout << "Viagem criada com sucesso!\n";
-    } else {
-        cout << "Falha ao criar viagem.\n";
+        if (servicoViagem->criarViagem(viagem)) {
+            cout << "Viagem criada com sucesso!\n";
+        } else {
+            cout << "Falha ao criar viagem.\n";
+        }
+    } catch (const exception& e) {
+        cout << "Erro: " << e.what() << endl;
     }
 }
 
@@ -74,9 +90,13 @@ void ControladoraViagem::excluirViagem() {
     cout << "Digite o código da viagem a ser excluída: ";
     cin >> codigo;
 
-    if (servicoViagem->excluirViagem(Codigo(codigo))) {
-        cout << "Viagem excluída com sucesso!\n";
-    } else {
-        cout << "Falha ao excluir viagem.\n";
+    try {
+        if (servicoViagem->excluirViagem(Codigo(codigo))) {
+            cout << "Viagem excluída com sucesso!\n";
+        } else {
+            cout << "Falha ao excluir viagem.\n";
+        }
+    } catch (const exception& e) {
+        cout << "Erro: " << e.what() << endl;
     }
 }

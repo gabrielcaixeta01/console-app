@@ -1,9 +1,5 @@
 #include "testesEntidade.hpp"
 
-// Constantes globais
-const int SUCESSO = 0;
-const int FALHA = 1;
-
 // Definições das constantes globais
 const string VALOR_VALIDO_CODIGO = "ABC123";
 const string VALOR_VALIDO_SENHA = "18340";

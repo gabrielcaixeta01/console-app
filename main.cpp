@@ -1,3 +1,4 @@
+#include <iostream>
 #include "dominios.hpp"
 #include "testesDominio.hpp"
 #include "testesEntidade.hpp"

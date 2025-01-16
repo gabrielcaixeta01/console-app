@@ -12,6 +12,14 @@ bool CntrAutenticacaoA::autenticar(const Codigo& codigo) {
     Conta conta;
     conta.setCodigo(codigo);
 
+    // Solicitar senha ao usuário
+    cout << "Digite a senha: ";
+    string senhaStr;
+    cin >> senhaStr;
+    Senha senha;
+    senha.setValor(senhaStr);
+    conta.setSenha(senha);
+
     if (servicoAutenticacao->autenticar(conta)) {
         cout << "Autenticação bem-sucedida para o código: " << codigo.getValor() << endl;
         return true;

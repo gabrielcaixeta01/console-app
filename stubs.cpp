@@ -5,9 +5,14 @@ using namespace std;
 
 // Implementação do StubServicoAutenticacao
 bool StubServicoAutenticacao::autenticar(const Conta& conta) {
-    cout << "Stub: Autenticação sempre retorna sucesso" << endl;
-    (void)conta;
-    return true;
+    // Simulação de autenticação
+    if (conta.getCodigo().getValor() == "ABC123" && conta.getSenha().getValor() == "18340") {
+        cout << "Stub: Autenticação bem-sucedida para o código: " << conta.getCodigo().getValor() << endl;
+        return true;
+    } else {
+        cout << "Stub: Falha na autenticação para o código: " << conta.getCodigo().getValor() << endl;
+        return false;
+    }
 }
 
 // Implementação do StubServicoConta

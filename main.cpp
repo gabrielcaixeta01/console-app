@@ -21,15 +21,20 @@ int main() {
     Codigo codigoConta;
 
     while (true) {
-        cout << "\n--- Sistema de Gerenciamento ---" << endl;
+        cout << "--- Sistema de Gerenciamento ---" << endl;
+        cout << "Digite o código da conta: ";
+        string codigoStr;
+        cin >> codigoStr;
+        Codigo codigo;
+        codigo.setValor(codigoStr);
 
-        // Autenticação
-        if (!cntrAutenticacao->autenticar(codigoConta)) {
-            cout << "Falha na autenticação. Tente novamente." << endl;
-            continue;
+        if (cntrAutenticacao->autenticar(codigo)) {
+            cout << "Bem-vindo! Código autenticado: " << codigo.getValor() << endl;
+            // Continua para o menu principal
+        } else {
+            cout << "Erro na autenticação. Tente novamente." << endl;
+            // Opcionalmente, permita tentar novamente ou encerrar
         }
-
-        cout << "Bem-vindo! Código autenticado: " << codigoConta.getValor() << endl;
 
         // Menu principal
         int opcaoPrincipal;

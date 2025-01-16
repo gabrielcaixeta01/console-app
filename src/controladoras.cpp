@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "controladoras.hpp"
+#include "../include/controladoras.hpp"
 
 // Controladora de Apresentação da Autenticação
 void CntrAutenticacaoA::setServicoAutenticacao(ISAutenticacao* servico) {

@@ -2,7 +2,10 @@
 #define INTERFACES_HPP
 
 #include "entidades.hpp"
+#include <iostream>
 using namespace std;
+
+// Interfaces de serviços
 
 class IServicoConta {
 public:
@@ -58,24 +61,7 @@ public:
     virtual Hospedagem consultarHospedagem(const Codigo&) = 0;
 };
 
-class IInterfaceUsuario {
-public:
-    virtual ~IInterfaceUsuario() = default;
-
-    virtual void exibirMensagem(const string& mensagem) = 0;
-    virtual string capturarEntrada(const string& mensagem) = 0;
-    virtual void exibirMenuPrincipal() = 0;
-};
-
-class IValidador {
-public:
-    virtual ~IValidador() = default;
-
-    virtual bool validarCodigo(const Codigo&) = 0;
-    virtual bool validarSenha(const Senha&) = 0;
-    virtual bool validarNome(const Nome&) = 0;
-    virtual bool validarData(const Data&) = 0;
-};
+// Interfaces de repositórios
 
 class IRepositorioConta {
 public:
@@ -86,40 +72,88 @@ public:
     virtual Conta buscarConta(const Codigo&) = 0;
 };
 
-class IRepositorioViagem {
-public:
-    virtual ~IRepositorioViagem() = default;
+// Outros repositórios (pode ser expandido conforme necessário)
 
-    virtual bool salvarViagem(const Viagem&) = 0;
-    virtual bool removerViagem(const Codigo&) = 0;
-    virtual Viagem buscarViagem(const Codigo&) = 0;
+// Interface lógica de negócios (LN)
+
+class ILNAutenticacao {
+public:
+    virtual ~ILNAutenticacao() = default;
+
+    virtual bool autenticar(const Codigo&, const Senha&) = 0;
 };
 
-class IRepositorioDestino {
-public:
-    virtual ~IRepositorioDestino() = default;
+// Interface de usuário (IU)
 
-    virtual bool salvarDestino(const Destino&) = 0;   // Salva ou atualiza um destino
-    virtual bool removerDestino(const Codigo&) = 0;   // Remove um destino pelo código
-    virtual Destino buscarDestino(const Codigo&) = 0; // Busca um destino pelo código
+class IUAutenticacao {
+public:
+    virtual void setServicoAutenticacao(IServicoAutenticacao* servico) = 0;
+    virtual bool autenticar(Codigo* codigo) = 0;
+    virtual ~IUAutenticacao() = default;
 };
 
-class IRepositorioAtividade {
-public:
-    virtual ~IRepositorioAtividade() = default;
+// Controladora IU de Autenticação
 
-    virtual bool salvarAtividade(const Atividade&) = 0;   // Salva ou atualiza uma atividade
-    virtual bool removerAtividade(const Nome&) = 0;       // Remove uma atividade pelo nome
-    virtual Atividade buscarAtividade(const Nome&) = 0;   // Busca uma atividade pelo nome
+class CntrIUAutenticacao : public IUAutenticacao {
+private:
+    IServicoAutenticacao* servicoAutenticacao; // Armazena o serviço de autenticação
+
+public:
+    void setServicoAutenticacao(IServicoAutenticacao* servico) override {
+        this->servicoAutenticacao = servico;
+    }
+
+    bool autenticar(Codigo* codigo) override {
+        string valorCodigo, valorSenha;
+
+        cout << "Digite o código da conta: ";
+        cin >> valorCodigo;
+        cout << "Digite a senha da conta: ";
+        cin >> valorSenha;
+
+        try {
+            *codigo = Codigo(valorCodigo);
+            Senha senha(valorSenha);
+
+            // Chamando o método autenticar no serviço
+            return servicoAutenticacao->autenticar(*codigo, senha);
+        } catch (const invalid_argument& e) {
+            cout << "Erro: " << e.what() << endl;
+            return false;
+        }
+    }
 };
 
-class IRepositorioHospedagem {
-public:
-    virtual ~IRepositorioHospedagem() = default;
+// Outras interfaces de IU
 
-    virtual bool salvarHospedagem(const Hospedagem&) = 0;   // Salva ou atualiza uma hospedagem
-    virtual bool removerHospedagem(const Codigo&) = 0;     // Remove uma hospedagem pelo código
-    virtual Hospedagem buscarHospedagem(const Codigo&) = 0; // Busca uma hospedagem pelo código
+class IUConta {
+public:
+    virtual ~IUConta() = default;
+    virtual void gerenciarConta() = 0;
+};
+
+class IUViagem {
+public:
+    virtual ~IUViagem() = default;
+    virtual void gerenciarViagem() = 0;
+};
+
+class IUDestino {
+public:
+    virtual ~IUDestino() = default;
+    virtual void gerenciarDestino() = 0;
+};
+
+class IUAtividade {
+public:
+    virtual ~IUAtividade() = default;
+    virtual void gerenciarAtividade() = 0;
+};
+
+class IUHospedagem {
+public:
+    virtual ~IUHospedagem() = default;
+    virtual void gerenciarHospedagem() = 0;
 };
 
 #endif // INTERFACES_HPP

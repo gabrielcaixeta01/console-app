@@ -2,9 +2,6 @@
 #define STUBS_HPP
 
 #include "interfaces.hpp"
-#include <stdexcept>
-#include <iostream>
-using namespace std;
 
 class StubServicoConta : public IServicoConta {
 public:

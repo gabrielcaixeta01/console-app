@@ -1,159 +1,172 @@
 #include <iostream>
-#include "dominios.hpp"
-#include "testesDominio.hpp"
-#include "testesEntidade.hpp"
+#include "interfaces.hpp" // Certifique-se de incluir os headers corretos para as interfaces usadas
+#include "controladoras.hpp" // Certifique-se de incluir as controladoras corretas
+#include "stubs.hpp" // Certifique-se de incluir os stubs necessários
 
 using namespace std;
 
 int main() {
-    try {
-        // Teste de Avaliação
-        TUAvaliacao testeAvaliacao;
-        switch (testeAvaliacao.run()) {
-            case TUAvaliacao::SUCESSO:
-                cout << "Teste Avaliacao: SUCESSO" << endl;
-                break;
-            case TUAvaliacao::FALHA:
-                cout << "Teste Avaliacao: FALHA" << endl;
-                break;
+    // Instanciar controladora e stub
+    IUAutenticacao* cntrIUAutenticacao = new CntrIUAutenticacao();
+    IServicoAutenticacao* stubLNAutenticacao = new StubServicoAutenticacao();
+
+    // Conectar a controladora com o stub
+    cntrIUAutenticacao->setServicoAutenticacao(stubLNAutenticacao);
+
+    bool resultado;
+    Codigo codigo; // Para armazenar o código da conta autenticada
+
+    while (true) {
+        // Tela inicial do sistema
+        cout << endl << "Tela inicial do sistema:" << endl;
+
+        try {
+            // Solicitar serviço de autenticação
+            resultado = cntrIUAutenticacao->autenticar(&codigo);
+        } catch (const runtime_error& e) {
+            cout << "Erro de sistema: " << e.what() << endl;
+            break;
         }
 
-        // Teste de Código
-        TUCodigo testeCodigo;
-        switch (testeCodigo.run()) {
-            case TUCodigo::SUCESSO:
-                cout << "Teste Codigo: SUCESSO" << endl;
-                break;
-            case TUCodigo::FALHA:
-                cout << "Teste Codigo: FALHA" << endl;
-                break;
-        }
+        // Verificar resultado da autenticação
+        if (resultado) {
+            cout << endl << "Sucesso na autenticação." << endl;
+            cout << "Código da Conta: " << codigo.getValor() << endl;
 
-        // Teste de Data
-        TUData testeData;
-        switch (testeData.run()) {
-            case TUData::SUCESSO:
-                cout << "Teste Data: SUCESSO" << endl;
-                break;
-            case TUData::FALHA:
-                cout << "Teste Data: FALHA" << endl;
-                break;
-        }
+            // Menu principal após autenticação
+            int opcao;
+            while (true) {
+                cout << "\nMenu Principal" << endl;
+                cout << "1 - Criar Viagem" << endl;
+                cout << "2 - Adicionar Destino" << endl;
+                cout << "3 - Adicionar Atividade" << endl;
+                cout << "4 - Adicionar Hospedagem" << endl;
+                cout << "0 - Sair" << endl;
+                cout << "Escolha uma opção: ";
+                cin >> opcao;
 
-        // Teste de Dinheiro
-        TUDinheiro testeDinheiro;
-        switch (testeDinheiro.run()) {
-            case TUDinheiro::SUCESSO:
-                cout << "Teste Dinheiro: SUCESSO" << endl;
-                break;
-            case TUDinheiro::FALHA:
-                cout << "Teste Dinheiro: FALHA" << endl;
-                break;
-        }
+                if (opcao == 0) {
+                    cout << "Saindo do sistema..." << endl;
+                    break;
+                }
 
-        // Teste de Duração
-        TUDuracao testeDuracao;
-        switch (testeDuracao.run()) {
-            case TUDuracao::SUCESSO:
-                cout << "Teste Duracao: SUCESSO" << endl;
-                break;
-            case TUDuracao::FALHA:
-                cout << "Teste Duracao: FALHA" << endl;
-                break;
-        }
+                switch (opcao) {
+                    case 1: {
+                        cout << "Funcionalidade: Criar Viagem" << endl;
 
-        // Teste de Horário
-        TUHorario testeHorario;
-        switch (testeHorario.run()) {
-            case TUHorario::SUCESSO:
-                cout << "Teste Horario: SUCESSO" << endl;
-                break;
-            case TUHorario::FALHA:
-                cout << "Teste Horario: FALHA" << endl;
-                break;
-        }
+                        Viagem novaViagem;
+                        Codigo codigoViagem;
+                        Nome nomeViagem;
 
-        // Teste de Nome
-        TUNome testeNome;
-        switch (testeNome.run()) {
-            case TUNome::SUCESSO:
-                cout << "Teste Nome: SUCESSO" << endl;
-                break;
-            case TUNome::FALHA:
-                cout << "Teste Nome: FALHA" << endl;
-                break;
-        }
+                        cout << "Digite o código da viagem: ";
+                        string codigoStr;
+                        cin >> codigoStr;
+                        codigoViagem.setValor(codigoStr);
 
-        // Teste de Senha
-        TUSenha testeSenha;
-        switch (testeSenha.run()) {
-            case TUSenha::SUCESSO:
-                cout << "Teste Senha: SUCESSO" << endl;
-                break;
-            case TUSenha::FALHA:
-                cout << "Teste Senha: FALHA" << endl;
-                break;
-        }
+                        cout << "Digite o nome da viagem: ";
+                        string nomeStr;
+                        cin.ignore(); // Limpar o buffer do cin
+                        getline(cin, nomeStr);
+                        nomeViagem.setValor(nomeStr);
 
-        // Teste de Conta
-        TUConta testeConta;
-        switch (testeConta.run()) {
-            case TUConta::SUCESSO:
-                cout << "Teste Conta: SUCESSO" << endl;
-                break;
-            case TUConta::FALHA:
-                cout << "Teste Conta: FALHA" << endl;
-                break;
-        }
+                        novaViagem.setCodigo(codigoViagem);
+                        novaViagem.setNome(nomeViagem);
 
-        // Teste de Viagem
-        TUViagem testeViagem;
-        switch (testeViagem.run()) {
-            case TUViagem::SUCESSO:
-                cout << "Teste Viagem: SUCESSO" << endl;
-                break;
-            case TUViagem::FALHA:
-                cout << "Teste Viagem: FALHA" << endl;
-                break;
-        }
+                        // Chamar o stub para criar a viagem
+                        if (StubServicoViagem().criarViagem(novaViagem)) {
+                            cout << "Viagem criada com sucesso." << endl;
+                        } else {
+                            cout << "Erro: Não foi possível criar a viagem." << endl;
+                        }
+                    } break;
 
-        // Teste de Destino
-        TUDestino testeDestino;
-        switch (testeDestino.run()) {
-            case TUDestino::SUCESSO:
-                cout << "Teste Destino: SUCESSO" << endl;
-                break;
-            case TUDestino::FALHA:
-                cout << "Teste Destino: FALHA" << endl;
-                break;
-        }
+                    case 2: {
+                        cout << "Funcionalidade: Adicionar Destino" << endl;
 
-        // Teste de Atividade
-        TUAtividade testeAtividade;
-        switch (testeAtividade.run()) {
-            case TUAtividade::SUCESSO:
-                cout << "Teste Atividade: SUCESSO" << endl;
-                break;
-            case TUAtividade::FALHA:
-                cout << "Teste Atividade: FALHA" << endl;
-                break;
-        }
+                        Destino novoDestino;
+                        Codigo codigoDestino;
+                        Nome nomeDestino;
 
-        // Teste de Hospedagem
-        TUHospedagem testeHospedagem;
-        switch (testeHospedagem.run()) {
-            case TUHospedagem::SUCESSO:
-                cout << "Teste Hospedagem: SUCESSO" << endl;
-                break;
-            case TUHospedagem::FALHA:
-                cout << "Teste Hospedagem: FALHA" << endl;
-                break;
+                        cout << "Digite o código do destino: ";
+                        string codigoStr;
+                        cin >> codigoStr;
+                        codigoDestino.setValor(codigoStr);
+
+                        cout << "Digite o nome do destino: ";
+                        string nomeStr;
+                        cin.ignore(); // Limpar o buffer do cin
+                        getline(cin, nomeStr);
+                        nomeDestino.setValor(nomeStr);
+
+                        novoDestino.setCodigo(codigoDestino);
+                        novoDestino.setNome(nomeDestino);
+
+                        // Chamar o stub para adicionar destino
+                        if (StubServicoDestino().adicionarDestino(novoDestino)) {
+                            cout << "Destino adicionado com sucesso." << endl;
+                        } else {
+                            cout << "Erro: Não foi possível adicionar o destino." << endl;
+                        }
+                    } break;
+
+                    case 3: {
+                        cout << "Funcionalidade: Adicionar Atividade" << endl;
+
+                        Atividade novaAtividade;
+                        Nome nomeAtividade;
+
+                        cout << "Digite o nome da atividade: ";
+                        string nomeStr;
+                        cin.ignore();
+                        getline(cin, nomeStr);
+                        nomeAtividade.setValor(nomeStr);
+
+                        novaAtividade.setNome(nomeAtividade);
+
+                        // Chamar o stub para adicionar atividade
+                        if (StubServicoAtividade().adicionarAtividade(novaAtividade)) {
+                            cout << "Atividade adicionada com sucesso." << endl;
+                        } else {
+                            cout << "Erro: Não foi possível adicionar a atividade." << endl;
+                        }
+                    } break;
+
+                    case 4: {
+                        cout << "Funcionalidade: Adicionar Hospedagem" << endl;
+
+                        Hospedagem novaHospedagem;
+                        Codigo codigoHospedagem;
+
+                        cout << "Digite o código da hospedagem: ";
+                        string codigoStr;
+                        cin >> codigoStr;
+                        codigoHospedagem.setValor(codigoStr);
+
+                        novaHospedagem.setCodigo(codigoHospedagem);
+
+                        // Chamar o stub para adicionar hospedagem
+                        if (StubServicoHospedagem().adicionarHospedagem(novaHospedagem)) {
+                            cout << "Hospedagem adicionada com sucesso." << endl;
+                        } else {
+                            cout << "Erro: Não foi possível adicionar a hospedagem." << endl;
+                        }
+                    } break;
+
+                    default:
+                        cout << "Opção inválida. Tente novamente." << endl;
+                        break;
+                }
+            }
+
+            break; // Sai do loop principal após sair do menu
+        } else {
+            cout << "Erro na autenticação. Tente novamente." << endl;
         }
-    } catch (const invalid_argument &e) {
-        cout << "Exceção capturada: " << e.what() << endl;
-    } catch (...) {
-        cout << "Erro desconhecido capturado!" << endl;
     }
+
+    // Limpeza de memória
+    delete cntrIUAutenticacao;
+    delete stubLNAutenticacao;
 
     return 0;
 }

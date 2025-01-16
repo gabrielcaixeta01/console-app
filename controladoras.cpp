@@ -1,102 +1,225 @@
-#include "controladoras.hpp"
 #include <iostream>
 using namespace std;
 
-ControladoraConta::ControladoraConta(IServicoConta* servicoConta, IServicoAutenticacao* servicoAutenticacao)
-    : servicoConta(servicoConta), servicoAutenticacao(servicoAutenticacao) {}
+#include "controladoras.hpp"
 
-void ControladoraConta::criarConta() {
-    string codigo, senha;
+// Controladora de Apresentação da Autenticação
+void CntrAutenticacaoA::setServicoAutenticacao(ISAutenticacao* servico) {
+    this->servicoAutenticacao = servico;
+}
+
+bool CntrAutenticacaoA::autenticar(const Codigo& codigo) {
+    Conta conta;
+    conta.setCodigo(codigo);
+
+    if (servicoAutenticacao->autenticar(conta)) {
+        cout << "Autenticação bem-sucedida para o código: " << codigo.getValor() << endl;
+        return true;
+    } else {
+        cout << "Falha na autenticação para o código: " << codigo.getValor() << endl;
+        return false;
+    }
+}
+
+// Controladora de Apresentação da Conta
+void CntrContaA::setServicoConta(ISConta* servico) {
+    this->servicoConta = servico;
+}
+
+void CntrContaA::criar() {
+    Conta conta;
+    Codigo codigo;
+    Senha senha;
+
     cout << "Digite o código da conta: ";
-    cin >> codigo;
+    string codigoStr;
+    cin >> codigoStr;
+    codigo.setValor(codigoStr);
+    conta.setCodigo(codigo);
+
     cout << "Digite a senha da conta: ";
-    cin >> senha;
+    string senhaStr;
+    cin >> senhaStr;
+    senha.setValor(senhaStr);
+    conta.setSenha(senha);
 
-    try {
-        Conta conta;
-        conta.setCodigo(Codigo(codigo));
-        conta.setSenha(Senha(senha));
-
-        if (servicoConta->criarConta(conta)) {
-            cout << "Conta criada com sucesso!\n";
-        } else {
-            cout << "Falha ao criar conta.\n";
-        }
-    } catch (const exception& e) {
-        cout << "Erro: " << e.what() << endl;
+    if (servicoConta->criar(conta)) {
+        cout << "Conta criada com sucesso!" << endl;
+    } else {
+        cout << "Erro ao criar conta. Já existe uma conta com este código." << endl;
     }
 }
 
-void ControladoraConta::autenticarConta() {
-    string codigo, senha;
-    cout << "Digite o código da conta: ";
-    cin >> codigo;
-    cout << "Digite a senha da conta: ";
-    cin >> senha;
+void CntrContaA::executar(const Codigo& codigo) {
+    int opcao;
+    while (true) {
+        cout << "\nMenu Conta" << endl;
+        cout << "1 - Atualizar Conta" << endl;
+        cout << "2 - Excluir Conta" << endl;
+        cout << "3 - Ler Conta" << endl;
+        cout << "0 - Voltar" << endl;
+        cout << "Escolha uma opção: ";
+        cin >> opcao;
 
-    try {
-        if (servicoAutenticacao->autenticar(Codigo(codigo), Senha(senha))) {
-            cout << "Autenticação realizada com sucesso!\n";
-        } else {
-            cout << "Falha na autenticação.\n";
+        switch (opcao) {
+            case 1: {
+                Conta conta;
+                Senha novaSenha;
+
+                cout << "Digite a nova senha: ";
+                string senhaStr;
+                cin >> senhaStr;
+                novaSenha.setValor(senhaStr);
+
+                conta.setCodigo(codigo);
+                conta.setSenha(novaSenha);
+
+                if (servicoConta->atualizar(conta)) {
+                    cout << "Conta atualizada com sucesso!" << endl;
+                } else {
+                    cout << "Erro ao atualizar a conta." << endl;
+                }
+            } break;
+
+            case 2: {
+                if (servicoConta->excluir(codigo)) {
+                    cout << "Conta excluída com sucesso!" << endl;
+                } else {
+                    cout << "Erro ao excluir a conta." << endl;
+                }
+            } break;
+
+            case 3: {
+                Conta conta;
+
+                if (servicoConta->ler(codigo, &conta)) { // Corrigido para passar dois argumentos
+                    cout << "Dados da conta:" << endl;
+                    cout << "Código: " << conta.getCodigo().getValor() << endl;
+                    cout << "Senha: " << conta.getSenha().getValor() << endl;
+                } else {
+                    cout << "Conta não encontrada." << endl;
+                }
+            } break;
+
+            case 0:
+                return;
+
+            default:
+                cout << "Opção inválida. Tente novamente." << endl;
+                break;
         }
-    } catch (const exception& e) {
-        cout << "Erro: " << e.what() << endl;
     }
 }
 
-void ControladoraConta::excluirConta() {
-    string codigo;
-    cout << "Digite o código da conta a ser excluída: ";
-    cin >> codigo;
-
-    try {
-        if (servicoConta->excluirConta(Codigo(codigo))) {
-            cout << "Conta excluída com sucesso!\n";
-        } else {
-            cout << "Falha ao excluir conta.\n";
-        }
-    } catch (const exception& e) {
-        cout << "Erro: " << e.what() << endl;
-    }
+// Controladora de Apresentação da Viagem
+void CntrViagemA::setServicoViagem(ISViagem* servico) {
+    this->servicoViagem = servico;
 }
 
-ControladoraViagem::ControladoraViagem(IServicoViagem* servicoViagem) : servicoViagem(servicoViagem) {}
+void CntrViagemA::executar(const Codigo& codigo) {
+    int opcao;
+    while (true) {
+        cout << "\nMenu Viagens" << endl;
+        cout << "1 - Criar Viagem" << endl;
+        cout << "2 - Atualizar Viagem" << endl;
+        cout << "3 - Excluir Viagem" << endl;
+        cout << "4 - Ler Viagem" << endl;
+        cout << "0 - Voltar" << endl;
+        cout << "Escolha uma opção: ";
+        cin >> opcao;
 
-void ControladoraViagem::criarViagem() {
-    string codigo, nome;
-    cout << "Digite o código da viagem: ";
-    cin >> codigo;
-    cout << "Digite o nome da viagem: ";
-    cin >> nome;
+        switch (opcao) {
+            case 1: {
+                Viagem viagem;
+                Codigo codigoViagem;
+                Nome nomeViagem;
 
-    try {
-        Viagem viagem;
-        viagem.setCodigo(Codigo(codigo));
-        viagem.setNome(Nome(nome));
+                cout << "Digite o código da viagem: ";
+                string codigoStr;
+                cin >> codigoStr;
+                codigoViagem.setValor(codigoStr);
 
-        if (servicoViagem->criarViagem(viagem)) {
-            cout << "Viagem criada com sucesso!\n";
-        } else {
-            cout << "Falha ao criar viagem.\n";
+                cout << "Digite o nome da viagem: ";
+                string nomeStr;
+                cin.ignore();
+                getline(cin, nomeStr);
+                nomeViagem.setValor(nomeStr);
+
+                viagem.setCodigo(codigoViagem);
+                viagem.setNome(nomeViagem);
+
+                if (servicoViagem->criar(viagem)) {
+                    cout << "Viagem criada com sucesso!" << endl;
+                } else {
+                    cout << "Erro ao criar a viagem." << endl;
+                }
+            } break;
+
+            case 2: {
+                Viagem viagemAtualizada;
+                Codigo codigoViagem;
+                Nome novoNome;
+
+                cout << "Digite o código da viagem: ";
+                string codigoStr;
+                cin >> codigoStr;
+                codigoViagem.setValor(codigoStr);
+
+                cout << "Digite o novo nome da viagem: ";
+                string nomeStr;
+                cin.ignore();
+                getline(cin, nomeStr);
+                novoNome.setValor(nomeStr);
+
+                viagemAtualizada.setCodigo(codigoViagem);
+                viagemAtualizada.setNome(novoNome);
+
+                if (servicoViagem->atualizar(viagemAtualizada)) {
+                    cout << "Viagem atualizada com sucesso!" << endl;
+                } else {
+                    cout << "Erro ao atualizar a viagem." << endl;
+                }
+            } break;
+
+            case 3: {
+                Codigo codigoViagem;
+
+                cout << "Digite o código da viagem a ser excluída: ";
+                string codigoStr;
+                cin >> codigoStr;
+                codigoViagem.setValor(codigoStr);
+
+                if (servicoViagem->excluir(codigoViagem)) {
+                    cout << "Viagem excluída com sucesso!" << endl;
+                } else {
+                    cout << "Erro ao excluir a viagem." << endl;
+                }
+            } break;
+
+            case 4: {
+                Viagem viagem;
+                Codigo codigoViagem;
+
+                cout << "Digite o código da viagem: ";
+                string codigoStr;
+                cin >> codigoStr;
+                codigoViagem.setValor(codigoStr);
+
+                if (servicoViagem->ler(codigoViagem, &viagem)) { // Corrigido para passar dois argumentos
+                    cout << "Dados da viagem:" << endl;
+                    cout << "Código: " << viagem.getCodigo().getValor() << endl;
+                    cout << "Nome: " << viagem.getNome().getValor() << endl;
+                } else {
+                    cout << "Viagem não encontrada." << endl;
+                }
+            } break;
+
+            case 0:
+                return;
+
+            default:
+                cout << "Opção inválida. Tente novamente." << endl;
+                break;
         }
-    } catch (const exception& e) {
-        cout << "Erro: " << e.what() << endl;
-    }
-}
-
-void ControladoraViagem::excluirViagem() {
-    string codigo;
-    cout << "Digite o código da viagem a ser excluída: ";
-    cin >> codigo;
-
-    try {
-        if (servicoViagem->excluirViagem(Codigo(codigo))) {
-            cout << "Viagem excluída com sucesso!\n";
-        } else {
-            cout << "Falha ao excluir viagem.\n";
-        }
-    } catch (const exception& e) {
-        cout << "Erro: " << e.what() << endl;
     }
 }

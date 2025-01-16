@@ -5,28 +5,35 @@
 #include <iostream>
 using namespace std;
 
-class ControladoraConta {
+// Controladora de Apresentação da Autenticação
+class CntrAutenticacaoA : public IAAutenticacao {
 private:
-    IServicoConta* servicoConta;
-    IServicoAutenticacao* servicoAutenticacao;
+    ISAutenticacao* servicoAutenticacao;
 
 public:
-    ControladoraConta(IServicoConta* servicoConta, IServicoAutenticacao* servicoAutenticacao);
-
-    void criarConta();
-    void autenticarConta();
-    void excluirConta();
+    void setServicoAutenticacao(ISAutenticacao* servico);
+    bool autenticar(const Codigo& codigo) override;
 };
 
-class ControladoraViagem {
+// Controladora de Apresentação da Conta
+class CntrContaA : public IAConta {
 private:
-    IServicoViagem* servicoViagem;
+    ISConta* servicoConta;
 
 public:
-    ControladoraViagem(IServicoViagem* servicoViagem);
+    void setServicoConta(ISConta* servico);
+    void criar() override;
+    void executar(const Codigo& codigo) override;
+};
 
-    void criarViagem();
-    void excluirViagem();
+// Controladora de Apresentação da Viagem
+class CntrViagemA : public IAViagem {
+private:
+    ISViagem* servicoViagem;
+
+public:
+    void setServicoViagem(ISViagem* servico);
+    void executar(const Codigo& codigo) override;
 };
 
 #endif // CONTROLADORAS_HPP

@@ -22,6 +22,7 @@ public:
     bool excluirViagem(const Codigo& codigo) override;
     Viagem consultarViagem(const Codigo& codigo) override;
     bool atualizarViagem(const Viagem& viagem) override;
+    void listarViagens();
 };
 
 class StubServicoDestino : public IServicoDestino {
@@ -35,7 +36,6 @@ class StubServicoAtividade : public IServicoAtividade {
 public:
     bool adicionarAtividade(const Atividade& atividade) override;
     bool removerAtividade(const Nome& nome) override;
-    Atividade consultarAtividade(const Nome& nome) override;
 };
 
 class StubServicoHospedagem : public IServicoHospedagem {

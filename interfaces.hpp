@@ -49,7 +49,6 @@ public:
 
     virtual bool adicionarAtividade(const Atividade&) = 0;
     virtual bool removerAtividade(const Nome&) = 0;
-    virtual Atividade consultarAtividade(const Nome&) = 0;
 };
 
 class IServicoHospedagem {

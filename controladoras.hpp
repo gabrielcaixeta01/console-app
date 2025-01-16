@@ -23,14 +23,18 @@ public:
         cout << "Digite a senha da conta: ";
         cin >> senha;
 
-        Conta conta;
-        conta.setCodigo(Codigo(codigo));
-        conta.setSenha(Senha(senha));
+        try {
+            Conta conta;
+            conta.setCodigo(Codigo(codigo));
+            conta.setSenha(Senha(senha));
 
-        if (servicoConta->criarConta(conta)) {
-            cout << "Conta criada com sucesso!\n";
-        } else {
-            cout << "Falha ao criar conta.\n";
+            if (servicoConta->criarConta(conta)) {
+                cout << "Conta criada com sucesso!\n";
+            } else {
+                cout << "Falha ao criar conta.\n";
+            }
+        } catch (const exception& e) {
+            cout << "Erro: " << e.what() << endl;
         }
     }
 
@@ -41,10 +45,14 @@ public:
         cout << "Digite a senha da conta: ";
         cin >> senha;
 
-        if (servicoAutenticacao->autenticar(Codigo(codigo), Senha(senha))) {
-            cout << "Autenticação realizada com sucesso!\n";
-        } else {
-            cout << "Falha na autenticação.\n";
+        try {
+            if (servicoAutenticacao->autenticar(Codigo(codigo), Senha(senha))) {
+                cout << "Autenticação realizada com sucesso!\n";
+            } else {
+                cout << "Falha na autenticação.\n";
+            }
+        } catch (const exception& e) {
+            cout << "Erro: " << e.what() << endl;
         }
     }
 
@@ -53,10 +61,14 @@ public:
         cout << "Digite o código da conta a ser excluída: ";
         cin >> codigo;
 
-        if (servicoConta->excluirConta(Codigo(codigo))) {
-            cout << "Conta excluída com sucesso!\n";
-        } else {
-            cout << "Falha ao excluir conta.\n";
+        try {
+            if (servicoConta->excluirConta(Codigo(codigo))) {
+                cout << "Conta excluída com sucesso!\n";
+            } else {
+                cout << "Falha ao excluir conta.\n";
+            }
+        } catch (const exception& e) {
+            cout << "Erro: " << e.what() << endl;
         }
     }
 };
@@ -75,14 +87,18 @@ public:
         cout << "Digite o nome da viagem: ";
         cin >> nome;
 
-        Viagem viagem;
-        viagem.setCodigo(Codigo(codigo));
-        viagem.setNome(Nome(nome));
+        try {
+            Viagem viagem;
+            viagem.setCodigo(Codigo(codigo));
+            viagem.setNome(Nome(nome));
 
-        if (servicoViagem->criarViagem(viagem)) {
-            cout << "Viagem criada com sucesso!\n";
-        } else {
-            cout << "Falha ao criar viagem.\n";
+            if (servicoViagem->criarViagem(viagem)) {
+                cout << "Viagem criada com sucesso!\n";
+            } else {
+                cout << "Falha ao criar viagem.\n";
+            }
+        } catch (const exception& e) {
+            cout << "Erro: " << e.what() << endl;
         }
     }
 
@@ -91,10 +107,14 @@ public:
         cout << "Digite o código da viagem a ser excluída: ";
         cin >> codigo;
 
-        if (servicoViagem->excluirViagem(Codigo(codigo))) {
-            cout << "Viagem excluída com sucesso!\n";
-        } else {
-            cout << "Falha ao excluir viagem.\n";
+        try {
+            if (servicoViagem->excluirViagem(Codigo(codigo))) {
+                cout << "Viagem excluída com sucesso!\n";
+            } else {
+                cout << "Falha ao excluir viagem.\n";
+            }
+        } catch (const exception& e) {
+            cout << "Erro: " << e.what() << endl;
         }
     }
 };

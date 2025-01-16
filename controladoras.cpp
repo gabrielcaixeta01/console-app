@@ -117,6 +117,7 @@ void CntrViagemA::setServicoViagem(ISViagem* servico) {
 }
 
 void CntrViagemA::executar(const Codigo& codigo) {
+    (void)codigo;
     int opcao;
     while (true) {
         cout << "\nMenu Viagens" << endl;

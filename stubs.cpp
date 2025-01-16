@@ -3,140 +3,224 @@
 
 using namespace std;
 
-unordered_map<string, Viagem> viagens;
-unordered_map<string, Destino> destinos;
-unordered_map<string, Atividade> atividades;
-unordered_map<string, Hospedagem> hospedagens;
-
-
-// Implementações para StubServicoConta
-bool StubServicoConta::criarConta(const Conta& conta) {
-    (void)conta; // Supressão do warning de parâmetro não usado
+// Implementação do StubServicoAutenticacao
+bool StubServicoAutenticacao::autenticar(const Conta& conta) {
+    cout << "Stub: Autenticação sempre retorna sucesso" << endl;
+    (void)conta;
     return true;
 }
 
-bool StubServicoConta::excluirConta(const Codigo& codigo) {
-    (void)codigo; // Supressão do warning de parâmetro não usado
-    return true;
+// Implementação do StubServicoConta
+bool StubServicoConta::criar(const Conta& conta) {
+    string codigo = conta.getCodigo().getValor();
+    if (contas.find(codigo) == contas.end()) {
+        contas[codigo] = conta;
+        cout << "Conta criada com sucesso: " << codigo << endl;
+        return true;
+    }
+    cout << "Erro: Conta já existente: " << codigo << endl;
+    return false;
 }
 
-Conta StubServicoConta::consultarConta(const Codigo& codigo) {
-    (void)codigo; // Supressão do warning de parâmetro não usado
-    return Conta();
+bool StubServicoConta::excluir(const Codigo& codigo) {
+    if (contas.erase(codigo.getValor()) > 0) {
+        cout << "Conta excluída com sucesso: " << codigo.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Conta não encontrada: " << codigo.getValor() << endl;
+    return false;
 }
 
-bool StubServicoConta::atualizarConta(const Conta& conta) {
-    (void)conta; // Supressão do warning de parâmetro não usado
-    return true;
+bool StubServicoConta::atualizar(const Conta& conta) {
+    string codigo = conta.getCodigo().getValor();
+    if (contas.find(codigo) != contas.end()) {
+        contas[codigo] = conta;
+        cout << "Conta atualizada com sucesso: " << codigo << endl;
+        return true;
+    }
+    cout << "Erro: Conta não encontrada para atualização: " << codigo << endl;
+    return false;
 }
 
-// Implementação simplificada para StubServicoAutenticacao
-bool StubServicoAutenticacao::autenticar(const Codigo& codigo, const Senha& senha) {
-    (void)codigo; // Supressão do warning de parâmetro não usado
-    (void)senha;  // Supressão do warning de parâmetro não usado
-    return true;
+bool StubServicoConta::ler(const Codigo& codigo, Conta* conta) {
+    auto it = contas.find(codigo.getValor());
+    if (it != contas.end()) {
+        *conta = it->second;
+        cout << "Conta encontrada: " << codigo.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Conta não encontrada: " << codigo.getValor() << endl;
+    return false;
 }
 
-// Implementações simplificadas para StubServicoViagem
-bool StubServicoViagem::excluirViagem(const Codigo& codigo) {
-    (void)codigo; // Supressão do warning de parâmetro não usado
-    return true;
-}
-
-bool StubServicoViagem::atualizarViagem(const Viagem& viagem) {
-    (void)viagem; // Supressão do warning de parâmetro não usado
-    return true;
-}
-
-bool StubServicoViagem::criarViagem(const Viagem& viagem) {
+// Implementação do StubServicoViagem
+bool StubServicoViagem::criar(const Viagem& viagem) {
     string codigo = viagem.getCodigo().getValor();
     if (viagens.find(codigo) == viagens.end()) {
         viagens[codigo] = viagem;
         cout << "Viagem criada com sucesso: " << codigo << endl;
         return true;
     }
-    cout << "Viagem já existente: " << codigo << endl;
+    cout << "Erro: Viagem já existente: " << codigo << endl;
     return false;
 }
 
-Viagem StubServicoViagem::consultarViagem(const Codigo& codigo) {
+bool StubServicoViagem::excluir(const Codigo& codigo) {
+    if (viagens.erase(codigo.getValor()) > 0) {
+        cout << "Viagem excluída com sucesso: " << codigo.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Viagem não encontrada: " << codigo.getValor() << endl;
+    return false;
+}
+
+bool StubServicoViagem::atualizar(const Viagem& viagem) {
+    string codigo = viagem.getCodigo().getValor();
+    if (viagens.find(codigo) != viagens.end()) {
+        viagens[codigo] = viagem;
+        cout << "Viagem atualizada com sucesso: " << codigo << endl;
+        return true;
+    }
+    cout << "Erro: Viagem não encontrada para atualização: " << codigo << endl;
+    return false;
+}
+
+bool StubServicoViagem::ler(const Codigo& codigo, Viagem* viagem) {
     auto it = viagens.find(codigo.getValor());
     if (it != viagens.end()) {
-        return it->second; // Retorna a viagem encontrada
+        *viagem = it->second;
+        cout << "Viagem encontrada: " << codigo.getValor() << endl;
+        return true;
     }
-    throw runtime_error("Viagem não encontrada!");
+    cout << "Erro: Viagem não encontrada: " << codigo.getValor() << endl;
+    return false;
 }
 
-void StubServicoViagem::listarViagens() {
-    if (viagens.empty()) {
-        cout << "Nenhuma viagem registrada." << endl;
-    } else {
-        cout << "Viagens registradas:" << endl;
-        for (const auto& [codigo, viagem] : viagens) {
-            cout << "Código: " << codigo 
-                 << ", Nome: " << viagem.getNome().getValor() << endl;
-        }
-    }
-}
-
-// Implementações simplificadas para StubServicoDestino
-bool StubServicoDestino::adicionarDestino(const Destino& destino) {
+// Implementação do StubServicoDestino
+bool StubServicoDestino::criar(const Destino& destino) {
     string codigo = destino.getCodigo().getValor();
     if (destinos.find(codigo) == destinos.end()) {
         destinos[codigo] = destino;
-        cout << "Destino adicionado com sucesso: " << codigo << endl;
+        cout << "Destino criado com sucesso: " << codigo << endl;
         return true;
     }
-    cout << "Destino já existente: " << codigo << endl;
+    cout << "Erro: Destino já existente: " << codigo << endl;
     return false;
-    
 }
 
-bool StubServicoDestino::removerDestino(const Codigo& codigo) {
-    (void)codigo;
-    return true;
+bool StubServicoDestino::excluir(const Codigo& codigo) {
+    if (destinos.erase(codigo.getValor()) > 0) {
+        cout << "Destino excluído com sucesso: " << codigo.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Destino não encontrado: " << codigo.getValor() << endl;
+    return false;
 }
 
-Destino StubServicoDestino::consultarDestino(const Codigo& codigo) {
+bool StubServicoDestino::atualizar(const Destino& destino) {
+    string codigo = destino.getCodigo().getValor();
+    if (destinos.find(codigo) != destinos.end()) {
+        destinos[codigo] = destino;
+        cout << "Destino atualizado com sucesso: " << codigo << endl;
+        return true;
+    }
+    cout << "Erro: Destino não encontrado para atualização: " << codigo << endl;
+    return false;
+}
+
+bool StubServicoDestino::ler(const Codigo& codigo, Destino* destino) {
     auto it = destinos.find(codigo.getValor());
     if (it != destinos.end()) {
-        return it->second;
+        *destino = it->second;
+        cout << "Destino encontrado: " << codigo.getValor() << endl;
+        return true;
     }
-    throw runtime_error("Destino não encontrado!");
+    cout << "Erro: Destino não encontrado: " << codigo.getValor() << endl;
+    return false;
 }
 
-// Implementações simplificadas para StubServicoAtividade
-bool StubServicoAtividade::adicionarAtividade(const Atividade& atividade) {
-   (void)atividade;
-   return true;
+// Implementação do StubServicoAtividade
+bool StubServicoAtividade::criar(const Atividade& atividade) {
+    string nome = atividade.getNome().getValor();
+    if (atividades.find(nome) == atividades.end()) {
+        atividades[nome] = atividade;
+        cout << "Atividade criada com sucesso: " << nome << endl;
+        return true;
+    }
+    cout << "Erro: Atividade já existente: " << nome << endl;
+    return false;
 }
 
-bool StubServicoAtividade::removerAtividade(const Nome& nome) {
-    (void)nome; // Supressão do warning de parâmetro não usado
-    return true;
+bool StubServicoAtividade::excluir(const Nome& nome) {
+    if (atividades.erase(nome.getValor()) > 0) {
+        cout << "Atividade excluída com sucesso: " << nome.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Atividade não encontrada: " << nome.getValor() << endl;
+    return false;
 }
 
-// Implementações simplificadas para StubServicoHospedagem
-bool StubServicoHospedagem::adicionarHospedagem(const Hospedagem& hospedagem) {
+bool StubServicoAtividade::atualizar(const Atividade& atividade) {
+    string nome = atividade.getNome().getValor();
+    if (atividades.find(nome) != atividades.end()) {
+        atividades[nome] = atividade;
+        cout << "Atividade atualizada com sucesso: " << nome << endl;
+        return true;
+    }
+    cout << "Erro: Atividade não encontrada para atualização: " << nome << endl;
+    return false;
+}
+
+bool StubServicoAtividade::ler(const Nome& nome, Atividade* atividade) {
+    auto it = atividades.find(nome.getValor());
+    if (it != atividades.end()) {
+        *atividade = it->second;
+        cout << "Atividade encontrada: " << nome.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Atividade não encontrada: " << nome.getValor() << endl;
+    return false;
+}
+
+// Implementação do StubServicoHospedagem
+bool StubServicoHospedagem::criar(const Hospedagem& hospedagem) {
     string codigo = hospedagem.getCodigo().getValor();
     if (hospedagens.find(codigo) == hospedagens.end()) {
         hospedagens[codigo] = hospedagem;
-        cout << "Hospedagem adicionado com sucesso: " << codigo << endl;
+        cout << "Hospedagem criada com sucesso: " << codigo << endl;
         return true;
     }
-    cout << "Destino já existente: " << codigo << endl;
+    cout << "Erro: Hospedagem já existente: " << codigo << endl;
     return false;
 }
 
-bool StubServicoHospedagem::removerHospedagem(const Codigo& codigo) {
-    (void)codigo; // Supressão do warning de parâmetro não usado
-    return true;
+bool StubServicoHospedagem::excluir(const Codigo& codigo) {
+    if (hospedagens.erase(codigo.getValor()) > 0) {
+        cout << "Hospedagem excluída com sucesso: " << codigo.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Hospedagem não encontrada: " << codigo.getValor() << endl;
+    return false;
 }
 
-Hospedagem StubServicoHospedagem::consultarHospedagem(const Codigo& codigo) {
+bool StubServicoHospedagem::atualizar(const Hospedagem& hospedagem) {
+    string codigo = hospedagem.getCodigo().getValor();
+    if (hospedagens.find(codigo) != hospedagens.end()) {
+        hospedagens[codigo] = hospedagem;
+        cout << "Hospedagem atualizada com sucesso: " << codigo << endl;
+        return true;
+    }
+    cout << "Erro: Hospedagem não encontrada para atualização: " << codigo << endl;
+    return false;
+}
+
+bool StubServicoHospedagem::ler(const Codigo& codigo, Hospedagem* hospedagem) {
     auto it = hospedagens.find(codigo.getValor());
     if (it != hospedagens.end()) {
-        return it->second;
+        *hospedagem = it->second;
+        cout << "Hospedagem encontrada: " << codigo.getValor() << endl;
+        return true;
     }
-    throw runtime_error("Hospedagem não encontrado!");
+    cout << "Erro: Hospedagem não encontrada: " << codigo.getValor() << endl;
+    return false;
 }

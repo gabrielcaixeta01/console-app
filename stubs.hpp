@@ -2,47 +2,69 @@
 #define STUBS_HPP
 
 #include "interfaces.hpp"
+#include <unordered_map>
 
-class StubServicoConta : public IServicoConta {
+// Implementação em memória para simular os serviços (stubs)
+
+// Stub para Serviço de Autenticação
+class StubServicoAutenticacao : public ISAutenticacao {
 public:
-    bool criarConta(const Conta& conta) override;
-    bool excluirConta(const Codigo& codigo) override;
-    Conta consultarConta(const Codigo& codigo) override;
-    bool atualizarConta(const Conta& conta) override;
+    bool autenticar(const Conta& conta) override;
 };
 
-class StubServicoAutenticacao : public IServicoAutenticacao {
+// Stub para Serviço de Contas
+class StubServicoConta : public ISConta {
+private:
+    unordered_map<string, Conta> contas; // "Banco de dados" em memória
 public:
-    bool autenticar(const Codigo& codigo, const Senha& senha) override;
+    bool criar(const Conta& conta) override;
+    bool excluir(const Codigo& codigo) override;
+    bool atualizar(const Conta& conta) override;
+    bool ler(const Codigo& codigo, Conta* conta) override;
 };
 
-class StubServicoViagem : public IServicoViagem {
+// Stub para Serviço de Viagens
+class StubServicoViagem : public ISViagem {
+private:
+    unordered_map<string, Viagem> viagens; // "Banco de dados" em memória
 public:
-    bool criarViagem(const Viagem& viagem) override;
-    bool excluirViagem(const Codigo& codigo) override;
-    Viagem consultarViagem(const Codigo& codigo) override;
-    bool atualizarViagem(const Viagem& viagem) override;
-    void listarViagens();
+    bool criar(const Viagem& viagem) override;
+    bool excluir(const Codigo& codigo) override;
+    bool atualizar(const Viagem& viagem) override;
+    bool ler(const Codigo& codigo, Viagem* viagem) override;
 };
 
-class StubServicoDestino : public IServicoDestino {
+// Stub para Serviço de Destinos
+class StubServicoDestino : public ISDestino {
+private:
+    unordered_map<string, Destino> destinos; // "Banco de dados" em memória
 public:
-    bool adicionarDestino(const Destino& destino) override;
-    bool removerDestino(const Codigo& codigo) override;
-    Destino consultarDestino(const Codigo& codigo) override;
+    bool criar(const Destino& destino) override;
+    bool excluir(const Codigo& codigo) override;
+    bool atualizar(const Destino& destino) override;
+    bool ler(const Codigo& codigo, Destino* destino) override;
 };
 
-class StubServicoAtividade : public IServicoAtividade {
+// Stub para Serviço de Atividades
+class StubServicoAtividade : public ISAtividade {
+private:
+    unordered_map<string, Atividade> atividades; // "Banco de dados" em memória
 public:
-    bool adicionarAtividade(const Atividade& atividade) override;
-    bool removerAtividade(const Nome& nome) override;
+    bool criar(const Atividade& atividade) override;
+    bool excluir(const Nome& nome) override;
+    bool atualizar(const Atividade& atividade) override;
+    bool ler(const Nome& nome, Atividade* atividade) override;
 };
 
-class StubServicoHospedagem : public IServicoHospedagem {
+// Stub para Serviço de Hospedagens
+class StubServicoHospedagem : public ISHospedagem {
+private:
+    unordered_map<string, Hospedagem> hospedagens; // "Banco de dados" em memória
 public:
-    bool adicionarHospedagem(const Hospedagem& hospedagem) override;
-    bool removerHospedagem(const Codigo& codigo) override;
-    Hospedagem consultarHospedagem(const Codigo& codigo) override;
+    bool criar(const Hospedagem& hospedagem) override;
+    bool excluir(const Codigo& codigo) override;
+    bool atualizar(const Hospedagem& hospedagem) override;
+    bool ler(const Codigo& codigo, Hospedagem* hospedagem) override;
 };
 
 #endif // STUBS_HPP

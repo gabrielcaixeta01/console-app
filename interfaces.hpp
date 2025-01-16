@@ -5,154 +5,94 @@
 #include <iostream>
 using namespace std;
 
-// Interfaces de serviços
-
-class IServicoConta {
+// Interfaces de Apresentação
+class IAAutenticacao {
 public:
-    virtual ~IServicoConta() = default;
-
-    virtual bool criarConta(const Conta&) = 0;
-    virtual bool excluirConta(const Codigo&) = 0;
-    virtual Conta consultarConta(const Codigo&) = 0;
-    virtual bool atualizarConta(const Conta&) = 0;
+    virtual ~IAAutenticacao() = default;
+    virtual bool autenticar(const Codigo&) = 0;
 };
 
-class IServicoAutenticacao {
+class IAConta {
 public:
-    virtual ~IServicoAutenticacao() = default;
-
-    virtual bool autenticar(const Codigo&, const Senha&) = 0;
+    virtual ~IAConta() = default;
+    virtual void criar() = 0;
+    virtual void executar(const Codigo&) = 0;
 };
 
-class IServicoViagem {
+class IAViagem {
 public:
-    virtual ~IServicoViagem() = default;
-
-    virtual bool criarViagem(const Viagem&) = 0;
-    virtual bool excluirViagem(const Codigo&) = 0;
-    virtual Viagem consultarViagem(const Codigo&) = 0;
-    virtual bool atualizarViagem(const Viagem&) = 0;
+    virtual ~IAViagem() = default;
+    virtual void executar(const Codigo&) = 0;
 };
 
-class IServicoDestino {
+class IADestino {
 public:
-    virtual ~IServicoDestino() = default;
-
-    virtual bool adicionarDestino(const Destino&) = 0;
-    virtual bool removerDestino(const Codigo&) = 0;
-    virtual Destino consultarDestino(const Codigo&) = 0;
+    virtual ~IADestino() = default;
+    virtual void executar(const Codigo&) = 0;
 };
 
-class IServicoAtividade {
+class IAAtividade {
 public:
-    virtual ~IServicoAtividade() = default;
-
-    virtual bool adicionarAtividade(const Atividade&) = 0;
-    virtual bool removerAtividade(const Nome&) = 0;
+    virtual ~IAAtividade() = default;
+    virtual void executar(const Codigo&) = 0;
 };
 
-class IServicoHospedagem {
+class IAHospedagem {
 public:
-    virtual ~IServicoHospedagem() = default;
-
-    virtual bool adicionarHospedagem(const Hospedagem&) = 0;
-    virtual bool removerHospedagem(const Codigo&) = 0;
-    virtual Hospedagem consultarHospedagem(const Codigo&) = 0;
+    virtual ~IAHospedagem() = default;
+    virtual void executar(const Codigo&) = 0;
 };
 
-// Interfaces de repositórios
-
-class IRepositorioConta {
+// Interfaces de Serviço
+class ISAutenticacao {
 public:
-    virtual ~IRepositorioConta() = default;
-
-    virtual bool salvarConta(const Conta&) = 0;
-    virtual bool removerConta(const Codigo&) = 0;
-    virtual Conta buscarConta(const Codigo&) = 0;
+    virtual ~ISAutenticacao() = default;
+    virtual bool autenticar(const Conta&) = 0;
 };
 
-// Outros repositórios (pode ser expandido conforme necessário)
-
-// Interface lógica de negócios (LN)
-
-class ILNAutenticacao {
+class ISConta {
 public:
-    virtual ~ILNAutenticacao() = default;
-
-    virtual bool autenticar(const Codigo&, const Senha&) = 0;
+    virtual ~ISConta() = default;
+    virtual bool criar(const Conta&) = 0;
+    virtual bool excluir(const Codigo&) = 0;
+    virtual bool atualizar(const Conta&) = 0;
+    virtual bool ler(const Codigo&, Conta*) = 0;
 };
 
-// Interface de usuário (IU)
-
-class IUAutenticacao {
+class ISViagem {
 public:
-    virtual void setServicoAutenticacao(IServicoAutenticacao* servico) = 0;
-    virtual bool autenticar(Codigo* codigo) = 0;
-    virtual ~IUAutenticacao() = default;
+    virtual ~ISViagem() = default;
+    virtual bool criar(const Viagem&) = 0;
+    virtual bool excluir(const Codigo&) = 0;
+    virtual bool atualizar(const Viagem&) = 0;
+    virtual bool ler(const Codigo&, Viagem*) = 0;
 };
 
-// Controladora IU de Autenticação
-
-class CntrIUAutenticacao : public IUAutenticacao {
-private:
-    IServicoAutenticacao* servicoAutenticacao; // Armazena o serviço de autenticação
-
+class ISDestino {
 public:
-    void setServicoAutenticacao(IServicoAutenticacao* servico) override {
-        this->servicoAutenticacao = servico;
-    }
-
-    bool autenticar(Codigo* codigo) override {
-        string valorCodigo, valorSenha;
-
-        cout << "Digite o código da conta: ";
-        cin >> valorCodigo;
-        cout << "Digite a senha da conta: ";
-        cin >> valorSenha;
-
-        try {
-            *codigo = Codigo(valorCodigo);
-            Senha senha(valorSenha);
-
-            // Chamando o método autenticar no serviço
-            return servicoAutenticacao->autenticar(*codigo, senha);
-        } catch (const invalid_argument& e) {
-            cout << "Erro: " << e.what() << endl;
-            return false;
-        }
-    }
+    virtual ~ISDestino() = default;
+    virtual bool criar(const Destino&) = 0;
+    virtual bool excluir(const Codigo&) = 0;
+    virtual bool atualizar(const Destino&) = 0;
+    virtual bool ler(const Codigo&, Destino*) = 0;
 };
 
-// Outras interfaces de IU
-
-class IUConta {
+class ISAtividade {
 public:
-    virtual ~IUConta() = default;
-    virtual void gerenciarConta() = 0;
+    virtual ~ISAtividade() = default;
+    virtual bool criar(const Atividade&) = 0;
+    virtual bool excluir(const Nome&) = 0;
+    virtual bool atualizar(const Atividade&) = 0;
+    virtual bool ler(const Nome&, Atividade*) = 0;
 };
 
-class IUViagem {
+class ISHospedagem {
 public:
-    virtual ~IUViagem() = default;
-    virtual void gerenciarViagem() = 0;
-};
-
-class IUDestino {
-public:
-    virtual ~IUDestino() = default;
-    virtual void gerenciarDestino() = 0;
-};
-
-class IUAtividade {
-public:
-    virtual ~IUAtividade() = default;
-    virtual void gerenciarAtividade() = 0;
-};
-
-class IUHospedagem {
-public:
-    virtual ~IUHospedagem() = default;
-    virtual void gerenciarHospedagem() = 0;
+    virtual ~ISHospedagem() = default;
+    virtual bool criar(const Hospedagem&) = 0;
+    virtual bool excluir(const Codigo&) = 0;
+    virtual bool atualizar(const Hospedagem&) = 0;
+    virtual bool ler(const Codigo&, Hospedagem*) = 0;
 };
 
 #endif // INTERFACES_HPP

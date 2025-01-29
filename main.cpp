@@ -54,7 +54,7 @@ int main() {
         try {
             Conta conta_1;
             conta_1.setCodigo(Codigo("ABC123"));
-            conta_1.setSenha(Senha("12345"));
+            conta_1.setSenha(Senha("18340"));
             bool resultado = containerConta.incluir(conta_1);
             cout << (resultado ? "Sucesso na inclusão de Conta" : "Erro na inclusão de Conta") << endl;
 

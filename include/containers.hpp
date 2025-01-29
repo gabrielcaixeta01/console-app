@@ -40,7 +40,7 @@ private:
     list<Atividade> container;
 public:
     bool incluir(Atividade);
-    bool remover(Codigo);
+    bool remover(Nome);
     bool pesquisar(Atividade*);
     bool atualizar(Atividade);
 };

@@ -172,9 +172,9 @@ bool ContainerAtividade::incluir(Atividade atividade) {
     return true;
 }
 
-bool ContainerAtividade::remover(Codigo matricula) {
+bool ContainerAtividade::remover(Nome nome) {
     for (list<Atividade>::iterator elemento = container.begin(); elemento != container.end(); elemento++) {
-        if (elemento->getNome().getValor() == matricula.getValor()) {
+        if (elemento->getNome().getValor() == nome.getValor()) {
             container.erase(elemento);
             return true;
         }

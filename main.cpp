@@ -1,6 +1,7 @@
 #include <iostream>
 #include "controladoras.hpp"
 #include "stubs.hpp"
+#include "containers.hpp"
 
 using namespace std;
 
@@ -18,6 +19,13 @@ int main() {
     StubServicoViagem* servicoViagem = new StubServicoViagem();
     cntrViagem->setServicoViagem(servicoViagem);
 
+    // Instanciar Containers
+    ContainerConta containerConta;
+    ContainerViagem containerViagem;
+    ContainerDestino containerDestino;
+    ContainerAtividade containerAtividade;
+    ContainerHospedagem containerHospedagem;
+
     Codigo codigoConta;
 
     while (true) {
@@ -30,11 +38,42 @@ int main() {
 
         if (cntrAutenticacao->autenticar(codigo)) {
             cout << "Bem-vindo! Código autenticado: " << codigo.getValor() << endl;
-            // Continua para o menu principal
         } else {
             cout << "Erro na autenticação. Tente novamente." << endl;
-            // Opcionalmente, permita tentar novamente ou encerrar
         }
+
+        // Teste de inclusão nos containers
+        Conta conta_1;
+        conta_1.setCodigo(Codigo("ABC123"));
+        conta_1.setSenha(Senha("12345"));
+        bool resultado = containerConta.incluir(conta_1);
+        cout << (resultado ? "Sucesso na inclusão de Conta" : "Erro na inclusão de Conta") << endl;
+
+        Viagem viagem_1;
+        viagem_1.setCodigo(Codigo("VIA123"));
+        viagem_1.setNome(Nome("Viagem ao Brasil"));
+        resultado = containerViagem.incluir(viagem_1);
+        cout << (resultado ? "Sucesso na inclusão de Viagem" : "Erro na inclusão de Viagem") << endl;
+
+        Destino destino_1;
+        destino_1.setCodigo(Codigo("DES123"));
+        destino_1.setNome(Nome("Rio de Janeiro"));
+        resultado = containerDestino.incluir(destino_1);
+        cout << (resultado ? "Sucesso na inclusão de Destino" : "Erro na inclusão de Destino") << endl;
+
+        Atividade atividade_1;
+        atividade_1.setNome(Nome("Passeio de Barco"));
+        atividade_1.setDuracao(Duracao("120"));
+        atividade_1.setPreco(Dinheiro("150,00"));
+        resultado = containerAtividade.incluir(atividade_1);
+        cout << (resultado ? "Sucesso na inclusão de Atividade" : "Erro na inclusão de Atividade") << endl;
+
+        Hospedagem hospedagem_1;
+        hospedagem_1.setCodigo(Codigo("HOS123"));
+        hospedagem_1.setNome(Nome("Hotel Rio Mar"));
+        hospedagem_1.setDiaria(Dinheiro("300,00"));
+        resultado = containerHospedagem.incluir(hospedagem_1);
+        cout << (resultado ? "Sucesso na inclusão de Hospedagem" : "Erro na inclusão de Hospedagem") << endl;
 
         // Menu principal
         int opcaoPrincipal;
@@ -68,3 +107,16 @@ int main() {
         }
     }
 }
+
+/*
+ContainerUsuario container;
+
+resultado = container.incluir(usuario_1);
+
+if(!resultado){
+    cout << "Erro na inclusao" << endl;
+}
+else{
+    cout << "Sucesso na inclusao" << endl;
+}
+*/

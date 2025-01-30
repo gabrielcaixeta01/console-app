@@ -3,16 +3,33 @@
 
 using namespace std;
 
+// Método para associar StubServicoConta ao StubServicoAutenticacao
+void StubServicoAutenticacao::setServicoConta(StubServicoConta* servico) {
+    this->servicoConta = servico;
+}
+
 // Implementação do StubServicoAutenticacao
 bool StubServicoAutenticacao::autenticar(const Conta& conta) {
-    // Simulação de autenticação
-    if (conta.getCodigo().getValor() == "ABC123" && conta.getSenha().getValor() == "18340") {
-        cout << "Stub: Autenticação bem-sucedida para o código: " << conta.getCodigo().getValor() << endl;
-        return true;
-    } else {
-        cout << "Stub: Falha na autenticação para o código: " << conta.getCodigo().getValor() << endl;
+    if (!servicoConta) {
+        cout << "Erro: Nenhum serviço de conta associado à autenticação." << endl;
         return false;
     }
+
+    string codigo = conta.getCodigo().getValor();
+    string senha = conta.getSenha().getValor();
+
+    auto it = servicoConta->getContas().find(codigo); // Corrigido para usar o método getContas()
+    if (it != servicoConta->getContas().end()) {
+        if (it->second.getSenha().getValor() == senha) {
+            cout << "Stub: Autenticação bem-sucedida para o código: " << codigo << endl;
+            return true;
+        } else {
+            cout << "Stub: Falha na autenticação. Senha incorreta para o código: " << codigo << endl;
+        }
+    } else {
+        cout << "Stub: Falha na autenticação. Conta não encontrada para o código: " << codigo << endl;
+    }
+    return false;
 }
 
 // Implementação do StubServicoConta
@@ -141,49 +158,6 @@ bool StubServicoDestino::ler(const Codigo& codigo, Destino* destino) {
         return true;
     }
     cout << "Erro: Destino não encontrado: " << codigo.getValor() << endl;
-    return false;
-}
-
-// Implementação do StubServicoAtividade
-bool StubServicoAtividade::criar(const Atividade& atividade) {
-    string nome = atividade.getNome().getValor();
-    if (atividades.find(nome) == atividades.end()) {
-        atividades[nome] = atividade;
-        cout << "Atividade criada com sucesso: " << nome << endl;
-        return true;
-    }
-    cout << "Erro: Atividade já existente: " << nome << endl;
-    return false;
-}
-
-bool StubServicoAtividade::excluir(const Nome& nome) {
-    if (atividades.erase(nome.getValor()) > 0) {
-        cout << "Atividade excluída com sucesso: " << nome.getValor() << endl;
-        return true;
-    }
-    cout << "Erro: Atividade não encontrada: " << nome.getValor() << endl;
-    return false;
-}
-
-bool StubServicoAtividade::atualizar(const Atividade& atividade) {
-    string nome = atividade.getNome().getValor();
-    if (atividades.find(nome) != atividades.end()) {
-        atividades[nome] = atividade;
-        cout << "Atividade atualizada com sucesso: " << nome << endl;
-        return true;
-    }
-    cout << "Erro: Atividade não encontrada para atualização: " << nome << endl;
-    return false;
-}
-
-bool StubServicoAtividade::ler(const Nome& nome, Atividade* atividade) {
-    auto it = atividades.find(nome.getValor());
-    if (it != atividades.end()) {
-        *atividade = it->second;
-        cout << "Atividade encontrada: " << nome.getValor() << endl;
-        return true;
-    }
-    cout << "Erro: Atividade não encontrada: " << nome.getValor() << endl;
     return false;
 }
 

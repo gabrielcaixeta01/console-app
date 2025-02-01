@@ -4,14 +4,14 @@
 #include "interfaces.hpp"
 #include <unordered_map>
 
-class StubServicoConta;
+class StubServicoConta;  
 
 // Stub para Serviço de Autenticação
 class StubServicoAutenticacao : public ISAutenticacao {
 private:
-    StubServicoConta* servicoConta = nullptr;
+    StubServicoConta* servicoConta = nullptr;  
 public:
-    void setServicoConta(StubServicoConta* servico);
+    void setServicoConta(StubServicoConta* servico);  
     bool autenticar(const Conta& conta) override;
 };
 
@@ -36,6 +36,7 @@ public:
     bool excluir(const Codigo& codigo) override;
     bool atualizar(const Viagem& viagem) override;
     bool ler(const Codigo& codigo, Viagem* viagem) override;
+    const unordered_map<string, Viagem>& getViagens() const { return viagens; }
 };
 
 // Stub para Serviço de Destinos

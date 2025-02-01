@@ -4,7 +4,6 @@ using namespace std;
 #include "../include/controladoras.hpp"
 #include <limits>
 
-
 // Controladora de Apresentação da Autenticação
 void CntrAutenticacaoA::setServicoAutenticacao(ISAutenticacao* servico) {
     this->servicoAutenticacao = servico;
@@ -14,16 +13,15 @@ bool CntrAutenticacaoA::autenticar(const Codigo& codigo) {
     Conta conta;
     conta.setCodigo(codigo);
 
-    // Solicitar senha ao usuário
     while (true) {
         try {
             cout << "Digite a senha: ";
             string senhaStr;
             cin >> senhaStr;
             Senha senha;
-            senha.setValor(senhaStr);  // Pode lançar exceção
+            senha.setValor(senhaStr);
             conta.setSenha(senha);
-            break;  // Sai do loop se não houver erro
+            break;
         } catch (const invalid_argument& e) {
             cout << "Erro: " << e.what() << ". Tente novamente." << endl;
         }
@@ -53,7 +51,7 @@ void CntrContaA::criar() {
             cout << "Digite o código da conta: ";
             string codigoStr;
             cin >> codigoStr;
-            codigo.setValor(codigoStr);  // Pode lançar exceção
+            codigo.setValor(codigoStr);
             conta.setCodigo(codigo);
             break;
         } catch (const invalid_argument& e) {
@@ -66,7 +64,7 @@ void CntrContaA::criar() {
             cout << "Digite a senha da conta: ";
             string senhaStr;
             cin >> senhaStr;
-            senha.setValor(senhaStr);  // Pode lançar exceção
+            senha.setValor(senhaStr);
             conta.setSenha(senha);
             break;
         } catch (const invalid_argument& e) {
@@ -99,7 +97,7 @@ void CntrContaA::executar(const Codigo& codigo) {
         } catch (const invalid_argument& e) {
             cout << "Erro: " << e.what() << endl;
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Limpa buffer
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
 
@@ -113,7 +111,7 @@ void CntrContaA::executar(const Codigo& codigo) {
                         cout << "Digite a nova senha: ";
                         string senhaStr;
                         cin >> senhaStr;
-                        novaSenha.setValor(senhaStr);  // Pode lançar exceção
+                        novaSenha.setValor(senhaStr);
                         break;
                     } catch (const invalid_argument& e) {
                         cout << "Erro: " << e.what() << ". Tente novamente." << endl;
@@ -164,7 +162,6 @@ void CntrViagemA::setServicoViagem(ISViagem* servico) {
 }
 
 void CntrViagemA::executar(const Codigo& codigo) {
-    (void)codigo;
     int opcao;
     while (true) {
         cout << "\nMenu Viagens" << endl;
@@ -188,20 +185,93 @@ void CntrViagemA::executar(const Codigo& codigo) {
         }
 
         switch (opcao) {
-            case 1:
-                // Implementação já tratada acima
-                break;
-            case 2:
-                // Implementação já tratada acima
-                break;
-            case 3:
-                // Implementação já tratada acima
-                break;
-            case 4:
-                // Implementação já tratada acima
-                break;
+            case 1: { // Criar viagem
+                Viagem viagem;
+                Codigo codigoViagem;
+                Nome nomeViagem;
+
+                cout << "Digite o código da viagem: ";
+                string codigoStr;
+                cin >> codigoStr;
+                codigoViagem.setValor(codigoStr);
+
+                cout << "Digite o nome da viagem: ";
+                string nomeStr;
+                cin.ignore();
+                getline(cin, nomeStr);
+                nomeViagem.setValor(nomeStr);
+
+                viagem.setCodigo(codigoViagem);
+                viagem.setNome(nomeViagem);
+
+                if (servicoViagem->criar(viagem)) {
+                    cout << "Viagem criada com sucesso!" << endl;
+                } else {
+                    cout << "Erro ao criar a viagem." << endl;
+                }
+            } break;
+
+            case 2: { // Atualizar viagem
+                Viagem viagemAtualizada;
+                Codigo codigoViagem;
+                Nome novoNome;
+
+                cout << "Digite o código da viagem: ";
+                string codigoStr;
+                cin >> codigoStr;
+                codigoViagem.setValor(codigoStr);
+
+                cout << "Digite o novo nome da viagem: ";
+                string nomeStr;
+                cin.ignore();
+                getline(cin, nomeStr);
+                novoNome.setValor(nomeStr);
+
+                viagemAtualizada.setCodigo(codigoViagem);
+                viagemAtualizada.setNome(novoNome);
+
+                if (servicoViagem->atualizar(viagemAtualizada)) {
+                    cout << "Viagem atualizada com sucesso!" << endl;
+                } else {
+                    cout << "Erro ao atualizar a viagem." << endl;
+                }
+            } break;
+
+            case 3: { // Excluir viagem
+                Codigo codigoViagem;
+
+                cout << "Digite o código da viagem: ";
+                string codigoStr;
+                cin >> codigoStr;
+                codigoViagem.setValor(codigoStr);
+
+                if (servicoViagem->excluir(codigoViagem)) {
+                    cout << "Viagem excluída com sucesso!" << endl;
+                } else {
+                    cout << "Erro ao excluir a viagem." << endl;
+                }
+            } break;
+
+            case 4: { // Ler viagem
+                Viagem viagem;
+                Codigo codigoViagem;
+
+                cout << "Digite o código da viagem: ";
+                string codigoStr;
+                cin >> codigoStr;
+                codigoViagem.setValor(codigoStr);
+
+                if (servicoViagem->ler(codigoViagem, &viagem)) {
+                    cout << "Código: " << viagem.getCodigo().getValor() << endl;
+                    cout << "Nome: " << viagem.getNome().getValor() << endl;
+                } else {
+                    cout << "Erro: Viagem não encontrada." << endl;
+                }
+            } break;
+
             case 0:
                 return;
+
             default:
                 cout << "Opção inválida. Tente novamente." << endl;
         }

@@ -18,7 +18,7 @@ bool StubServicoAutenticacao::autenticar(const Conta& conta) {
     string codigo = conta.getCodigo().getValor();
     string senha = conta.getSenha().getValor();
 
-    auto it = servicoConta->getContas().find(codigo); // Corrigido para usar o método getContas()
+    auto it = servicoConta->getContas().find(codigo);
     if (it != servicoConta->getContas().end()) {
         if (it->second.getSenha().getValor() == senha) {
             cout << "Stub: Autenticação bem-sucedida para o código: " << codigo << endl;

@@ -1,3 +1,12 @@
+/**
+ * @file main.cpp
+ * @brief Ponto de entrada do sistema de gerenciamento.
+ * 
+ * Este arquivo contém a função principal que inicializa o sistema,
+ * instanciando as controladoras, os serviços e os containers necessários.
+ * Ele também gerencia a interação com o usuário através de menus.
+ */
+
 #include <iostream>
 #include "controladoras.hpp"
 #include "stubs.hpp"
@@ -5,6 +14,14 @@
 
 using namespace std;
 
+/**
+ * @brief Função principal do sistema.
+ * 
+ * Gerencia a inicialização dos serviços e controladoras, permitindo ao usuário
+ * autenticar-se, criar contas e navegar pelos menus do sistema.
+ * 
+ * @return Retorna 0 ao finalizar a execução.
+ */
 int main() {
     // Instanciar controladoras e stubs
     CntrAutenticacaoA* cntrAutenticacao = new CntrAutenticacaoA();
@@ -57,12 +74,12 @@ menu_inicial:
                     conta.setCodigo(Codigo(codigoStr));
                     conta.setSenha(Senha(senhaStr));
 
-                    if (servicoAutenticacao->autenticar(conta)) { // Chamada corrigida
+                    if (servicoAutenticacao->autenticar(conta)) {
                         cout << "Bem-vindo! Código autenticado: " << conta.getCodigo().getValor() << endl;
-                        codigoConta = conta.getCodigo();  // Atualiza o código da conta autenticada
+                        codigoConta = conta.getCodigo();
                     } else {
                         cout << "Erro na autenticação. Tente novamente." << endl;
-                        continue;  // Volta ao menu inicial
+                        continue;
                     }
                 } catch (const invalid_argument& e) {
                     cout << "Erro: " << e.what() << ". Tente novamente." << endl;
@@ -74,7 +91,7 @@ menu_inicial:
             case 2: { // Criar uma nova conta
                 cout << "Criando uma nova conta..." << endl;
                 cntrConta->criar();
-                continue;  // Volta ao menu inicial
+                continue;
             }
 
             case 0: { // Sair do sistema
@@ -93,7 +110,7 @@ menu_inicial:
                 continue;
         }
 
-        // Menu principal (acessível apenas após autenticação bem-sucedida)
+        // Menu principal após autenticação
         int opcaoPrincipal;
         while (true) {
             cout << "\nMenu Principal" << endl;
@@ -110,7 +127,7 @@ menu_inicial:
             } catch (const invalid_argument& e) {
                 cout << "Erro: " << e.what() << endl;
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Limpa buffer
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 continue;
             }
 
@@ -122,7 +139,7 @@ menu_inicial:
                     cntrViagem->executar(codigoConta);
                     break;
                 case 0:
-                    goto menu_inicial;  // Voltar ao menu inicial
+                    goto menu_inicial;
                 default:
                     cout << "Opção inválida. Tente novamente." << endl;
             }

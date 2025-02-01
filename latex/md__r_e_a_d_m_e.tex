@@ -1,0 +1,80 @@
+\chapter{Console App -\/ TP1}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Console App -\/ TP1@{Console App -\/ TP1}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+Este projeto foi desenvolvido como parte da disciplina de Técnicas de Programação para implementar um sistema modular, orientado a objetos, com funcionalidades bem definidas e validação das regras de negócio.\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Estrutura do Projeto}{Estrutura do Projeto}}\label{md__r_e_a_d_m_e_autotoc_md1}
+console-\/app/ │ ├── src/ \# Código-\/fonte principal │ ├── controladoras.\+cpp │ ├── dominios.\+cpp │ ├── entidades.\+cpp │ ├── stubs.\+cpp │ └── main.\+cpp │ ├── include/ \# Arquivos de cabeçalho │ ├── controladoras.\+hpp │ ├── dominios.\+hpp │ ├── entidades.\+hpp │ ├── interfaces.\+hpp │ └── stubs.\+hpp │ ├── data/ \# Artefatos gerados │ ├── sistema \# Executável principal │ └── obj/ \# Arquivos objeto (.o) │ ├── tests/ \# Testes automatizados │ ├── testes\+Entidade.\+cpp │ ├── testes\+Dominio.\+cpp │ └── Makefile \# Automação dos testes │ ├── docs/ \# Documentação gerada pelo Doxygen │ ├── html/ \# Documentação em HTML │ └── latex/ \# Documentação em La\+TeX │ └── Makefile \# Automação do build e execução\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Funcionalidades}{Funcionalidades}}\label{md__r_e_a_d_m_e_autotoc_md2}
+O sistema implementa operações de CRUD (Criar, Ler, Atualizar e Excluir) para as seguintes entidades\+:\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{\texorpdfstring{Contas}{Contas}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item {\bfseries{Criar conta}}\+: Cria uma nova conta com código e senha.
+\item {\bfseries{Ler conta}}\+: Exibe os dados da conta.
+\item {\bfseries{Atualizar conta}}\+: Permite atualizar a senha da conta.
+\item {\bfseries{Excluir conta}}\+: Remove a conta caso não haja restrições.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{\texorpdfstring{Viagens}{Viagens}}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyItemize}
+\item {\bfseries{Criar viagem}}\+: Cadastra uma nova viagem.
+\item {\bfseries{Ler viagem}}\+: Exibe os detalhes de uma viagem específica.
+\item {\bfseries{Atualizar viagem}}\+: Permite alterar o nome de uma viagem.
+\item {\bfseries{Excluir viagem}}\+: Remove uma viagem.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{\texorpdfstring{Destinos, Atividades e Hospedagens}{Destinos, Atividades e Hospedagens}}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyItemize}
+\item Para cada um desses elementos\+:
+\begin{DoxyItemize}
+\item {\bfseries{Criar}}\+: Adiciona um novo item.
+\item {\bfseries{Ler}}\+: Exibe os detalhes de um item específico.
+\item {\bfseries{Atualizar}}\+: Permite atualizar os dados de um item.
+\item {\bfseries{Excluir}}\+: Remove o item.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{Interfaces}{Interfaces}}\label{md__r_e_a_d_m_e_autotoc_md6}
+O projeto utiliza uma abordagem modular baseada em interfaces para separar as responsabilidades\+:\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{\texorpdfstring{Interfaces de Apresentação ({\ttfamily IA})}{Interfaces de Apresentação ({\ttfamily IA})}}\label{md__r_e_a_d_m_e_autotoc_md7}
+As interfaces de apresentação interagem com o usuário e recebem entradas diretamente dele\+:
+\begin{DoxyItemize}
+\item {\ttfamily IAAutenticacao}\+: Gerencia a autenticação de usuários.
+\item {\ttfamily IAConta}\+: Gerencia as operações relacionadas às contas.
+\item {\ttfamily IAViagem}, {\ttfamily IADestino}, {\ttfamily IAAtividade}, {\ttfamily IAHospedagem}\+: Gerenciam as operações de CRUD para as respectivas entidades.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsection{\texorpdfstring{Interfaces de Serviço ({\ttfamily IS})}{Interfaces de Serviço ({\ttfamily IS})}}\label{md__r_e_a_d_m_e_autotoc_md8}
+As interfaces de serviço implementam a lógica de negócio e validam as operações\+:
+\begin{DoxyItemize}
+\item {\ttfamily ISAutenticacao}\+: Valida os dados de autenticação.
+\item {\ttfamily ISConta}\+: Realiza operações de CRUD para contas.
+\item {\ttfamily ISViagem}, {\ttfamily ISDestino}, {\ttfamily ISAtividade}, {\ttfamily ISHospedagem}\+: Implementam as funcionalidades de CRUD para cada entidade.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysection{\texorpdfstring{Modularização e Separação de Responsabilidades}{Modularização e Separação de Responsabilidades}}\label{md__r_e_a_d_m_e_autotoc_md9}
+A arquitetura do sistema é composta por camadas bem definidas\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{Apresentação (IA)}}\+: Reúne as funcionalidades para o usuário.
+\item {\bfseries{Serviço (IS)}}\+: Lida com a lógica de negócio.
+\item {\bfseries{Entidades e Domínios}}\+: Modelam os dados e suas validações.
+\end{DoxyEnumerate}
+
+Essa separação permite\+:
+\begin{DoxyItemize}
+\item {\bfseries{Reutilização de Código}}\+: A lógica de serviço pode ser usada por várias interfaces de apresentação.
+\item {\bfseries{Testes Independentes}}\+: Cada camada pode ser testada isoladamente.
+\item {\bfseries{Flexibilidade}}\+: Novas funcionalidades podem ser adicionadas sem grandes refatorações.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysection{\texorpdfstring{Regras de Negócio}{Regras de Negócio}}\label{md__r_e_a_d_m_e_autotoc_md10}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Imutabilidade da Chave Primária}}\+:
+\begin{DoxyItemize}
+\item Não é permitido alterar campos que identificam registros (ex.\+: códigos).
+\end{DoxyItemize}
+\item {\bfseries{Exclusão Condicional}}\+:
+\begin{DoxyItemize}
+\item Entidades só podem ser removidas se não houver dependências ativas.
+\end{DoxyItemize}
+\item {\bfseries{Validação de Datas}}\+:
+\begin{DoxyItemize}
+\item As atividades de um destino devem respeitar o intervalo de datas do destino.
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysection{\texorpdfstring{Desenvolvedores}{Desenvolvedores}}\label{md__r_e_a_d_m_e_autotoc_md11}
+
+\begin{DoxyItemize}
+\item Gabriel Caixeta
+\item Gustavo Cavalcanti
+\item João Henrique Antunes 
+\end{DoxyItemize}

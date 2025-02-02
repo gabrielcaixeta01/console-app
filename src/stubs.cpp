@@ -98,12 +98,15 @@ bool StubServicoViagem::excluir(const Codigo& codigo) {
 
 bool StubServicoViagem::atualizar(const Viagem& viagem) {
     string codigo = viagem.getCodigo().getValor();
-    if (viagens.find(codigo) != viagens.end()) {
-        viagens[codigo] = viagem;
-        cout << "Viagem atualizada com sucesso: " << codigo << endl;
+    auto it = viagens.find(codigo);
+
+    if (it != viagens.end()) {
+        it->second = viagem;  // Atualiza diretamente o objeto armazenado
+        cout << "Stub: Viagem " << codigo << " atualizada com sucesso." << endl;
         return true;
     }
-    cout << "Erro: Viagem não encontrada para atualização: " << codigo << endl;
+
+    cout << "Stub: Erro ao atualizar. Viagem " << codigo << " não encontrada." << endl;
     return false;
 }
 
@@ -111,10 +114,44 @@ bool StubServicoViagem::ler(const Codigo& codigo, Viagem* viagem) {
     auto it = viagens.find(codigo.getValor());
     if (it != viagens.end()) {
         *viagem = it->second;
-        cout << "Viagem encontrada: " << codigo.getValor() << endl;
         return true;
     }
-    cout << "Erro: Viagem não encontrada: " << codigo.getValor() << endl;
+    return false;
+}
+
+// Implementação dos métodos para definir destino, hospedagem e atividade
+bool StubServicoViagem::definirDestino(const Codigo& codigoViagem, const Destino& destino) {
+    // Verifica se a viagem já existe antes de definir um destino
+    auto it = viagens.find(codigoViagem.getValor());
+
+    if (it != viagens.end()) {
+        destinos[codigoViagem.getValor()] = destino;
+        cout << "Destino definido para a viagem " << codigoViagem.getValor() << endl;
+        return true;
+    }
+
+    cout << "Erro: Viagem não encontrada para definir destino." << endl;
+    return false;
+}
+
+bool StubServicoViagem::definirHospedagem(const Codigo& codigoViagem, const Hospedagem& hospedagem) {
+    if (viagens.find(codigoViagem.getValor()) != viagens.end()) {
+        hospedagens[codigoViagem.getValor()] = hospedagem;
+        cout << "Hospedagem definida para a viagem " << codigoViagem.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Viagem não encontrada para definir hospedagem." << endl;
+    return false;
+}
+
+bool StubServicoViagem::definirAtividade(const Codigo& codigoViagem, const Atividade& atividade) {
+    auto it = viagens.find(codigoViagem.getValor());
+    if (it != viagens.end()) {
+        it->second.setAtividade(atividade);
+        cout << "Atividade definida para a viagem " << codigoViagem.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Viagem não encontrada para definir atividade." << endl;
     return false;
 }
 
@@ -127,26 +164,6 @@ bool StubServicoDestino::criar(const Destino& destino) {
         return true;
     }
     cout << "Erro: Destino já existente: " << codigo << endl;
-    return false;
-}
-
-bool StubServicoDestino::excluir(const Codigo& codigo) {
-    if (destinos.erase(codigo.getValor()) > 0) {
-        cout << "Destino excluído com sucesso: " << codigo.getValor() << endl;
-        return true;
-    }
-    cout << "Erro: Destino não encontrado: " << codigo.getValor() << endl;
-    return false;
-}
-
-bool StubServicoDestino::atualizar(const Destino& destino) {
-    string codigo = destino.getCodigo().getValor();
-    if (destinos.find(codigo) != destinos.end()) {
-        destinos[codigo] = destino;
-        cout << "Destino atualizado com sucesso: " << codigo << endl;
-        return true;
-    }
-    cout << "Erro: Destino não encontrado para atualização: " << codigo << endl;
     return false;
 }
 
@@ -173,6 +190,39 @@ bool StubServicoHospedagem::criar(const Hospedagem& hospedagem) {
     return false;
 }
 
+bool StubServicoHospedagem::ler(const Codigo& codigo, Hospedagem* hospedagem) {
+    auto it = hospedagens.find(codigo.getValor());
+    if (it != hospedagens.end()) {
+        *hospedagem = it->second;
+        cout << "Hospedagem encontrada: " << codigo.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Hospedagem não encontrada: " << codigo.getValor() << endl;
+    return false;
+}
+
+// Implementação de StubServicoDestino
+bool StubServicoDestino::excluir(const Codigo& codigo) {
+    if (destinos.erase(codigo.getValor()) > 0) {
+        cout << "Destino excluído com sucesso: " << codigo.getValor() << endl;
+        return true;
+    }
+    cout << "Erro: Destino não encontrado: " << codigo.getValor() << endl;
+    return false;
+}
+
+bool StubServicoDestino::atualizar(const Destino& destino) {
+    string codigo = destino.getCodigo().getValor();
+    if (destinos.find(codigo) != destinos.end()) {
+        destinos[codigo] = destino;
+        cout << "Destino atualizado com sucesso: " << codigo << endl;
+        return true;
+    }
+    cout << "Erro: Destino não encontrado para atualização: " << codigo << endl;
+    return false;
+}
+
+// Implementação de StubServicoHospedagem
 bool StubServicoHospedagem::excluir(const Codigo& codigo) {
     if (hospedagens.erase(codigo.getValor()) > 0) {
         cout << "Hospedagem excluída com sucesso: " << codigo.getValor() << endl;
@@ -193,43 +243,29 @@ bool StubServicoHospedagem::atualizar(const Hospedagem& hospedagem) {
     return false;
 }
 
-bool StubServicoHospedagem::ler(const Codigo& codigo, Hospedagem* hospedagem) {
-    auto it = hospedagens.find(codigo.getValor());
+bool StubServicoViagem::lerDestino(const Codigo& codigoViagem, Destino* destino) {
+    auto it = destinos.find(codigoViagem.getValor());
+    if (it != destinos.end()) {
+        *destino = it->second;
+        return true;
+    }
+    return false;
+}
+
+bool StubServicoViagem::lerHospedagem(const Codigo& codigoViagem, Hospedagem* hospedagem) {
+    auto it = hospedagens.find(codigoViagem.getValor());
     if (it != hospedagens.end()) {
         *hospedagem = it->second;
-        cout << "Hospedagem encontrada: " << codigo.getValor() << endl;
         return true;
     }
-    cout << "Erro: Hospedagem não encontrada: " << codigo.getValor() << endl;
     return false;
 }
 
-bool StubServicoViagem::definirDestino(const Codigo& codigoViagem, const Destino& destino) {
-    if (viagens.find(codigoViagem.getValor()) != viagens.end()) {
-        destinos[codigoViagem.getValor()] = destino;
-        cout << "Destino definido para a viagem " << codigoViagem.getValor() << endl;
+bool StubServicoViagem::lerAtividade(const Codigo& codigoViagem, Atividade* atividade) {
+    auto it = atividades.find(codigoViagem.getValor());
+    if (it != atividades.end()) {
+        *atividade = it->second;
         return true;
     }
-    cout << "Erro: Viagem não encontrada para definir destino." << endl;
-    return false;
-}
-
-bool StubServicoViagem::definirHospedagem(const Codigo& codigoViagem, const Hospedagem& hospedagem) {
-    if (viagens.find(codigoViagem.getValor()) != viagens.end()) {
-        hospedagens[codigoViagem.getValor()] = hospedagem;
-        cout << "Hospedagem definida para a viagem " << codigoViagem.getValor() << endl;
-        return true;
-    }
-    cout << "Erro: Viagem não encontrada para definir hospedagem." << endl;
-    return false;
-}
-
-bool StubServicoViagem::definirAtividade(const Codigo& codigoViagem, const Atividade& atividade) {
-    if (viagens.find(codigoViagem.getValor()) != viagens.end()) {
-        atividades[codigoViagem.getValor()].push_back(atividade);
-        cout << "Atividade adicionada para a viagem " << codigoViagem.getValor() << endl;
-        return true;
-    }
-    cout << "Erro: Viagem não encontrada para adicionar atividade." << endl;
     return false;
 }

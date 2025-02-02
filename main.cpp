@@ -111,7 +111,6 @@ menu_inicial:
         }
 
 menu_principal:
-        int opcaoPrincipal;
         while (true) {
             cout << "\nMenu Principal" << endl;
             cout << "1 - Gerenciar Conta" << endl;
@@ -119,6 +118,7 @@ menu_principal:
             cout << "0 - Voltar ao Menu Inicial" << endl;
             cout << "Escolha uma opção: ";
 
+            int opcaoPrincipal;
             cin >> opcaoPrincipal;
 
             switch (opcaoPrincipal) {
@@ -126,7 +126,6 @@ menu_principal:
                     cntrConta->executar(codigoConta);
                     break;
                 case 2: {
-                    int opcaoViagem;
                     while (true) {
                         cout << "\nGerenciar Viagens" << endl;
                         cout << "1 - Criar Viagem" << endl;
@@ -135,14 +134,43 @@ menu_principal:
                         cout << "4 - Consultar Viagem" << endl;
                         cout << "0 - Voltar ao Menu Principal" << endl;
                         cout << "Escolha uma opção: ";
+                        int opcaoViagem;
                         cin >> opcaoViagem;
 
                         switch (opcaoViagem) {
                             case 1: {
                                 cout << "Criando nova viagem..." << endl;
                                 cntrViagem->criarViagem(codigoConta);
+
+                                cout << "\nDeseja adicionar informações à viagem?" << endl;
+                                cout << "1 - Definir Destino" << endl;
+                                cout << "2 - Definir Hospedagem" << endl;
+                                cout << "3 - Definir Atividade" << endl;
+                                cout << "0 - Concluir" << endl;
+
+                                int opcaoDetalhe;
+                                while (true) {
+                                    cout << "\nEscolha uma opção: ";
+                                    cin >> opcaoDetalhe;
+
+                                    switch (opcaoDetalhe) {
+                                        case 1:
+                                            cntrViagem->definirDestino(codigoConta);
+                                            break;
+                                        case 2:
+                                            cntrViagem->definirHospedagem(codigoConta);
+                                            break;
+                                        case 3:
+                                            cntrViagem->definirAtividade(codigoConta);
+                                            break;
+                                        case 0:
+                                            goto menu_principal;
+                                        default:
+                                            cout << "Opção inválida. Tente novamente." << endl;
+                                    }
+                                }
                                 break;
-                        }
+                            }
                             case 2:
                                 cntrViagem->atualizarViagem(codigoConta);
                                 break;

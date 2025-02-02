@@ -3,6 +3,7 @@
 
 #include "interfaces.hpp"
 #include <iostream>
+
 using namespace std;
 
 /**
@@ -87,9 +88,24 @@ public:
      * @param codigoConta Código da conta associada à viagem.
      */
     void criarViagem(const Codigo& codigoConta);
+
+    /**
+     * @brief Atualizar uma viagem existente.
+     * @param codigoConta Código da conta associada à viagem.
+     */
     void atualizarViagem(const Codigo& codigoConta);
-    void excluirViagem(const Codigo& codigoConta);  // Adicionado
-    void consultarViagem(const Codigo& codigoConta);  // Ad
+
+    /**
+     * @brief Excluir uma viagem existente.
+     * @param codigoConta Código da conta associada à viagem.
+     */
+    void excluirViagem(const Codigo& codigoConta);
+
+    /**
+     * @brief Consultar detalhes de uma viagem existente.
+     * @param codigoConta Código da conta associada à viagem.
+     */
+    void consultarViagem(const Codigo& codigoConta);
 
     /**
      * @brief Define o destino de uma viagem.
@@ -104,10 +120,10 @@ public:
     void definirHospedagem(const Codigo& codigoViagem);
 
     /**
-     * @brief Define as atividades de uma viagem.
+     * @brief Define a atividade de uma viagem (apenas uma atividade por viagem).
      * @param codigoViagem Código da viagem.
      */
-    void definirAtividades(const Codigo& codigoViagem);
+    void definirAtividade(const Codigo& codigoViagem);
 };
 
 #endif // CONTROLADORAS_HPP

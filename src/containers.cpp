@@ -3,6 +3,11 @@
 
 using namespace std;
 
+/**
+ * @brief Inclui uma conta no container.
+ * @param conta Conta a ser incluída.
+ * @return true se a inclusão for bem-sucedida, false caso contrário.
+ */
 bool ContainerConta::incluir(Conta conta) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
@@ -18,6 +23,11 @@ bool ContainerConta::incluir(Conta conta) {
     }
 }
 
+/**
+ * @brief Remove uma conta do container com base no código.
+ * @param matricula Código da conta a ser removida.
+ * @return true se a remoção for bem-sucedida, false caso contrário.
+ */
 bool ContainerConta::remover(Codigo matricula) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
@@ -35,7 +45,11 @@ bool ContainerConta::remover(Codigo matricula) {
 
 // Similar try-catch implementation continues for all Conta functions...
 
-// Viagem
+/**
+ * @brief Inclui uma viagem no container.
+ * @param viagem Viagem a ser incluída.
+ * @return true se a inclusão for bem-sucedida, false caso contrário.
+ */
 bool ContainerViagem::incluir(Viagem viagem) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
@@ -53,7 +67,11 @@ bool ContainerViagem::incluir(Viagem viagem) {
 
 // Similar try-catch implementation continues for all Viagem functions...
 
-// Destino
+/**
+ * @brief Inclui um destino no container.
+ * @param destino Destino a ser incluído.
+ * @return true se a inclusão for bem-sucedida, false caso contrário.
+ */
 bool ContainerDestino::incluir(Destino destino) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
@@ -71,7 +89,11 @@ bool ContainerDestino::incluir(Destino destino) {
 
 // Similar try-catch implementation continues for all Destino functions...
 
-// Atividade
+/**
+ * @brief Inclui uma atividade no container.
+ * @param atividade Atividade a ser incluída.
+ * @return true se a inclusão for bem-sucedida, false caso contrário.
+ */
 bool ContainerAtividade::incluir(Atividade atividade) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
@@ -89,7 +111,11 @@ bool ContainerAtividade::incluir(Atividade atividade) {
 
 // Similar try-catch implementation continues for all Atividade functions...
 
-// Hospedagem
+/**
+ * @brief Inclui uma hospedagem no container.
+ * @param hospedagem Hospedagem a ser incluída.
+ * @return true se a inclusão for bem-sucedida, false caso contrário.
+ */
 bool ContainerHospedagem::incluir(Hospedagem hospedagem) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
@@ -105,6 +131,11 @@ bool ContainerHospedagem::incluir(Hospedagem hospedagem) {
     }
 }
 
+/**
+ * @brief Remove uma hospedagem do container com base no código.
+ * @param matricula Código da hospedagem a ser removida.
+ * @return true se a remoção for bem-sucedida, false caso contrário.
+ */
 bool ContainerHospedagem::remover(Codigo matricula) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
@@ -120,6 +151,11 @@ bool ContainerHospedagem::remover(Codigo matricula) {
     }
 }
 
+/**
+ * @brief Pesquisa uma hospedagem no container com base no código.
+ * @param hospedagem Ponteiro para armazenar os dados da hospedagem encontrada.
+ * @return true se a hospedagem for encontrada, false caso contrário.
+ */
 bool ContainerHospedagem::pesquisar(Hospedagem* hospedagem) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
@@ -135,6 +171,11 @@ bool ContainerHospedagem::pesquisar(Hospedagem* hospedagem) {
     }
 }
 
+/**
+ * @brief Atualiza uma hospedagem no container.
+ * @param hospedagem Hospedagem com os novos dados.
+ * @return true se a atualização for bem-sucedida, false caso contrário.
+ */
 bool ContainerHospedagem::atualizar(Hospedagem hospedagem) {
     try {
         for (auto elemento = container.begin(); elemento != container.end(); elemento++) {

@@ -5,10 +5,20 @@ using namespace std;
 #include <limits>
 
 // Controladora de Apresentação da Autenticação
+
+/**
+ * @brief Define o serviço de autenticação a ser utilizado pela controladora.
+ * @param servico Ponteiro para o serviço de autenticação.
+ */
 void CntrAutenticacaoA::setServicoAutenticacao(ISAutenticacao* servico) {
     this->servicoAutenticacao = servico;
 }
 
+/**
+ * @brief Autentica um usuário com base no código fornecido.
+ * @param codigo Código do usuário a ser autenticado.
+ * @return true se a autenticação for bem-sucedida, false caso contrário.
+ */
 bool CntrAutenticacaoA::autenticar(const Codigo& codigo) {
     Conta conta;
     conta.setCodigo(codigo);
@@ -37,10 +47,18 @@ bool CntrAutenticacaoA::autenticar(const Codigo& codigo) {
 }
 
 // Controladora de Apresentação da Conta
+
+/**
+ * @brief Define o serviço de conta a ser utilizado pela controladora.
+ * @param servico Ponteiro para o serviço de conta.
+ */
 void CntrContaA::setServicoConta(ISConta* servico) {
     this->servicoConta = servico;
 }
 
+/**
+ * @brief Cria uma nova conta.
+ */
 void CntrContaA::criar() {
     Conta conta;
     Codigo codigo;
@@ -79,6 +97,10 @@ void CntrContaA::criar() {
     }
 }
 
+/**
+ * @brief Executa operações relacionadas à conta com base no código fornecido.
+ * @param codigo Código da conta a ser manipulada.
+ */
 void CntrContaA::executar(const Codigo& codigo) {
     int opcao;
     while (true) {
@@ -157,10 +179,19 @@ void CntrContaA::executar(const Codigo& codigo) {
 }
 
 // Controladora de Apresentação da Viagem
+
+/**
+ * @brief Define o serviço de viagem a ser utilizado pela controladora.
+ * @param servico Ponteiro para o serviço de viagem.
+ */
 void CntrViagemA::setServicoViagem(ISViagem* servico) {
     this->servicoViagem = servico;
 }
 
+/**
+ * @brief Executa operações relacionadas à viagem com base no código fornecido.
+ * @param codigo Código da viagem a ser manipulada.
+ */
 void CntrViagemA::executar(const Codigo& codigo) {
     int opcao;
     while (true) {

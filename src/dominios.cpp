@@ -1,8 +1,18 @@
+/**
+ * @file dominios.cpp
+ * @brief Implementação das classes e funções para validação de dados.
+ * @details Este arquivo contém a implementação das classes de validação de dados, como Avaliacao, Codigo, Data, Dinheiro, Duracao, Horario, Nome e Senha, além de funções auxiliares para validação.
+ */
+
 #include "../include/dominios.hpp"
 #include <regex>
 #include <set>
 
-// Funções auxiliares
+/**
+ * @brief Verifica se uma string contém apenas dígitos numéricos.
+ * @param valor String a ser verificada.
+ * @return true se a string contiver apenas dígitos, false caso contrário.
+ */
 bool is_number(const string& valor) {
     for (size_t i = 0; i < valor.length(); i++) {
         if (!isdigit(valor[i])) {
@@ -12,6 +22,11 @@ bool is_number(const string& valor) {
     return true;
 }
 
+/**
+ * @brief Verifica se há caracteres duplicados em uma string.
+ * @param valor String a ser verificada.
+ * @return true se houver duplicatas, false caso contrário.
+ */
 bool hasDuplicata(const string& valor) {
     set<char> numerosVistos; 
     for (size_t i = 0; i < valor.length(); i++) {
@@ -23,6 +38,11 @@ bool hasDuplicata(const string& valor) {
     return false;
 }
 
+/**
+ * @brief Verifica se os caracteres de uma string estão em ordem crescente.
+ * @param valor String a ser verificada.
+ * @return true se os caracteres estiverem em ordem crescente, false caso contrário.
+ */
 bool ordemCrescente(const string& valor) {
     for (size_t i = 1; i < valor.length(); i++) {
         if (valor[i] <= valor[i - 1]) {
@@ -32,6 +52,11 @@ bool ordemCrescente(const string& valor) {
     return true;
 }
 
+/**
+ * @brief Verifica se os caracteres de uma string estão em ordem decrescente.
+ * @param valor String a ser verificada.
+ * @return true se os caracteres estiverem em ordem decrescente, false caso contrário.
+ */
 bool ordemDecrescente(const string& valor) {
     for (size_t i = 1; i < valor.length(); i++) {
         if (valor[i] >= valor[i - 1]) {
@@ -41,20 +66,30 @@ bool ordemDecrescente(const string& valor) {
     return true;
 }
 
-// Implementação do método setValor na classe base Dominio
+/**
+ * @brief Implementação do método setValor na classe base Dominio.
+ * @param valor Valor a ser validado e atribuído.
+ * @throws invalid_argument Se a validação falhar.
+ */
 void Dominio::setValor(string valor) {
     validar(valor);
     this->valor = valor;
 }
 
-// Classe Avaliacao (0 a 5)
+/**
+ * @brief Classe para validação de Avaliação.
+ * @details A avaliação deve ser um valor entre 0 e 5.
+ */
 void Avaliacao::validar(string valor) {
     if (valor != "0" && valor != "1" && valor != "2" && valor != "3" && valor != "4" && valor != "5") {
         throw invalid_argument("Valor invalido para Avaliacao.");
     }
 }
 
-// Classe Codigo (deve ter 6 caracteres alfanuméricos)
+/**
+ * @brief Classe para validação de Código.
+ * @details O código deve ter exatamente 6 caracteres alfanuméricos.
+ */
 void Codigo::validar(string valor) {
     if (valor.length() != 6) {
         throw invalid_argument("O código deve ter exatamente 6 caracteres.");
@@ -67,7 +102,10 @@ void Codigo::validar(string valor) {
     }
 }
 
-// Classe Data (formato: DD-MM-AA)
+/**
+ * @brief Classe para validação de Data.
+ * @details A data deve estar no formato DD-MM-AA e ser válida.
+ */
 void Data::validar(string valor) {
     if (valor.length() != 8 || valor[2] != '-' || valor[5] != '-') {
         throw invalid_argument("Formato inválido de data. Use DD-MM-AA.");
@@ -90,6 +128,13 @@ void Data::validar(string valor) {
     }
 }
 
+/**
+ * @brief Verifica se o dia é válido para o mês e ano fornecidos.
+ * @param dia Dia a ser verificado.
+ * @param mes Mês a ser verificado.
+ * @param ano Ano a ser verificado.
+ * @return true se o dia for válido, false caso contrário.
+ */
 bool Data::mes_dia(int dia, int mes, int ano) {
     if (mes < 1 || mes > 12) {
         return false;
@@ -111,6 +156,10 @@ bool Data::mes_dia(int dia, int mes, int ano) {
     return false;
 }
 
+/**
+ * @brief Classe para validação de Dinheiro.
+ * @details O valor deve estar no formato X.XXX,XX e entre 0,00 e 200.000,00.
+ */
 void Dinheiro::validar(string valor) {
     if (valor.length() < 4 || valor[valor.length() - 3] != ',') {
         throw invalid_argument("O valor deve conter a vírgula para separar os centavos.");
@@ -138,7 +187,10 @@ void Dinheiro::validar(string valor) {
     }
 }
 
-// Classe Duracao (deve estar entre 0 e 360 minutos)
+/**
+ * @brief Classe para validação de Duração.
+ * @details A duração deve estar entre 0 e 360 minutos.
+ */
 void Duracao::validar(string valor) {
     for (size_t i = 0; i < valor.length(); i++){
         if (!isdigit(valor[i])) {
@@ -156,7 +208,10 @@ void Duracao::validar(string valor) {
     }
 }
 
-// Classe Horario (formato HH:MM)
+/**
+ * @brief Classe para validação de Horário.
+ * @details O horário deve estar no formato HH:MM e ser válido.
+ */
 void Horario::validar(string valor) {
     if (valor.length() != 5 || valor[2] != ':') {
         throw invalid_argument("Valor fora do formato válido (HH:MM)");
@@ -175,7 +230,10 @@ void Horario::validar(string valor) {
     }
 }
 
-// Classe Nome (máximo de 30 caracteres, apenas letras e espaços)
+/**
+ * @brief Classe para validação de Nome.
+ * @details O nome deve ter entre 1 e 30 caracteres e conter apenas letras e espaços.
+ */
 void Nome::validar(string valor) {
     if (valor.length() > 30 || valor.empty()) {
         throw invalid_argument("Nome deve ter entre 1 e 30 caracteres.");
@@ -187,7 +245,10 @@ void Nome::validar(string valor) {
     }
 }
 
-// Classe Senha (5 caracteres numéricos, sem duplicatas e sem sequência ascendente/descendente)
+/**
+ * @brief Classe para validação de Senha.
+ * @details A senha deve ter exatamente 5 caracteres numéricos, sem duplicatas e sem sequência ascendente/descendente.
+ */
 void Senha::validar(string valor) {
     if (valor.length() != 5) {
         throw invalid_argument("Senha deve conter exatamente 5 caracteres numéricos");

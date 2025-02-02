@@ -81,6 +81,33 @@ public:
      * @param codigo Código da viagem a ser manipulada.
      */
     void executar(const Codigo& codigo) override;
+
+    /**
+     * @brief Criar uma nova viagem.
+     * @param codigoConta Código da conta associada à viagem.
+     */
+    void criarViagem(const Codigo& codigoConta);
+    void atualizarViagem(const Codigo& codigoConta);
+    void excluirViagem(const Codigo& codigoConta);  // Adicionado
+    void consultarViagem(const Codigo& codigoConta);  // Ad
+
+    /**
+     * @brief Define o destino de uma viagem.
+     * @param codigoViagem Código da viagem.
+     */
+    void definirDestino(const Codigo& codigoViagem);
+
+    /**
+     * @brief Define a hospedagem de uma viagem.
+     * @param codigoViagem Código da viagem.
+     */
+    void definirHospedagem(const Codigo& codigoViagem);
+
+    /**
+     * @brief Define as atividades de uma viagem.
+     * @param codigoViagem Código da viagem.
+     */
+    void definirAtividades(const Codigo& codigoViagem);
 };
 
 #endif // CONTROLADORAS_HPP

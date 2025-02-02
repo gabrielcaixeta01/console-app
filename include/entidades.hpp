@@ -257,10 +257,11 @@ inline Avaliacao Destino::getAvaliacao() const {
  * @class Atividade
  * @brief Classe que representa uma entidade Atividade.
  *
- * Armazena informações de nome, data, horário, duração, preço e avaliação de uma atividade.
+ * Armazena informações de código, nome, data, horário, duração, preço e avaliação de uma atividade.
  */
 class Atividade {
 private:
+    Codigo codigo;     ///< Código da atividade.
     Nome nome;         ///< Nome da atividade.
     Data data;         ///< Data da atividade.
     Horario horario;   ///< Horário da atividade.
@@ -270,6 +271,18 @@ private:
 
 public:
     Atividade() = default; ///< Construtor padrão.
+
+    /**
+     * @brief Define o código da atividade.
+     * @param codigo Código a ser atribuído.
+     */
+    void setCodigo(const Codigo&);
+
+    /**
+     * @brief Obtém o código da atividade.
+     * @return O código da atividade.
+     */
+    Codigo getCodigo() const;
 
     /**
      * @brief Define o nome da atividade.
@@ -343,6 +356,16 @@ public:
      */
     Avaliacao getAvaliacao() const;
 };
+
+// Implementação dos métodos inline
+
+inline void Atividade::setCodigo(const Codigo &codigo) {
+    this->codigo = codigo;
+}
+
+inline Codigo Atividade::getCodigo() const {
+    return codigo;
+}
 
 inline void Atividade::setNome(const Nome &nome) {
     this->nome = nome;

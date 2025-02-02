@@ -335,4 +335,62 @@ public:
     virtual bool ler(const Codigo&, Hospedagem*) = 0;
 };
 
+class ISViagem {
+public:
+    virtual ~ISViagem() = default; ///< Destrutor virtual padrão.
+
+    /**
+     * @brief Cria uma nova viagem.
+     * @param viagem Viagem a ser criada.
+     * @return true se a criação for bem-sucedida, false caso contrário.
+     */
+    virtual bool criar(const Viagem&) = 0;
+
+    /**
+     * @brief Exclui uma viagem existente.
+     * @param codigo Código da viagem a ser excluída.
+     * @return true se a exclusão for bem-sucedida, false caso contrário.
+     */
+    virtual bool excluir(const Codigo&) = 0;
+
+    /**
+     * @brief Atualiza uma viagem existente.
+     * @param viagem Viagem com os novos dados.
+     * @return true se a atualização for bem-sucedida, false caso contrário.
+     */
+    virtual bool atualizar(const Viagem&) = 0;
+
+    /**
+     * @brief Lê os dados de uma viagem.
+     * @param codigo Código da viagem a ser lida.
+     * @param viagem Ponteiro para armazenar os dados da viagem.
+     * @return true se a leitura for bem-sucedida, false caso contrário.
+     */
+    virtual bool ler(const Codigo&, Viagem*) = 0;
+
+    /**
+     * @brief Define o destino de uma viagem.
+     * @param codigoViagem Código da viagem.
+     * @param destino Objeto contendo os dados do destino.
+     * @return true se a operação for bem-sucedida, false caso contrário.
+     */
+    virtual bool definirDestino(const Codigo&, const Destino&) = 0;
+
+    /**
+     * @brief Define a hospedagem de uma viagem.
+     * @param codigoViagem Código da viagem.
+     * @param hospedagem Objeto contendo os dados da hospedagem.
+     * @return true se a operação for bem-sucedida, false caso contrário.
+     */
+    virtual bool definirHospedagem(const Codigo&, const Hospedagem&) = 0;
+
+    /**
+     * @brief Adiciona uma atividade a uma viagem.
+     * @param codigoViagem Código da viagem.
+     * @param atividade Objeto contendo os dados da atividade.
+     * @return true se a operação for bem-sucedida, false caso contrário.
+     */
+    virtual bool definirAtividade(const Codigo&, const Atividade&) = 0;
+};
+
 #endif // INTERFACES_HPP

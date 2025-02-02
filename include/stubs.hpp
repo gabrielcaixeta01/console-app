@@ -248,4 +248,23 @@ public:
     bool ler(const Codigo& codigo, Hospedagem* hospedagem) override;
 };
 
+class StubServicoViagem : public ISViagem {
+private:
+    unordered_map<string, Viagem> viagens; ///< Mapa para armazenar viagens simuladas.
+    unordered_map<string, Destino> destinos; ///< Mapa para armazenar destinos das viagens.
+    unordered_map<string, Hospedagem> hospedagens; ///< Mapa para armazenar hospedagens das viagens.
+    unordered_map<string, list<Atividade>> atividades; ///< Mapa para armazenar atividades por viagem.
+
+public:
+    bool criar(const Viagem& viagem) override;
+    bool atualizar(const Viagem& viagem) override;
+    bool excluir(const Codigo& codigo) override;
+    bool ler(const Codigo& codigo, Viagem* viagem) override;
+
+    // Métodos para definir destino, hospedagem e atividades
+    bool definirDestino(const Codigo& codigoViagem, const Destino& destino) override;
+    bool definirHospedagem(const Codigo& codigoViagem, const Hospedagem& hospedagem) override;
+    bool definirAtividade(const Codigo& codigoViagem, const Atividade& atividade) override;
+};
+
 #endif // STUBS_HPP

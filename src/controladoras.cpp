@@ -308,3 +308,242 @@ void CntrViagemA::executar(const Codigo& codigo) {
         }
     }
 }
+
+void CntrViagemA::definirDestino(const Codigo& codigoViagem) {
+    Destino destino;
+    Codigo codigoDestino;
+    Nome nomeDestino;
+    Data dataInicio, dataTermino;
+    Avaliacao avaliacao;
+
+    cout << "Digite o código do destino: ";
+    string codigoStr;
+    cin >> codigoStr;
+    codigoDestino.setValor(codigoStr);
+
+    cout << "Digite o nome do destino: ";
+    string nomeStr;
+    cin.ignore();
+    getline(cin, nomeStr);
+    nomeDestino.setValor(nomeStr);
+
+    // Validação da Data de Início
+    string dataInicioStr;
+    while (true) {
+        cout << "Digite a data de início (DD-MM-YY): ";
+        cin >> dataInicioStr;
+        if (dataInicioStr.size() == 8 && dataInicioStr[2] == '-' && dataInicioStr[5] == '-') {
+            dataInicio.setValor(dataInicioStr);
+            break;
+        }
+        cout << "Erro: Formato inválido! Use DD-MM-YY.\n";
+    }
+
+    // Validação da Data de Término
+    string dataTerminoStr;
+    while (true) {
+        cout << "Digite a data de término (DD-MM-YY): ";
+        cin >> dataTerminoStr;
+        if (dataTerminoStr.size() == 8 && dataTerminoStr[2] == '-' && dataTerminoStr[5] == '-') {
+            dataTermino.setValor(dataTerminoStr);
+            break;
+        }
+        cout << "Erro: Formato inválido! Use DD-MM-YY.\n";
+    }
+
+    cout << "Digite a avaliação do destino (1-5): ";
+    int avaliacaoValor;
+    cin >> avaliacaoValor;
+    avaliacao.setValor(to_string(avaliacaoValor)); // Convertendo int para string
+
+    destino.setCodigo(codigoDestino);
+    destino.setNome(nomeDestino);
+    destino.setDataInicio(dataInicio);
+    destino.setDataTermino(dataTermino);
+    destino.setAvaliacao(avaliacao);
+
+    if (servicoViagem->definirDestino(codigoViagem, destino)) {
+        cout << "Destino definido com sucesso!" << endl;
+    } else {
+        cout << "Erro ao definir destino para a viagem." << endl;
+    }
+}
+
+void CntrViagemA::definirHospedagem(const Codigo& codigoViagem) {
+    Hospedagem hospedagem;
+    Codigo codigoHospedagem;
+    Nome nomeHospedagem;
+    Dinheiro diaria;
+    Avaliacao avaliacao;
+
+    cout << "Digite o código da hospedagem: ";
+    string codigoStr;
+    cin >> codigoStr;
+    codigoHospedagem.setValor(codigoStr);
+
+    cout << "Digite o nome da hospedagem: ";
+    string nomeStr;
+    cin.ignore();
+    getline(cin, nomeStr);
+    nomeHospedagem.setValor(nomeStr);
+
+    cout << "Digite o valor da diária: ";
+    float valorDiaria;
+    cin >> valorDiaria;
+    diaria.setValor(to_string(valorDiaria)); // Convertendo float para string
+
+    cout << "Digite a avaliação da hospedagem (1-5): ";
+    int avaliacaoValor;
+    cin >> avaliacaoValor;
+    avaliacao.setValor(to_string(avaliacaoValor)); // Convertendo int para string
+
+    hospedagem.setCodigo(codigoHospedagem);
+    hospedagem.setNome(nomeHospedagem);
+    hospedagem.setDiaria(diaria);
+    hospedagem.setAvaliacao(avaliacao);
+
+    if (servicoViagem->definirHospedagem(codigoViagem, hospedagem)) {
+        cout << "Hospedagem definida com sucesso!" << endl;
+    } else {
+        cout << "Erro ao definir hospedagem para a viagem." << endl;
+    }
+}
+
+void CntrViagemA::definirAtividades(const Codigo& codigoViagem) {
+    while (true) {
+        Atividade atividade;
+        Codigo codigoAtividade;
+        Nome nomeAtividade;
+        Data dataAtividade;
+        Horario horario;
+        Duracao duracao;
+        Dinheiro preco;
+        Avaliacao avaliacao;
+
+        cout << "Digite o código da atividade: ";
+        string codigoStr;
+        cin >> codigoStr;
+        codigoAtividade.setValor(codigoStr);
+
+        cout << "Digite o nome da atividade: ";
+        string nomeStr;
+        cin.ignore();
+        getline(cin, nomeStr);
+        nomeAtividade.setValor(nomeStr);
+
+        // Validação da Data da Atividade
+        string dataStr;
+        while (true) {
+            cout << "Digite a data da atividade (DD-MM-YY): ";
+            cin >> dataStr;
+            if (dataStr.size() == 8 && dataStr[2] == '-' && dataStr[5] == '-') {
+                dataAtividade.setValor(dataStr);
+                break;
+            }
+            cout << "Erro: Formato inválido! Use DD-MM-YY.\n";
+        }
+
+        cout << "Digite o horário da atividade (HH:MM): ";
+        string horarioStr;
+        cin >> horarioStr;
+        horario.setValor(horarioStr);
+
+        cout << "Digite a duração da atividade (em horas): ";
+        float duracaoFloat;
+        cin >> duracaoFloat;
+        duracao.setValor(to_string(duracaoFloat)); // Convertendo float para string
+
+        cout << "Digite o preço da atividade: ";
+        float precoFloat;
+        cin >> precoFloat;
+        preco.setValor(to_string(precoFloat)); // Convertendo float para string
+
+        cout << "Digite a avaliação da atividade (1-5): ";
+        int avaliacaoValor;
+        cin >> avaliacaoValor;
+        avaliacao.setValor(to_string(avaliacaoValor)); // Convertendo int para string
+
+        atividade.setCodigo(codigoAtividade);
+        atividade.setNome(nomeAtividade);
+        atividade.setData(dataAtividade);
+        atividade.setHorario(horario);
+        atividade.setDuracao(duracao);
+        atividade.setPreco(preco);
+        atividade.setAvaliacao(avaliacao);
+
+        if (servicoViagem->definirAtividade(codigoViagem, atividade)) {
+            cout << "Atividade adicionada com sucesso!" << endl;
+        } else {
+            cout << "Erro ao adicionar atividade para a viagem." << endl;
+        }
+
+        // Pergunta se deseja adicionar outra atividade
+        char continuar;
+        cout << "Deseja adicionar outra atividade? (S/N): ";
+        cin >> continuar;
+        if (toupper(continuar) != 'S') {
+            break;
+        }
+    }
+}
+
+void CntrViagemA::atualizarViagem(const Codigo& codigoConta) {
+    Codigo codigoViagem;
+    cout << "Digite o código da viagem que deseja atualizar: ";
+    string codigoStr;
+    cin >> codigoStr;
+    codigoViagem.setValor(codigoStr);
+
+    Viagem viagem;
+    if (!servicoViagem->ler(codigoViagem, &viagem)) {
+        cout << "Erro: Viagem não encontrada." << endl;
+        return;
+    }
+
+    Nome novoNome;
+    cout << "Digite o novo nome da viagem: ";
+    string nomeStr;
+    cin.ignore();
+    getline(cin, nomeStr);
+    novoNome.setValor(nomeStr);
+
+    viagem.setNome(novoNome);
+
+    if (servicoViagem->atualizar(viagem)) {
+        cout << "Viagem atualizada com sucesso!" << endl;
+    } else {
+        cout << "Erro ao atualizar viagem." << endl;
+    }
+}
+
+void CntrViagemA::excluirViagem(const Codigo& codigoConta) {
+    Codigo codigoViagem;
+    cout << "Digite o código da viagem que deseja excluir: ";
+    string codigoStr;
+    cin >> codigoStr;
+    codigoViagem.setValor(codigoStr);
+
+    if (servicoViagem->excluir(codigoViagem)) {
+        cout << "Viagem excluída com sucesso!" << endl;
+    } else {
+        cout << "Erro: Viagem não encontrada ou não pode ser excluída." << endl;
+    }
+}
+
+void CntrViagemA::consultarViagem(const Codigo& codigoConta) {
+    Codigo codigoViagem;
+    cout << "Digite o código da viagem que deseja consultar: ";
+    string codigoStr;
+    cin >> codigoStr;
+    codigoViagem.setValor(codigoStr);
+
+    Viagem viagem;
+    if (servicoViagem->ler(codigoViagem, &viagem)) {
+        cout << "\nDetalhes da Viagem:" << endl;
+        cout << "Código: " << viagem.getCodigo().getValor() << endl;
+        cout << "Nome: " << viagem.getNome().getValor() << endl;
+        cout << "Avaliação: " << viagem.getAvaliacao().getValor() << endl;
+    } else {
+        cout << "Erro: Viagem não encontrada." << endl;
+    }
+}

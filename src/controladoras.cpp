@@ -328,7 +328,7 @@ void CntrViagemA::criarViagem(const Codigo& codigoConta) {
     getline(cin, nomeStr);
     nomeViagem.setValor(nomeStr);
 
-    cout << "Digite a avaliação do destino (1-5): ";
+    cout << "Digite a avaliação da viagem (1-5): ";
     string avaliacaoValor;
     cin >> avaliacaoValor;
     avaliacao.setValor(avaliacaoValor);
@@ -453,7 +453,7 @@ void CntrViagemA::definirHospedagem(const Codigo& codigoViagem) {
     cin >> diariaStr;
     hospedagem.setDiaria(Dinheiro(diariaStr));
 
-    cout << "Digite a avaliação do destino (1-5): ";
+    cout << "Digite a avaliação da hospedagem (1-5): ";
     string avaliacaoValor;
     cin >> avaliacaoValor;
     avaliacao.setValor(avaliacaoValor);

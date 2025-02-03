@@ -56,6 +56,7 @@ public:
     bool definirDestino(const Codigo&, const Destino&) override;
     bool definirHospedagem(const Codigo&, const Hospedagem&) override;
     bool definirAtividade(const Codigo&, const Atividade&) override;
+    bool definirAvaliacao(const Codigo&, const Avaliacao&) override;
 
     // Novos métodos adicionados:
     bool lerDestino(const Codigo&, Destino*) override;

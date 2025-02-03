@@ -109,6 +109,7 @@ public:
     virtual bool definirDestino(const Codigo&, const Destino&) = 0;
     virtual bool definirHospedagem(const Codigo&, const Hospedagem&) = 0;
     virtual bool definirAtividade(const Codigo&, const Atividade&) = 0;
+    virtual bool definirAvaliacao(const Codigo&, const Avaliacao&) = 0;
 
     // Métodos para buscar destino, hospedagem e atividade
     virtual bool lerDestino(const Codigo&, Destino*) = 0;

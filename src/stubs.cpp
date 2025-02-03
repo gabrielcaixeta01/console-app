@@ -98,15 +98,12 @@ bool StubServicoViagem::excluir(const Codigo& codigo) {
 
 bool StubServicoViagem::atualizar(const Viagem& viagem) {
     string codigo = viagem.getCodigo().getValor();
-    auto it = viagens.find(codigo);
-
-    if (it != viagens.end()) {
-        it->second = viagem;  // Atualiza diretamente o objeto armazenado
-        cout << "Stub: Viagem " << codigo << " atualizada com sucesso." << endl;
+    if (viagens.find(codigo) != viagens.end()) {
+        viagens[codigo] = viagem;
+        cout << "Stub: Viagem atualizada com sucesso." << endl;
         return true;
     }
-
-    cout << "Stub: Erro ao atualizar. Viagem " << codigo << " não encontrada." << endl;
+    cout << "Erro: Viagem não encontrada para atualização." << endl;
     return false;
 }
 
@@ -116,6 +113,19 @@ bool StubServicoViagem::ler(const Codigo& codigo, Viagem* viagem) {
         *viagem = it->second;
         return true;
     }
+    return false;
+}
+
+bool StubServicoViagem::definirAvaliacao(const Codigo& codigoViagem, const Avaliacao& avaliacao) {
+    auto it = viagens.find(codigoViagem.getValor());
+
+    if (it != viagens.end()) {
+        it->second.setAvaliacao(avaliacao);
+        cout << "Avaliação definida para a viagem " << codigoViagem.getValor() << endl;
+        return true;
+    }
+
+    cout << "Erro: Viagem não encontrada para definir avaliação." << endl;
     return false;
 }
 

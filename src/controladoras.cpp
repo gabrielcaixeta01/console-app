@@ -315,6 +315,7 @@ void CntrViagemA::criarViagem(const Codigo& codigoConta) {
     Viagem viagem;
     Codigo codigoViagem;
     Nome nomeViagem;
+    Avaliacao avaliacao;
 
     cout << "Digite o código da viagem: ";
     string codigoStr;
@@ -326,6 +327,11 @@ void CntrViagemA::criarViagem(const Codigo& codigoConta) {
     cin.ignore();
     getline(cin, nomeStr);
     nomeViagem.setValor(nomeStr);
+
+    cout << "Digite a avaliação do destino (1-5): ";
+    string avaliacaoValor;
+    cin >> avaliacaoValor;
+    avaliacao.setValor(avaliacaoValor);
 
     viagem.setCodigo(codigoViagem);
     viagem.setNome(nomeViagem);
@@ -400,9 +406,9 @@ void CntrViagemA::definirDestino(const Codigo& codigoViagem) {
         dataTermino.setValor(dataTerminoStr);
 
         cout << "Digite a avaliação do destino (1-5): ";
-        int avaliacaoValor;
+        string avaliacaoValor;
         cin >> avaliacaoValor;
-        avaliacao.setValor(to_string(avaliacaoValor));
+        avaliacao.setValor(avaliacaoValor);
 
         destino.setCodigo(codigoDestino);
         destino.setNome(nomeDestino);
@@ -429,6 +435,8 @@ void CntrViagemA::definirDestino(const Codigo& codigoViagem) {
 
 void CntrViagemA::definirHospedagem(const Codigo& codigoViagem) {
     Hospedagem hospedagem;
+    Avaliacao avaliacao;
+
     cout << "Digite o código da hospedagem: ";
     string codigoStr;
     cin >> codigoStr;
@@ -440,6 +448,16 @@ void CntrViagemA::definirHospedagem(const Codigo& codigoViagem) {
     getline(cin, nomeStr);
     hospedagem.setNome(Nome(nomeStr));
 
+    cout << "Digite a diária da hospedagem: ";
+    string diariaStr;
+    cin >> diariaStr;
+    hospedagem.setDiaria(Dinheiro(diariaStr));
+
+    cout << "Digite a avaliação do destino (1-5): ";
+    string avaliacaoValor;
+    cin >> avaliacaoValor;
+    avaliacao.setValor(avaliacaoValor);
+
     if (servicoViagem->definirHospedagem(codigoViagem, hospedagem)) {
         cout << "Hospedagem definida com sucesso!" << endl;
     } else {
@@ -449,6 +467,7 @@ void CntrViagemA::definirHospedagem(const Codigo& codigoViagem) {
 
 void CntrViagemA::definirAtividade(const Codigo& codigoViagem) {
     Atividade atividade;
+
     cout << "Digite o código da atividade: ";
     string codigoStr;
     cin >> codigoStr;
@@ -459,6 +478,26 @@ void CntrViagemA::definirAtividade(const Codigo& codigoViagem) {
     cin.ignore();
     getline(cin, nomeStr);
     atividade.setNome(Nome(nomeStr));
+
+    cout << "Digite a data da atividade (dd-mm-yy): ";
+    string dataStr;
+    cin >> dataStr;
+    atividade.setData(Data(dataStr));
+
+    cout << "Digite o horário da atividade (hh:mm): ";
+    string horarioStr;
+    cin >> horarioStr;
+    atividade.setHorario(Horario(horarioStr));
+
+    cout << "Digite o preço da atividade: ";
+    string precoStr;
+    cin >> precoStr;
+    atividade.setPreco(Dinheiro(precoStr));
+
+    cout << "Digite a avaliação da atividade (1-5): ";
+    string avaliacaoStr;
+    cin >> avaliacaoStr;
+    atividade.setAvaliacao(Avaliacao(avaliacaoStr));
 
     if (servicoViagem->definirAtividade(codigoViagem, atividade)) {
         cout << "Atividade definida com sucesso!" << endl;
@@ -562,5 +601,40 @@ void CntrViagemA::consultarViagem(const Codigo& codigoConta) {
         cout << "Avaliação: " << atividade.getAvaliacao().getValor() << endl;
     } else {
         cout << "Atividade não definida." << endl;
+    }
+}
+
+void CntrViagemA::definirAvaliacao(const Codigo& codigoViagem, int avaliacao) {
+    Viagem viagem;
+    
+    if (servicoViagem->ler(codigoViagem, &viagem)) {
+        viagem.setAvaliacao(Avaliacao(to_string(avaliacao)));
+        if (servicoViagem->atualizar(viagem)) {
+            cout << "Avaliação definida com sucesso para a viagem " << codigoViagem.getValor() << endl;
+        } else {
+            cout << "Erro ao atualizar a avaliação da viagem." << endl;
+        }
+    } else {
+        cout << "Erro: Viagem não encontrada." << endl;
+    }
+}
+
+void CntrViagemA::atualizarNomeViagem(const Codigo& codigoViagem) {
+    Viagem viagem;
+    if (!servicoViagem->ler(codigoViagem, &viagem)) {
+        cout << "Erro: Viagem não encontrada para atualização." << endl;
+        return;
+    }
+
+    string novoNome;
+    cout << "Digite o novo nome da viagem: ";
+    cin >> novoNome;
+
+    viagem.setNome(Nome(novoNome));
+
+    if (servicoViagem->atualizar(viagem)) {
+        cout << "Nome da viagem atualizado com sucesso!" << endl;
+    } else {
+        cout << "Erro ao atualizar o nome da viagem." << endl;
     }
 }

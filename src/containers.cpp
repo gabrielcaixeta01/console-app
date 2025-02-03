@@ -1,192 +1,206 @@
-#include "../include/containers.hpp"
-#include <iostream>
+#include "containers.hpp"
 
-using namespace std;
-
-/**
- * @brief Inclui uma conta no container.
- * @param conta Conta a ser incluída.
- * @return true se a inclusão for bem-sucedida, false caso contrário.
- */
+// Implementação do ContainerConta
 bool ContainerConta::incluir(Conta conta) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getCodigo().getValor() == conta.getCodigo().getValor()) {
-                return false;
-            }
+    for (const auto &c : container) {
+        if (c.getCodigo().getValor() == conta.getCodigo().getValor()) {
+            return false;
         }
-        container.push_back(conta);
-        return true;
-    } catch (const exception &e) {
-        cout << "Erro ao incluir conta: " << e.what() << endl;
-        return false;
     }
+    container.push_back(conta);
+    return true;
 }
 
-/**
- * @brief Remove uma conta do container com base no código.
- * @param matricula Código da conta a ser removida.
- * @return true se a remoção for bem-sucedida, false caso contrário.
- */
-bool ContainerConta::remover(Codigo matricula) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getCodigo().getValor() == matricula.getValor()) {
-                container.erase(elemento);
-                return true;
-            }
+bool ContainerConta::remover(Codigo codigo) {
+    for (auto it = container.begin(); it != container.end(); ++it) {
+        if (it->getCodigo().getValor() == codigo.getValor()) {
+            container.erase(it);
+            return true;
         }
-        return false;
-    } catch (const exception &e) {
-        cout << "Erro ao remover conta: " << e.what() << endl;
-        return false;
     }
+    return false;
 }
 
-// Similar try-catch implementation continues for all Conta functions...
+bool ContainerConta::pesquisar(Conta *conta) {
+    for (auto &c : container) {
+        if (c.getCodigo().getValor() == conta->getCodigo().getValor()) {
+            *conta = c;
+            return true;
+        }
+    }
+    return false;
+}
 
-/**
- * @brief Inclui uma viagem no container.
- * @param viagem Viagem a ser incluída.
- * @return true se a inclusão for bem-sucedida, false caso contrário.
- */
+bool ContainerConta::atualizar(Conta conta) {
+    for (auto &c : container) {
+        if (c.getCodigo().getValor() == conta.getCodigo().getValor()) {
+            c = conta;
+            return true;
+        }
+    }
+    return false;
+}
+
+// Implementação do ContainerViagem
 bool ContainerViagem::incluir(Viagem viagem) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getCodigo().getValor() == viagem.getCodigo().getValor()) {
-                return false;
-            }
+    for (const auto &v : container) {
+        if (v.getCodigo().getValor() == viagem.getCodigo().getValor()) {
+            return false;
         }
-        container.push_back(viagem);
-        return true;
-    } catch (const exception &e) {
-        cout << "Erro ao incluir viagem: " << e.what() << endl;
-        return false;
     }
+    container.push_back(viagem);
+    return true;
 }
 
-// Similar try-catch implementation continues for all Viagem functions...
+bool ContainerViagem::remover(Codigo codigo) {
+    for (auto it = container.begin(); it != container.end(); ++it) {
+        if (it->getCodigo().getValor() == codigo.getValor()) {
+            container.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
 
-/**
- * @brief Inclui um destino no container.
- * @param destino Destino a ser incluído.
- * @return true se a inclusão for bem-sucedida, false caso contrário.
- */
+bool ContainerViagem::pesquisar(Viagem *viagem) {
+    for (auto &v : container) {
+        if (v.getCodigo().getValor() == viagem->getCodigo().getValor()) {
+            *viagem = v;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ContainerViagem::atualizar(Viagem viagem) {
+    for (auto &v : container) {
+        if (v.getCodigo().getValor() == viagem.getCodigo().getValor()) {
+            v = viagem;
+            return true;
+        }
+    }
+    return false;
+}
+
+// Implementação do ContainerDestino
 bool ContainerDestino::incluir(Destino destino) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getCodigo().getValor() == destino.getCodigo().getValor()) {
-                return false;
-            }
+    for (const auto &d : container) {
+        if (d.getCodigo().getValor() == destino.getCodigo().getValor()) {
+            return false;
         }
-        container.push_back(destino);
-        return true;
-    } catch (const exception &e) {
-        cout << "Erro ao incluir destino: " << e.what() << endl;
-        return false;
     }
+    container.push_back(destino);
+    return true;
 }
 
-// Similar try-catch implementation continues for all Destino functions...
+bool ContainerDestino::remover(Codigo codigo) {
+    for (auto it = container.begin(); it != container.end(); ++it) {
+        if (it->getCodigo().getValor() == codigo.getValor()) {
+            container.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
 
-/**
- * @brief Inclui uma atividade no container.
- * @param atividade Atividade a ser incluída.
- * @return true se a inclusão for bem-sucedida, false caso contrário.
- */
+bool ContainerDestino::pesquisar(Destino *destino) {
+    for (auto &d : container) {
+        if (d.getCodigo().getValor() == destino->getCodigo().getValor()) {
+            *destino = d;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ContainerDestino::atualizar(Destino destino) {
+    for (auto &d : container) {
+        if (d.getCodigo().getValor() == destino.getCodigo().getValor()) {
+            d = destino;
+            return true;
+        }
+    }
+    return false;
+}
+
+// Implementação do ContainerAtividade
 bool ContainerAtividade::incluir(Atividade atividade) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getNome().getValor() == atividade.getNome().getValor()) {
-                return false;
-            }
+    for (const auto &a : container) {
+        if (a.getCodigo().getValor() == atividade.getCodigo().getValor()) {
+            return false;
         }
-        container.push_back(atividade);
-        return true;
-    } catch (const exception &e) {
-        cout << "Erro ao incluir atividade: " << e.what() << endl;
-        return false;
     }
+    container.push_back(atividade);
+    return true;
 }
 
-// Similar try-catch implementation continues for all Atividade functions...
+bool ContainerAtividade::remover(Nome nome) {
+    for (auto it = container.begin(); it != container.end(); ++it) {
+        if (it->getNome().getValor() == nome.getValor()) {
+            container.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
 
-/**
- * @brief Inclui uma hospedagem no container.
- * @param hospedagem Hospedagem a ser incluída.
- * @return true se a inclusão for bem-sucedida, false caso contrário.
- */
+bool ContainerAtividade::pesquisar(Atividade *atividade) {
+    for (auto &a : container) {
+        if (a.getCodigo().getValor() == atividade->getCodigo().getValor()) {
+            *atividade = a;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ContainerAtividade::atualizar(Atividade atividade) {
+    for (auto &a : container) {
+        if (a.getCodigo().getValor() == atividade.getCodigo().getValor()) {
+            a = atividade;
+            return true;
+        }
+    }
+    return false;
+}
+
+// Implementação do ContainerHospedagem
 bool ContainerHospedagem::incluir(Hospedagem hospedagem) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getCodigo().getValor() == hospedagem.getCodigo().getValor()) {
-                return false;
-            }
+    for (const auto &h : container) {
+        if (h.getCodigo().getValor() == hospedagem.getCodigo().getValor()) {
+            return false;
         }
-        container.push_back(hospedagem);
-        return true;
-    } catch (const exception &e) {
-        cout << "Erro ao incluir hospedagem: " << e.what() << endl;
-        return false;
     }
+    container.push_back(hospedagem);
+    return true;
 }
 
-/**
- * @brief Remove uma hospedagem do container com base no código.
- * @param matricula Código da hospedagem a ser removida.
- * @return true se a remoção for bem-sucedida, false caso contrário.
- */
-bool ContainerHospedagem::remover(Codigo matricula) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getCodigo().getValor() == matricula.getValor()) {
-                container.erase(elemento);
-                return true;
-            }
+bool ContainerHospedagem::remover(Codigo codigo) {
+    for (auto it = container.begin(); it != container.end(); ++it) {
+        if (it->getCodigo().getValor() == codigo.getValor()) {
+            container.erase(it);
+            return true;
         }
-        return false;
-    } catch (const exception &e) {
-        cout << "Erro ao remover hospedagem: " << e.what() << endl;
-        return false;
     }
+    return false;
 }
 
-/**
- * @brief Pesquisa uma hospedagem no container com base no código.
- * @param hospedagem Ponteiro para armazenar os dados da hospedagem encontrada.
- * @return true se a hospedagem for encontrada, false caso contrário.
- */
-bool ContainerHospedagem::pesquisar(Hospedagem* hospedagem) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getCodigo().getValor() == hospedagem->getCodigo().getValor()) {
-                *hospedagem = *elemento;
-                return true;
-            }
+bool ContainerHospedagem::pesquisar(Hospedagem *hospedagem) {
+    for (auto &h : container) {
+        if (h.getCodigo().getValor() == hospedagem->getCodigo().getValor()) {
+            *hospedagem = h;
+            return true;
         }
-        return false;
-    } catch (const exception &e) {
-        cout << "Erro ao pesquisar hospedagem: " << e.what() << endl;
-        return false;
     }
+    return false;
 }
 
-/**
- * @brief Atualiza uma hospedagem no container.
- * @param hospedagem Hospedagem com os novos dados.
- * @return true se a atualização for bem-sucedida, false caso contrário.
- */
 bool ContainerHospedagem::atualizar(Hospedagem hospedagem) {
-    try {
-        for (auto elemento = container.begin(); elemento != container.end(); elemento++) {
-            if (elemento->getCodigo().getValor() == hospedagem.getCodigo().getValor()) {
-                *elemento = hospedagem;
-                return true;
-            }
+    for (auto &h : container) {
+        if (h.getCodigo().getValor() == hospedagem.getCodigo().getValor()) {
+            h = hospedagem;
+            return true;
         }
-        return false;
-    } catch (const exception &e) {
-        cout << "Erro ao atualizar hospedagem: " << e.what() << endl;
-        return false;
     }
+    return false;
 }

@@ -138,41 +138,42 @@ menu_principal:
                         cin >> opcaoViagem;
 
                         switch (opcaoViagem) {
-                            case 1: {
+                            case 1:
                                 cout << "Criando nova viagem..." << endl;
                                 cntrViagem->criarViagem(codigoConta);
+                                break;
+                            case 2:
+                                int opcaoAtualizar;
+                                do {
+                                    cout << "\nAtualizar Viagem" << endl;
+                                    cout << "1 - Atualizar Nome" << endl;
+                                    cout << "2 - Atualizar Destino" << endl;
+                                    cout << "3 - Atualizar Hospedagem" << endl;
+                                    cout << "4 - Atualizar Atividade" << endl;
+                                    cout << "0 - Concluir" << endl;
+                                    cout << "Escolha uma opção: ";
+                                    cin >> opcaoAtualizar;
 
-                                cout << "\nDeseja adicionar informações à viagem?" << endl;
-                                cout << "1 - Definir Destino" << endl;
-                                cout << "2 - Definir Hospedagem" << endl;
-                                cout << "3 - Definir Atividade" << endl;
-                                cout << "0 - Concluir" << endl;
-
-                                int opcaoDetalhe;
-                                while (true) {
-                                    cout << "\nEscolha uma opção: ";
-                                    cin >> opcaoDetalhe;
-
-                                    switch (opcaoDetalhe) {
+                                    switch (opcaoAtualizar) {
                                         case 1:
-                                            cntrViagem->definirDestino(codigoConta);
+                                            cntrViagem->atualizarNomeViagem(codigoConta);
                                             break;
                                         case 2:
-                                            cntrViagem->definirHospedagem(codigoConta);
+                                            cntrViagem->definirDestino(codigoConta);
                                             break;
                                         case 3:
+                                            cntrViagem->definirHospedagem(codigoConta);
+                                            break;
+                                        case 4:
                                             cntrViagem->definirAtividade(codigoConta);
                                             break;
                                         case 0:
-                                            goto menu_principal;
+                                            cout << "Atualização concluída." << endl;
+                                            break;
                                         default:
                                             cout << "Opção inválida. Tente novamente." << endl;
                                     }
-                                }
-                                break;
-                            }
-                            case 2:
-                                cntrViagem->atualizarViagem(codigoConta);
+                                } while (opcaoAtualizar != 0);
                                 break;
                             case 3:
                                 cntrViagem->excluirViagem(codigoConta);

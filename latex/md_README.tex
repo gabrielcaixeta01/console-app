@@ -1,0 +1,74 @@
+Este projeto foi desenvolvido como parte da disciplina de Técnicas de Programação para implementar um sistema modular, orientado a objetos, com funcionalidades bem definidas e validação das regras de negócio.\hypertarget{md_README_autotoc_md1}{}\doxysection{Estrutura do Projeto}\label{md_README_autotoc_md1}
+console-\/app/ │ ├── src/ \# Código-\/fonte principal │ ├── controladoras.\+cpp │ ├── dominios.\+cpp │ ├── entidades.\+cpp │ ├── stubs.\+cpp │ └── \mbox{\hyperlink{main_8cpp}{main.\+cpp}} │ ├── include/ \# Arquivos de cabeçalho │ ├── controladoras.\+hpp │ ├── dominios.\+hpp │ ├── entidades.\+hpp │ ├── interfaces.\+hpp │ └── stubs.\+hpp │ ├── data/ \# Artefatos gerados │ ├── sistema \# Executável principal │ └── obj/ \# Arquivos objeto (.o) │ ├── tests/ \# Testes automatizados │ ├── testes\+Entidade.\+cpp │ ├── testes\+Dominio.\+cpp │ └── Makefile \# Automação dos testes │ ├── docs/ \# Documentação gerada pelo Doxygen │ ├── html/ \# Documentação em H\+T\+ML │ └── latex/ \# Documentação em La\+TeX │ └── Makefile \# Automação do build e execução\hypertarget{md_README_autotoc_md2}{}\doxysection{Funcionalidades}\label{md_README_autotoc_md2}
+O sistema implementa operações de C\+R\+UD (Criar, Ler, Atualizar e Excluir) para as seguintes entidades\+:\hypertarget{md_README_autotoc_md3}{}\doxysubsection{Contas}\label{md_README_autotoc_md3}
+
+\begin{DoxyItemize}
+\item {\bfseries{Criar conta}}\+: Cria uma nova conta com código e senha.
+\item {\bfseries{Ler conta}}\+: Exibe os dados da conta.
+\item {\bfseries{Atualizar conta}}\+: Permite atualizar a senha da conta.
+\item {\bfseries{Excluir conta}}\+: Remove a conta caso não haja restrições.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md4}{}\doxysubsection{Viagens}\label{md_README_autotoc_md4}
+
+\begin{DoxyItemize}
+\item {\bfseries{Criar viagem}}\+: Cadastra uma nova viagem.
+\item {\bfseries{Ler viagem}}\+: Exibe os detalhes de uma viagem específica.
+\item {\bfseries{Atualizar viagem}}\+: Permite alterar o nome de uma viagem.
+\item {\bfseries{Excluir viagem}}\+: Remove uma viagem.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md5}{}\doxysubsection{Destinos, Atividades e Hospedagens}\label{md_README_autotoc_md5}
+
+\begin{DoxyItemize}
+\item Para cada um desses elementos\+:
+\begin{DoxyItemize}
+\item {\bfseries{Criar}}\+: Adiciona um novo item.
+\item {\bfseries{Ler}}\+: Exibe os detalhes de um item específico.
+\item {\bfseries{Atualizar}}\+: Permite atualizar os dados de um item.
+\item {\bfseries{Excluir}}\+: Remove o item.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md6}{}\doxysection{Interfaces}\label{md_README_autotoc_md6}
+O projeto utiliza uma abordagem modular baseada em interfaces para separar as responsabilidades\+:\hypertarget{md_README_autotoc_md7}{}\doxysubsection{Interfaces de Apresentação ($<$tt$>$\+I\+A$<$/tt$>$)}\label{md_README_autotoc_md7}
+As interfaces de apresentação interagem com o usuário e recebem entradas diretamente dele\+:
+\begin{DoxyItemize}
+\item {\ttfamily I\+A\+Autenticacao}\+: Gerencia a autenticação de usuários.
+\item {\ttfamily I\+A\+Conta}\+: Gerencia as operações relacionadas às contas.
+\item {\ttfamily I\+A\+Viagem}, {\ttfamily I\+A\+Destino}, {\ttfamily I\+A\+Atividade}, {\ttfamily I\+A\+Hospedagem}\+: Gerenciam as operações de C\+R\+UD para as respectivas entidades.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md8}{}\doxysubsection{Interfaces de Serviço ($<$tt$>$\+I\+S$<$/tt$>$)}\label{md_README_autotoc_md8}
+As interfaces de serviço implementam a lógica de negócio e validam as operações\+:
+\begin{DoxyItemize}
+\item {\ttfamily I\+S\+Autenticacao}\+: Valida os dados de autenticação.
+\item {\ttfamily I\+S\+Conta}\+: Realiza operações de C\+R\+UD para contas.
+\item {\ttfamily I\+S\+Viagem}, {\ttfamily I\+S\+Destino}, {\ttfamily I\+S\+Atividade}, {\ttfamily I\+S\+Hospedagem}\+: Implementam as funcionalidades de C\+R\+UD para cada entidade.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md9}{}\doxysection{Modularização e Separação de Responsabilidades}\label{md_README_autotoc_md9}
+A arquitetura do sistema é composta por camadas bem definidas\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{Apresentação (IA)}}\+: Reúne as funcionalidades para o usuário.
+\item {\bfseries{Serviço (IS)}}\+: Lida com a lógica de negócio.
+\item {\bfseries{Entidades e Domínios}}\+: Modelam os dados e suas validações.
+\end{DoxyEnumerate}
+
+Essa separação permite\+:
+\begin{DoxyItemize}
+\item {\bfseries{Reutilização de Código}}\+: A lógica de serviço pode ser usada por várias interfaces de apresentação.
+\item {\bfseries{Testes Independentes}}\+: Cada camada pode ser testada isoladamente.
+\item {\bfseries{Flexibilidade}}\+: Novas funcionalidades podem ser adicionadas sem grandes refatorações.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md10}{}\doxysection{Regras de Negócio}\label{md_README_autotoc_md10}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Imutabilidade da Chave Primária}}\+:
+\begin{DoxyItemize}
+\item Não é permitido alterar campos que identificam registros (ex.\+: códigos).
+\end{DoxyItemize}
+\item {\bfseries{Exclusão Condicional}}\+:
+\begin{DoxyItemize}
+\item Entidades só podem ser removidas se não houver dependências ativas.
+\end{DoxyItemize}
+\item {\bfseries{Validação de Datas}}\+:
+\begin{DoxyItemize}
+\item As atividades de um destino devem respeitar o intervalo de datas do destino.
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md_README_autotoc_md11}{}\doxysection{Desenvolvedores}\label{md_README_autotoc_md11}
+
+\begin{DoxyItemize}
+\item Gabriel Caixeta
+\item Gustavo Cavalcanti
+\item João Henrique Antunes 
+\end{DoxyItemize}

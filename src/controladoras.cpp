@@ -619,18 +619,36 @@ void CntrViagemA::definirAvaliacao(const Codigo& codigoViagem, int avaliacao) {
     }
 }
 
-void CntrViagemA::atualizarNomeViagem(const Codigo& codigoViagem) {
+void CntrViagemA::atualizarNomeViagem(const Codigo& codigoConta) {
     Viagem viagem;
-    if (!servicoViagem->ler(codigoViagem, &viagem)) {
-        cout << "Erro: Viagem não encontrada para atualização." << endl;
-        return;
+    Codigo codigoViagem;
+
+    while (true) {
+        cout << "Digite o código da viagem que deseja atualizar: ";
+        string codigoStr;
+        cin >> codigoStr;
+        codigoViagem.setValor(codigoStr);
+
+        if (servicoViagem->ler(codigoViagem, &viagem)) {
+            break; // Sai do loop se a viagem for encontrada
+        }
+
+        cout << "Erro: Viagem não encontrada. Tente novamente." << endl;
     }
 
     string novoNome;
-    cout << "Digite o novo nome da viagem: ";
-    cin >> novoNome;
+    while (true) {
+        try {
+            cout << "Digite o novo nome da viagem: ";
+            cin.ignore();
+            getline(cin, novoNome);
 
-    viagem.setNome(Nome(novoNome));
+            viagem.setNome(Nome(novoNome));
+            break;
+        } catch (const invalid_argument& e) {
+            cout << "Erro: " << e.what() << ". Tente novamente." << endl;
+        }
+    }
 
     if (servicoViagem->atualizar(viagem)) {
         cout << "Nome da viagem atualizado com sucesso!" << endl;

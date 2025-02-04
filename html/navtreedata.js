@@ -25,28 +25,31 @@
 var NAVTREE =
 [
   [ "My Project", "index.html", [
-    [ "Console App - TP1", "md__r_e_a_d_m_e.html", [
-      [ "Estrutura do Projeto", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
-      [ "Funcionalidades", "md__r_e_a_d_m_e.html#autotoc_md2", [
-        [ "Contas", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
-        [ "Viagens", "md__r_e_a_d_m_e.html#autotoc_md4", null ],
-        [ "Destinos, Atividades e Hospedagens", "md__r_e_a_d_m_e.html#autotoc_md5", null ]
-      ] ],
-      [ "Interfaces", "md__r_e_a_d_m_e.html#autotoc_md6", [
-        [ "Interfaces de Apresentação (IA)", "md__r_e_a_d_m_e.html#autotoc_md7", null ],
-        [ "Interfaces de Serviço (IS)", "md__r_e_a_d_m_e.html#autotoc_md8", null ]
-      ] ],
-      [ "Modularização e Separação de Responsabilidades", "md__r_e_a_d_m_e.html#autotoc_md9", null ],
-      [ "Regras de Negócio", "md__r_e_a_d_m_e.html#autotoc_md10", null ],
-      [ "Desenvolvedores", "md__r_e_a_d_m_e.html#autotoc_md11", null ]
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+"annotated.html",
+"class_stub_servico_viagem.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronization';
-var SYNCOFFMSG = 'click to enable panel synchronization';
+var SYNCONMSG = 'click to disable panel synchronisation';
+var SYNCOFFMSG = 'click to enable panel synchronisation';
